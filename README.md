@@ -17,3 +17,7 @@ dependencies:
             url: https://github.com/yukino-app/packages.git
             ref: extensions_test
 ```
+
+## License
+
+[GPL-3.0](./LICENSE)
