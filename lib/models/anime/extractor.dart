@@ -2,20 +2,20 @@ import 'package:utilx/utilities/locale.dart';
 import './episode/info.dart';
 import './episode/source.dart';
 import './info.dart';
-import '../base/extractor.dart';
+import '../base/search/info.dart';
 
 typedef GetAnimeInfoFn = Future<AnimeInfo> Function(String, Locale);
 
 typedef GetSourcesFn = Future<List<EpisodeSource>> Function(EpisodeInfo);
 
-class AnimeExtractor extends BaseExtractor {
+class AnimeExtractor {
   const AnimeExtractor({
-    required final Locale defaultLocale,
-    required final SearchFn search,
+    required final this.search,
     required final this.getInfo,
     required final this.getSources,
-  }) : super(defaultLocale: defaultLocale, search: search);
+  });
 
+  final GetSearchInfosFn search;
   final GetAnimeInfoFn getInfo;
   final GetSourcesFn getSources;
 }
