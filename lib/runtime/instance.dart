@@ -8,7 +8,7 @@ class ERuntimeInstance {
 
   Future<void> loadByteCode(final Uint8List bytes) async {
     // TODO: fix `moduleName`
-    hetu.loadBytecode(bytes: bytes, moduleName: '');
+    hetu.loadBytecode(bytes: bytes, moduleName: _extractorIdentifier);
   }
 
   Future<T> getExtractor<T>() async {
