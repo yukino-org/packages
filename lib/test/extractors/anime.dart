@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:extensions/extensions.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
-import '../../utils/timer.dart';
 import '../environment.dart';
 
 class TAnimeExtractor {
@@ -11,7 +10,6 @@ class TAnimeExtractor {
   final AnimeExtractor extractor;
 
   Future<void> search(final String terms, final Locale locale) async {
-    final TTimer timer = TTimer()..start();
     final List<SearchInfo> result = await extractor.search(terms, locale);
 
     TConsole.p('Results (${result.length}):');
@@ -23,25 +21,18 @@ class TAnimeExtractor {
     );
 
     if (result.isEmpty) {
-      timer.fail();
       throw Exception('Empty result');
     }
-
-    timer.pass();
   }
 
   Future<void> getInfo(final String url, final Locale locale) async {
-    final TTimer timer = TTimer()..start();
     final AnimeInfo result = await extractor.getInfo(url, locale);
 
     TConsole.p('Result:');
     TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
-
-    timer.pass();
   }
 
   Future<void> getSources(final EpisodeInfo episode) async {
-    final TTimer timer = TTimer()..start();
     final List<EpisodeSource> result = await extractor.getSources(episode);
 
     TConsole.p('Results (${result.length}):');
@@ -53,11 +44,8 @@ class TAnimeExtractor {
     );
 
     if (result.isEmpty) {
-      timer.fail();
       throw Exception('Empty result');
     }
-
-    timer.pass();
   }
 
   static Future<void> testFile(

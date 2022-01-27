@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:extensions/extensions.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
-import '../../utils/timer.dart';
 import '../environment.dart';
 
 class TMangaExtractor {
@@ -11,7 +10,6 @@ class TMangaExtractor {
   final MangaExtractor extractor;
 
   Future<void> search(final String terms, final Locale locale) async {
-    final TTimer timer = TTimer()..start();
     final List<SearchInfo> result = await extractor.search(terms, locale);
 
     TConsole.p('Results (${result.length}):');
@@ -23,25 +21,18 @@ class TMangaExtractor {
     );
 
     if (result.isEmpty) {
-      timer.fail();
       throw Exception('Empty result');
     }
-
-    timer.pass();
   }
 
   Future<void> getInfo(final String url, final Locale locale) async {
-    final TTimer timer = TTimer()..start();
     final MangaInfo result = await extractor.getInfo(url, locale);
 
     TConsole.p('Result:');
     TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
-
-    timer.pass();
   }
 
   Future<void> getChapter(final ChapterInfo chapter) async {
-    final TTimer timer = TTimer()..start();
     final List<PageInfo> result = await extractor.getChapter(chapter);
 
     TConsole.p('Results (${result.length}):');
@@ -53,21 +44,15 @@ class TMangaExtractor {
     );
 
     if (result.isEmpty) {
-      timer.fail();
       throw Exception('Empty result');
     }
-
-    timer.pass();
   }
 
   Future<void> getPage(final PageInfo page) async {
-    final TTimer timer = TTimer()..start();
     final ImageDescriber result = await extractor.getPage(page);
 
     TConsole.p('Result:');
     TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
-
-    timer.pass();
   }
 
   static Future<void> testFile(

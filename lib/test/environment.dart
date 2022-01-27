@@ -1,5 +1,6 @@
 import 'package:extensions/extensions.dart';
 import '../utils/console.dart';
+import '../utils/time_tracker.dart';
 
 abstract class TEnvironment {
   static Future<void> prepare() async {
@@ -24,14 +25,21 @@ abstract class TEnvironment {
 
     for (final String method in methods) {
       if (tests.containsKey(method)) {
+        final TimeTracker time = TimeTracker()..start();
+
         try {
-          TConsole.p('Testing: ${Colorize('$method()').cyan()}');
-          TConsole.ln();
+          TConsole.p('Running: ${Colorize('$method()').cyan()}');
+
           await tests[method]!();
-          TConsole.p('Passed: ${Colorize('$method()').cyan()}');
+
+          TConsole.p(
+            'Passed: ${Colorize('$method()').cyan()} ${Colorize('(${time.elapsed}ms)').darkGray()}',
+          );
         } catch (err, stack) {
           TConsole.err(err, stack);
-          TConsole.p('Failed: ${Colorize('$method()').cyan()}');
+          TConsole.p(
+            'Failed: ${Colorize('$method()').cyan()} ${Colorize('(${time.elapsed}ms)').darkGray()}',
+          );
         }
 
         TConsole.ln();
