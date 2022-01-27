@@ -27,7 +27,7 @@ external class Locale {
   fun toJson();
 
   /// (string) => Locale
-  static parse(code);
+  static fun parse(code);
 }
       '''
       .trim(),
