@@ -23,7 +23,7 @@ class PageInfoClassBinding extends HTExternalClass {
           }) =>
               PageInfo(
             url: namedArgs['url'] as String,
-            locale: Locale.parse(namedArgs['locale'] as String),
+            locale: namedArgs['locale'] as Locale,
           ),
         );
 

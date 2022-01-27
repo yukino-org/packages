@@ -24,7 +24,7 @@ class SearchInfoClassBinding extends HTExternalClass {
               SearchInfo(
             title: namedArgs['title'] as String,
             url: namedArgs['url'] as String,
-            locale: Locale.parse(namedArgs['locale'] as String),
+            locale: namedArgs['locale'] as Locale,
             thumbnail: namedArgs['thumbnail'] as ImageDescriber?,
           ),
         );

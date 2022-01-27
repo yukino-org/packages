@@ -24,7 +24,7 @@ class EpisodeInfoClassBinding extends HTExternalClass {
               EpisodeInfo(
             episode: namedArgs['episode'] as String,
             url: namedArgs['url'] as String,
-            locale: Locale.parse(namedArgs['locale'] as String),
+            locale: namedArgs['locale'] as Locale,
           ),
         );
 

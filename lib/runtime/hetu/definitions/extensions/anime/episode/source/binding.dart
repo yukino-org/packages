@@ -26,7 +26,7 @@ class EpisodeSourceClassBinding extends HTExternalClass {
             quality: Quality.parse(namedArgs['quality'] as String),
             headers: parseHetuReturnedMap(namedArgs['headers'])
                 .cast<String, String>(),
-            locale: Locale.parse(namedArgs['locale'] as String),
+            locale: namedArgs['locale'] as Locale,
           ),
         );
 

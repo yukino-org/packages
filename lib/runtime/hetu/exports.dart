@@ -8,6 +8,7 @@ import './definitions/extensions/anime/episode/info/definition.dart';
 import './definitions/extensions/anime/episode/source/definition.dart';
 import './definitions/extensions/anime/info/definition.dart';
 import './definitions/extensions/base/image_describer/definition.dart';
+import './definitions/extensions/base/locale/definition.dart';
 import './definitions/extensions/base/search/info/definition.dart';
 import './definitions/extensions/manga/chapter/info/definition.dart';
 import './definitions/extensions/manga/info/definition.dart';
@@ -39,6 +40,7 @@ abstract class HetuHelperExports {
     hEpisodeSourceClass,
     hAnimeInfoClass,
     hImageDescriberClass,
+    hLocaleClass,
     hSearchInfoClass,
     hChapterInfoClass,
     hMangaInfoClass,

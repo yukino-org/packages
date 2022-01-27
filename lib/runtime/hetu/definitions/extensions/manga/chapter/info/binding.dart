@@ -24,7 +24,7 @@ class ChapterInfoClassBinding extends HTExternalClass {
               ChapterInfo(
             chapter: namedArgs['chapter'] as String,
             url: namedArgs['url'] as String,
-            locale: Locale.parse(namedArgs['locale'] as String),
+            locale: namedArgs['locale'] as Locale,
             title: namedArgs['title'] as String?,
             volume: namedArgs['volume'] as String?,
           ),

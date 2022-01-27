@@ -26,10 +26,9 @@ class AnimeInfoClassBinding extends HTExternalClass {
             url: namedArgs['url'] as String,
             episodes:
                 (namedArgs['episodes'] as List<dynamic>).cast<EpisodeInfo>(),
-            locale: Locale.parse(namedArgs['locale'] as String),
-            availableLocales: (namedArgs['availableLocales'] as List<dynamic>)
-                .map((final dynamic x) => Locale.parse(x as String))
-                .toList(),
+            locale: namedArgs['locale'] as Locale,
+            availableLocales:
+                (namedArgs['availableLocales'] as List<dynamic>).cast<Locale>(),
             thumbnail: namedArgs['thumbnail'] as ImageDescriber?,
           ),
         );
