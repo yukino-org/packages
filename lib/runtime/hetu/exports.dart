@@ -6,11 +6,13 @@ import './definitions/converter/definition.dart';
 import './definitions/crypto/definition.dart';
 import './definitions/extensions/anime/episode/info/definition.dart';
 import './definitions/extensions/anime/episode/source/definition.dart';
+import './definitions/extensions/anime/extractor/definition.dart';
 import './definitions/extensions/anime/info/definition.dart';
 import './definitions/extensions/base/image_describer/definition.dart';
 import './definitions/extensions/base/locale/definition.dart';
 import './definitions/extensions/base/search/info/definition.dart';
 import './definitions/extensions/manga/chapter/info/definition.dart';
+import './definitions/extensions/manga/extractor/definition.dart';
 import './definitions/extensions/manga/info/definition.dart';
 import './definitions/extensions/manga/page/info/definition.dart';
 import './definitions/flaw/definition.dart';
@@ -38,11 +40,13 @@ abstract class HetuHelperExports {
     hCryptoClass,
     hEpisodeInfoClass,
     hEpisodeSourceClass,
+    hAnimeExtractorClass,
     hAnimeInfoClass,
     hImageDescriberClass,
     hLocaleClass,
     hSearchInfoClass,
     hChapterInfoClass,
+    hMangaExtractorClass,
     hMangaInfoClass,
     hPageInfoClass,
     hFlawClass,
