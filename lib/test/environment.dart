@@ -1,15 +1,32 @@
 import 'package:extensions/extensions.dart';
-// ignore: depend_on_referenced_packages
-import 'package:utilx/utilities/locale.dart';
+import 'package:test/test.dart';
 
-abstract class TestEnvironmentManager {
-  static const Locale defaultLocale = Locale(LanguageCodes.en);
-
+abstract class TEnvironment {
   static Future<void> prepare() async {
     await ExtensionInternals.initialize(
-      httpOptions: const HttpClientOptions(ignoreSSLCertificate: true),
-      webviewProviderOptions: const WebviewProviderOptions(),
+      runtime: const ERuntimeOptions(
+        http: HttpClientOptions(ignoreSSLCertificate: true),
+        webview: WebviewProviderOptions(),
+      ),
     );
+  }
+
+  static void runTests(
+    final Map<String, Future<void> Function()> tests, {
+    final bool parseEnvironmentMethod = true,
+  }) {
+    final String? envMethods =
+        parseEnvironmentMethod && const bool.hasEnvironment('method')
+            ? const String.fromEnvironment('method')
+            : null;
+
+    final List<String> methods = envMethods?.split(',') ?? tests.keys.toList();
+
+    for (final String method in methods) {
+      if (tests.containsKey(method)) {
+        test(method, tests[methods]!);
+      }
+    }
   }
 
   static Future<void> dispose() async {

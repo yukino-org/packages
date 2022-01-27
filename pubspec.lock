@@ -7,21 +7,21 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "32.0.0"
+    version: "34.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.2.0"
   archive:
     dependency: transitive
     description:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.8"
+    version: "3.1.9"
   args:
     dependency: transitive
     description:
@@ -35,7 +35,7 @@ packages:
       name: asn1lib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.1.0"
   async:
     dependency: transitive
     description:
@@ -105,7 +105,7 @@ packages:
       name: coverage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.1.0"
   crypto:
     dependency: transitive
     description:
@@ -123,10 +123,10 @@ packages:
   devx:
     dependency: "direct dev"
     description:
-      path: "packages/devx"
-      ref: next
-      resolved-ref: "5961e1db8dedaa9ceff0e5b826fc3a98ae8f25ac"
-      url: "https://github.com/yukino-app/yukino.git"
+      path: "."
+      ref: devx
+      resolved-ref: "96017f7b512cf18c7d227e8a46b4b308377b646d"
+      url: "https://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
   encrypt:
@@ -139,12 +139,21 @@ packages:
   extensions:
     dependency: "direct main"
     description:
-      path: "packages/extensions"
-      ref: next
-      resolved-ref: "8e19b80b94a05adc3a3e2810e7e8523c5bcb2f41"
-      url: "git://github.com/yukino-app/yukino.git"
+      path: "."
+      ref: extensions
+      resolved-ref: "709e7e5b77bda567ebbc33e5d8ecdcd86e9f4386"
+      url: "git://github.com/yukino-app/packages.git"
     source: git
-    version: "1.0.2"
+    version: "1.0.3"
+  extensions_runtime:
+    dependency: transitive
+    description:
+      path: "."
+      ref: extensions_runtime
+      resolved-ref: "86f23c834268fe70c0b226f3cc8e0555b46507ed"
+      url: "git://github.com/yukino-app/packages.git"
+    source: git
+    version: "0.0.0"
   file:
     dependency: transitive
     description:
@@ -191,7 +200,7 @@ packages:
       name: hetu_script
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.10+1"
+    version: "0.3.11"
   html:
     dependency: transitive
     description:
@@ -247,7 +256,7 @@ packages:
       name: lint
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.2"
   logging:
     dependency: transitive
     description:
@@ -406,7 +415,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.2"
   stack_trace:
     dependency: transitive
     description:
@@ -464,12 +473,12 @@ packages:
     source: hosted
     version: "1.3.0"
   utilx:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      path: "packages/utilx"
-      ref: HEAD
-      resolved-ref: "8e19b80b94a05adc3a3e2810e7e8523c5bcb2f41"
-      url: "https://github.com/yukino-app/yukino.git"
+      path: "."
+      ref: utilx
+      resolved-ref: "3d40c9f0aadc6fa927a36863dabfb00cc8af190c"
+      url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
   vector_math:
@@ -515,5 +524,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.16.0-100.0.dev <3.0.0"
+  dart: ">=2.16.0-144.0.dev <3.0.0"
   flutter: ">=1.22.2"

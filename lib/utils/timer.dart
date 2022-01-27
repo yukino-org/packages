@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 import 'package:colorize/colorize.dart';
 
-class TestTimer {
+class TTimer {
   late final int started;
 
   void start() {

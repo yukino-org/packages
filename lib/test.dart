@@ -1,5 +1,6 @@
 export 'package:extensions/extensions.dart';
-export './test/anime.dart';
 export './test/environment.dart';
-export './test/manga.dart';
-export './test/timer.dart';
+export './test/extractors/anime.dart';
+export './test/extractors/manga.dart';
+export './utils/console.dart';
+export './utils/timer.dart';

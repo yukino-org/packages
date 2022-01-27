@@ -3,19 +3,19 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/_fe_analyzer_shared-32.0.0",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/_fe_analyzer_shared-34.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/analyzer-3.0.0",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/analyzer-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "archive",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-3.1.8",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-3.1.9",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -27,7 +27,7 @@
     },
     {
       "name": "asn1lib",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/asn1lib-1.0.3",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/asn1lib-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -87,9 +87,9 @@
     },
     {
       "name": "coverage",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/coverage-1.0.4",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/coverage-1.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "crypto",
@@ -105,7 +105,7 @@
     },
     {
       "name": "devx",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/yukino-5961e1db8dedaa9ceff0e5b826fc3a98ae8f25ac/packages/devx",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-96017f7b512cf18c7d227e8a46b4b308377b646d/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -117,9 +117,15 @@
     },
     {
       "name": "extensions",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/yukino-8e19b80b94a05adc3a3e2810e7e8523c5bcb2f41/packages/extensions",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-709e7e5b77bda567ebbc33e5d8ecdcd86e9f4386/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "extensions_runtime",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-86f23c834268fe70c0b226f3cc8e0555b46507ed/",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
     },
     {
       "name": "file",
@@ -159,7 +165,7 @@
     },
     {
       "name": "hetu_script",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/hetu_script-0.3.10+1",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/hetu_script-0.3.11",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -207,7 +213,7 @@
     },
     {
       "name": "lint",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/lint-1.8.1",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/lint-1.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -345,9 +351,9 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/source_span-1.8.1",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/source_span-1.8.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "stack_trace",
@@ -399,7 +405,7 @@
     },
     {
       "name": "utilx",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/yukino-8e19b80b94a05adc3a3e2810e7e8523c5bcb2f41/packages/utilx",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-3d40c9f0aadc6fa927a36863dabfb00cc8af190c/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -446,7 +452,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-27T04:50:11.260777Z",
+  "generated": "2022-01-27T09:36:30.694920Z",
   "generator": "pub",
   "generatorVersion": "2.16.0-144.0.dev"
 }
