@@ -14,7 +14,7 @@ Used for testing Yukino extensions.
 dependencies:
     extensions_test:
         git:
-            url: https://github.com/yukino-app/packages.git
+            url: git://github.com/yukino-app/packages.git
             ref: extensions_test
 ```
 
