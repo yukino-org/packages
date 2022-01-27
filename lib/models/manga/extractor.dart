@@ -19,7 +19,7 @@ class MangaExtractor {
     required final this.getPage,
   });
 
-  final GetSearchInfosFn search;
+  final SearchFn search;
   final GetMangaInfoFn getInfo;
   final GetChapterFn getChapter;
   final GetPageFn getPage;

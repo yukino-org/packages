@@ -1,7 +1,7 @@
 import 'package:utilx/utilities/locale.dart';
 import '../image_describer.dart';
 
-typedef GetSearchInfosFn = Future<List<SearchInfo>> Function(
+typedef SearchFn = Future<List<SearchInfo>> Function(
   String terms,
   Locale locale,
 );

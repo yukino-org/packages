@@ -15,7 +15,7 @@ class AnimeExtractor {
     required final this.getSources,
   });
 
-  final GetSearchInfosFn search;
+  final SearchFn search;
   final GetAnimeInfoFn getInfo;
   final GetSourcesFn getSources;
 }
