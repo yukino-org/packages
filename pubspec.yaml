@@ -11,16 +11,14 @@ dependencies:
   colorize: ^3.0.0
   extensions:
     git:
-      url: git://github.com/yukino-app/yukino.git
-      path: packages/extensions
-      ref: next
+      url: git://github.com/yukino-app/packages.git
+      ref: extensions
   test: ^1.17.12
 
 dev_dependencies:
   devx:
     git:
-      url: https://github.com/yukino-app/yukino.git
-      ref: next
-      path: packages/devx
+      url: https://github.com/yukino-app/packages.git
+      ref: devx
   lint: ^1.0.0
   path: ^1.8.0
