@@ -45,7 +45,7 @@ class EpisodeInfoClassBinding extends HTExternalClass {
         return element.url;
 
       case 'locale':
-        return element.locale.toCodeString();
+        return element.locale;
 
       case 'toJson':
         return createHTExternalFunction(

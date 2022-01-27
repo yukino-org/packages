@@ -46,7 +46,7 @@ class SearchInfoClassBinding extends HTExternalClass {
         return element.url;
 
       case 'locale':
-        return element.locale.toCodeString();
+        return element.locale;
 
       case 'thumbnail':
         return element.thumbnail;

@@ -50,7 +50,7 @@ class EpisodeSourceClassBinding extends HTExternalClass {
         return element.headers;
 
       case 'locale':
-        return element.locale.toCodeString();
+        return element.locale;
 
       case 'toJson':
         return createHTExternalFunction(

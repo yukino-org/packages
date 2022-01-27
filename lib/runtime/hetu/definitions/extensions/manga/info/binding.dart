@@ -53,12 +53,10 @@ class MangaInfoClassBinding extends HTExternalClass {
         return element.chapters;
 
       case 'locale':
-        return element.locale.toCodeString();
+        return element.locale;
 
       case 'availableLocales':
-        return element.availableLocales
-            .map((final Locale x) => x.toCodeString())
-            .toList();
+        return element.availableLocales.map((final Locale x) => x).toList();
 
       case 'thumbnail':
         return element.thumbnail;

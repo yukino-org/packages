@@ -53,7 +53,7 @@ class LocaleClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              element.toCodeString(),
+              element,
         );
 
       case 'toPrettyString':
