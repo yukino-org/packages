@@ -7,3 +7,13 @@
 # Extensions (Test)
 
 Used for testing Yukino extensions.
+
+## Installation
+
+```yaml
+dependencies:
+    extensions_test:
+        git:
+            url: https://github.com/yukino-app/packages.git
+            ref: extensions_test
+```
