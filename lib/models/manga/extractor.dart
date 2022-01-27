@@ -13,19 +13,12 @@ typedef GetPageFn = Future<ImageDescriber> Function(PageInfo);
 
 class MangaExtractor extends BaseExtractor {
   const MangaExtractor({
-    required final String name,
-    required final String id,
-    required final SearchFn search,
     required final Locale defaultLocale,
+    required final SearchFn search,
     required final this.getInfo,
     required final this.getChapter,
     required final this.getPage,
-  }) : super(
-          name: name,
-          id: id,
-          search: search,
-          defaultLocale: defaultLocale,
-        );
+  }) : super(defaultLocale: defaultLocale, search: search);
 
   final GetMangaInfoFn getInfo;
   final GetChapterFn getChapter;

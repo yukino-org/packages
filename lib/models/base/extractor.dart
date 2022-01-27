@@ -8,14 +8,10 @@ typedef SearchFn = Future<List<SearchInfo>> Function(
 
 class BaseExtractor {
   const BaseExtractor({
-    required final this.name,
-    required final this.id,
-    required final this.search,
     required final this.defaultLocale,
+    required final this.search,
   });
 
-  final String name;
-  final String id;
   final Locale defaultLocale;
   final SearchFn search;
 }
