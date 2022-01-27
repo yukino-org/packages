@@ -12,7 +12,6 @@ Exposes the extensions system of Yukino.
 
 ```yaml
 dependencies:
-    ...
     extensions:
         git:
             url: git://github.com/yukino-app/packages.git
