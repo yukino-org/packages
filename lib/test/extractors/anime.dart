@@ -14,9 +14,9 @@ class TAnimeExtractor {
     final TTimer timer = TTimer()..start();
     final List<SearchInfo> result = await extractor.search(terms, locale);
 
-    TConsole.print('Results (${result.length}):');
-    TConsole.print(
-      TConsole.prettify(
+    TConsole.p('Results (${result.length}):');
+    TConsole.p(
+      TConsole.qt(
         result.map((final SearchInfo x) => x.toJson()),
         spacing: '  ',
       ),
@@ -34,8 +34,8 @@ class TAnimeExtractor {
     final TTimer timer = TTimer()..start();
     final AnimeInfo result = await extractor.getInfo(url, locale);
 
-    TConsole.print('Result:');
-    TConsole.print(TConsole.prettify(result.toJson(), spacing: '  '));
+    TConsole.p('Result:');
+    TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
 
     timer.pass();
   }
@@ -44,9 +44,9 @@ class TAnimeExtractor {
     final TTimer timer = TTimer()..start();
     final List<EpisodeSource> result = await extractor.getSources(episode);
 
-    TConsole.print('Results (${result.length}):');
-    TConsole.print(
-      TConsole.prettify(
+    TConsole.p('Results (${result.length}):');
+    TConsole.p(
+      TConsole.qt(
         result.map((final EpisodeSource x) => x.toJson()),
         spacing: '  ',
       ),

@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'package:colorize/colorize.dart';
 
 export 'package:colorize/colorize.dart';
@@ -6,20 +7,20 @@ bool _isKindOfMap(final dynamic data) =>
     data is Map<dynamic, dynamic> || data is Iterable<dynamic>;
 
 abstract class TConsole {
-  static void newLine() {
+  static void ln() {
     print(' ');
   }
 
-  static void print(final String text) {
+  static void p(final String text) {
     print(text);
   }
 
-  static void printError(final Object err, final StackTrace stackTrace) {
+  static void err(final Object err, final StackTrace stackTrace) {
     print(Colorize(err.toString()).red().toString());
     print(Colorize(stackTrace.toString()).lightGray().toString());
   }
 
-  static String prettify(
+  static String qt(
     final dynamic data, {
     final String spacing = '',
     final String tabSpace = '    ',
@@ -51,7 +52,7 @@ abstract class TConsole {
           isList ? '- ' : '',
         ).darkGray().toString();
 
-        final String key = prettify(
+        final String key = qt(
           entry.key,
           isKey: true,
           tabSpace: tabSpace,
@@ -60,7 +61,7 @@ abstract class TConsole {
         final String center =
             Colorize(':${isValueKindOfMap ? '\n' : ' '}').darkGray().toString();
 
-        final String value = prettify(
+        final String value = qt(
           entry.value,
           spacing: isValueKindOfMap ? spacing + tabSpace : '',
           tabSpace: tabSpace,

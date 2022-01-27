@@ -8,13 +8,13 @@ class TTimer {
   }
 
   void pass() {
-    TConsole.print(
+    TConsole.p(
       '${Colorize('✓').green()} Passed in ${Colorize('${elapsed}ms').green()}',
     );
   }
 
   void fail() {
-    TConsole.print(
+    TConsole.p(
       '${Colorize('✕').red()} Failed in ${Colorize('${elapsed}ms').red()}',
     );
   }

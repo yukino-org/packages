@@ -25,16 +25,16 @@ abstract class TEnvironment {
     for (final String method in methods) {
       if (tests.containsKey(method)) {
         try {
-          TConsole.print('Testing: ${Colorize('$method()').cyan()}');
-          TConsole.newLine();
+          TConsole.p('Testing: ${Colorize('$method()').cyan()}');
+          TConsole.ln();
           await tests[methods]!();
-          TConsole.print('Passed: ${Colorize('$method()').cyan()}');
+          TConsole.p('Passed: ${Colorize('$method()').cyan()}');
         } catch (err, stack) {
-          TConsole.printError(err, stack);
-          TConsole.print('Failed: ${Colorize('$method()').cyan()}');
+          TConsole.err(err, stack);
+          TConsole.p('Failed: ${Colorize('$method()').cyan()}');
         }
 
-        TConsole.newLine();
+        TConsole.ln();
       }
     }
   }

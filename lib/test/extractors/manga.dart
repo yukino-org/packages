@@ -14,9 +14,9 @@ class TMangaExtractor {
     final TTimer timer = TTimer()..start();
     final List<SearchInfo> result = await extractor.search(terms, locale);
 
-    TConsole.print('Results (${result.length}):');
-    TConsole.print(
-      TConsole.prettify(
+    TConsole.p('Results (${result.length}):');
+    TConsole.p(
+      TConsole.qt(
         result.map((final SearchInfo x) => x.toJson()),
         spacing: '  ',
       ),
@@ -34,8 +34,8 @@ class TMangaExtractor {
     final TTimer timer = TTimer()..start();
     final MangaInfo result = await extractor.getInfo(url, locale);
 
-    TConsole.print('Result:');
-    TConsole.print(TConsole.prettify(result.toJson(), spacing: '  '));
+    TConsole.p('Result:');
+    TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
 
     timer.pass();
   }
@@ -44,9 +44,9 @@ class TMangaExtractor {
     final TTimer timer = TTimer()..start();
     final List<PageInfo> result = await extractor.getChapter(chapter);
 
-    TConsole.print('Results (${result.length}):');
-    TConsole.print(
-      TConsole.prettify(
+    TConsole.p('Results (${result.length}):');
+    TConsole.p(
+      TConsole.qt(
         result.map((final PageInfo x) => x.toJson()),
         spacing: '  ',
       ),
@@ -64,8 +64,8 @@ class TMangaExtractor {
     final TTimer timer = TTimer()..start();
     final ImageDescriber result = await extractor.getPage(page);
 
-    TConsole.print('Result:');
-    TConsole.print(TConsole.prettify(result.toJson(), spacing: '  '));
+    TConsole.p('Result:');
+    TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
 
     timer.pass();
   }
