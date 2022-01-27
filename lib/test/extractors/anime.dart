@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:extensions/extensions.dart';
-import 'package:test/test.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
 import '../../utils/timer.dart';
@@ -67,9 +66,7 @@ class TAnimeExtractor {
     required final Future<void> Function(TAnimeExtractor) getInfo,
     required final Future<void> Function(TAnimeExtractor) getSources,
   }) async {
-    setUpAll(() async {
-      await TEnvironment.prepare();
-    });
+    await TEnvironment.prepare();
 
     final File script = File(path);
     final ERuntimeInstance runtime = await ERuntimeManager.create();
@@ -84,7 +81,7 @@ class TAnimeExtractor {
 
     final TAnimeExtractor client = TAnimeExtractor(extractor);
 
-    TEnvironment.runTests(<String, Future<void> Function()>{
+    await TEnvironment.runTests(<String, Future<void> Function()>{
       'search': () async {
         await search(client);
         await Future<void>.delayed(const Duration(seconds: 3));
@@ -99,8 +96,6 @@ class TAnimeExtractor {
       }
     });
 
-    tearDownAll(() async {
-      await TEnvironment.dispose();
-    });
+    await TEnvironment.dispose();
   }
 }

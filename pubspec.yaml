@@ -13,7 +13,6 @@ dependencies:
     git:
       url: git://github.com/yukino-app/packages.git
       ref: extensions
-  test: ^1.17.12
   utilx:
     git:
       url: git://github.com/yukino-app/packages.git

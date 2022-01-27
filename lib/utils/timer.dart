@@ -1,5 +1,4 @@
-// ignore_for_file: avoid_print
-import 'package:colorize/colorize.dart';
+import './console.dart';
 
 class TTimer {
   late final int started;
@@ -9,13 +8,13 @@ class TTimer {
   }
 
   void pass() {
-    print(
+    TConsole.print(
       '${Colorize('✓').green()} Passed in ${Colorize('${elapsed}ms').green()}',
     );
   }
 
   void fail() {
-    print(
+    TConsole.print(
       '${Colorize('✕').red()} Failed in ${Colorize('${elapsed}ms').red()}',
     );
   }

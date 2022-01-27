@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:extensions/extensions.dart';
-import 'package:test/test.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
 import '../../utils/timer.dart';
@@ -78,9 +77,7 @@ class TMangaExtractor {
     required final Future<void> Function(TMangaExtractor) getChapter,
     required final Future<void> Function(TMangaExtractor) getPage,
   }) async {
-    setUpAll(() async {
-      await TEnvironment.prepare();
-    });
+    await TEnvironment.prepare();
 
     final File script = File(path);
     final ERuntimeInstance runtime = await ERuntimeManager.create();
@@ -95,7 +92,7 @@ class TMangaExtractor {
 
     final TMangaExtractor client = TMangaExtractor(extractor);
 
-    TEnvironment.runTests(<String, Future<void> Function()>{
+    await TEnvironment.runTests(<String, Future<void> Function()>{
       'search': () async {
         await search(client);
         await Future<void>.delayed(const Duration(seconds: 3));
@@ -114,8 +111,6 @@ class TMangaExtractor {
       }
     });
 
-    tearDownAll(() async {
-      await TEnvironment.dispose();
-    });
+    await TEnvironment.dispose();
   }
 }

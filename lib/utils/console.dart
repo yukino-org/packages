@@ -1,11 +1,22 @@
 import 'package:colorize/colorize.dart';
 
+export 'package:colorize/colorize.dart';
+
 bool _isKindOfMap(final dynamic data) =>
     data is Map<dynamic, dynamic> || data is Iterable<dynamic>;
 
 abstract class TConsole {
+  static void newLine() {
+    print(' ');
+  }
+
   static void print(final String text) {
     print(text);
+  }
+
+  static void printError(final Object err, final StackTrace stackTrace) {
+    print(Colorize(err.toString()).red().toString());
+    print(Colorize(stackTrace.toString()).lightGray().toString());
   }
 
   static String prettify(

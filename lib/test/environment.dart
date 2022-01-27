@@ -1,5 +1,5 @@
 import 'package:extensions/extensions.dart';
-import 'package:test/test.dart';
+import '../utils/console.dart';
 
 abstract class TEnvironment {
   static Future<void> prepare() async {
@@ -11,10 +11,10 @@ abstract class TEnvironment {
     );
   }
 
-  static void runTests(
+  static Future<void> runTests(
     final Map<String, Future<void> Function()> tests, {
     final bool parseEnvironmentMethod = true,
-  }) {
+  }) async {
     final String? envMethods =
         parseEnvironmentMethod && const bool.hasEnvironment('method')
             ? const String.fromEnvironment('method')
@@ -24,7 +24,17 @@ abstract class TEnvironment {
 
     for (final String method in methods) {
       if (tests.containsKey(method)) {
-        test(method, tests[methods]!);
+        try {
+          TConsole.print('Testing: ${Colorize('$method()').cyan()}');
+          TConsole.newLine();
+          await tests[methods]!();
+          TConsole.print('Passed: ${Colorize('$method()').cyan()}');
+        } catch (err, stack) {
+          TConsole.printError(err, stack);
+          TConsole.print('Failed: ${Colorize('$method()').cyan()}');
+        }
+
+        TConsole.newLine();
       }
     }
   }
