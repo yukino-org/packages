@@ -42,4 +42,10 @@ $code
 
     return ERuntimeError(error: error, line: error.line! - _hetuDepLines!);
   }
+
+  static Future<void> dispose() async {
+    await WebviewManager.dispose();
+
+    ready = false;
+  }
 }
