@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:hetu_script/hetu_script.dart';
 import './manager.dart';
 
