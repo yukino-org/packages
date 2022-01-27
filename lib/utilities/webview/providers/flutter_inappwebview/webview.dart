@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import './provider.dart';
-import '../../../http.dart';
+import '../../../utils/http.dart';
 import '../../models/webview.dart';
 
 const Duration _futureTimeout = Duration(seconds: 15);
