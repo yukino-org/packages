@@ -27,7 +27,7 @@ abstract class TEnvironment {
         try {
           TConsole.p('Testing: ${Colorize('$method()').cyan()}');
           TConsole.ln();
-          await tests[methods]!();
+          await tests[method]!();
           TConsole.p('Passed: ${Colorize('$method()').cyan()}');
         } catch (err, stack) {
           TConsole.err(err, stack);

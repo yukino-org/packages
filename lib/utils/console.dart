@@ -16,8 +16,8 @@ abstract class TConsole {
   }
 
   static void err(final Object err, final StackTrace stackTrace) {
-    print(Colorize(err.toString()).red().toString());
-    print(Colorize(stackTrace.toString()).lightGray().toString());
+    print(Colorize(err.toString()).red().toString().trim());
+    print(Colorize(stackTrace.toString()).lightGray().toString().trim());
   }
 
   static String qt(
