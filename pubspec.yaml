@@ -1,5 +1,5 @@
 name: extensions_test
-description: Yukino extensions test library
+description: Used for testing Yukino extensions.
 version: 0.0.0
 
 publish_to: none
