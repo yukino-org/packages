@@ -1,5 +1,5 @@
 name: extensions
-description: Extensions system of Yukino
+description: Exposes the extensions system of Yukino.
 version: 1.0.3
 
 publish_to: none
@@ -21,14 +21,12 @@ dependencies:
     puppeteer: ^2.3.0
     utilx:
         git:
-            url: https://github.com/yukino-app/yukino.git
-            path: packages/utilx
-
-dependency_overrides:
-    utilx:
-        path: ../utilx
+            url: git://github.com/yukino-app/packages.git
+            ref: utilx
 
 dev_dependencies:
     devx:
-        path: ../devx
+        git:
+            url: git://github.com/yukino-app/packages.git
+            ref: devx
     lint: ^1.5.3
