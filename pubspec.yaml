@@ -1,0 +1,32 @@
+name: extensions_runtime
+description: A new Flutter package project.
+version: 0.0.0
+
+publish_to: none
+
+environment:
+    sdk: ">=2.16.0-144.0.dev <3.0.0"
+
+dependencies:
+    crypto: ^3.0.1
+    encrypt: ^5.0.0
+    extensions:
+        git:
+            url: git://github.com/yukino-app/packages.git
+            ref: extensions
+    fuzzy: ^0.4.0-nullsafety.0
+    hetu_script: ^0.3.11
+    html: ^0.15.0
+    http: ^0.13.3
+    meta: ^1.7.0
+    utilx:
+        git:
+            url: git://github.com/yukino-app/packages.git
+            ref: utilx
+
+dev_dependencies:
+    devx:
+        git:
+            url: git://github.com/yukino-app/packages.git
+            ref: devx
+    lint: ^1.0.0
