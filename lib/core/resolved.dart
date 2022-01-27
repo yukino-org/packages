@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:extensions_runtime/extensions_runtime.dart';
 import 'package:utilx/utilities/locale.dart';
 import './base.dart';
 import './version.dart';
@@ -41,6 +44,12 @@ class ResolvedExtension extends BaseExtension {
   }
 
   final String code;
+
+  Future<ERuntimeInstance> getRuntime() async {
+    final ERuntimeInstance instance = await ERuntimeManager.create();
+    await instance.loadByteCode(base64.decode(code));
+    return instance;
+  }
 
   @override
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
