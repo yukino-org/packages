@@ -5,6 +5,9 @@ class Flaw implements Exception {
 
   final Exception exception;
 
+  @override
+  String toString() => exception.toString();
+
   static void throwFlaw(final dynamic err) {
     if (err is Flaw) {
       throw err;
