@@ -2,8 +2,28 @@ import 'dart:typed_data';
 import 'package:hetu_script/hetu_script.dart';
 import './manager.dart';
 
+class ERuntimeInstanceOptions {
+  const ERuntimeInstanceOptions({
+    final this.hetuSourceContext,
+  });
+
+  final HTResourceContext<HTSource>? hetuSourceContext;
+}
+
 class ERuntimeInstance {
-  final Hetu hetu = Hetu();
+  ERuntimeInstance([this.options]);
+
+  final ERuntimeInstanceOptions? options;
+
+  late final Hetu hetu = Hetu(sourceContext: options?.hetuSourceContext);
+
+  Future<void> loadScriptFile(final String path) async {
+    if (options?.hetuSourceContext == null) {
+      throw Exception('Not supported when `hetuSourceContext` is not provided');
+    }
+
+    await hetu.evalFile(path);
+  }
 
   Future<void> loadScriptCode(
     final String code, {
