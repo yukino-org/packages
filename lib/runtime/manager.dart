@@ -17,10 +17,12 @@ abstract class ERuntimeManager {
     ready = true;
   }
 
-  static Future<ERuntimeInstance> create() async {
+  static Future<ERuntimeInstance> create([
+    final ERuntimeInstanceOptions? options,
+  ]) async {
     if (!ready) throw Error();
 
-    final ERuntimeInstance instance = ERuntimeInstance();
+    final ERuntimeInstance instance = ERuntimeInstance(options);
 
     instance.hetu.init(
       externalClasses: HetuHelperExports.externalClasses,
