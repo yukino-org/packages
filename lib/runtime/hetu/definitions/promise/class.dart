@@ -1,21 +1,19 @@
 import 'dart:async';
 import 'package:hetu_script/values.dart';
 import '../flaw/class.dart';
-import '../task_trace/class.dart';
 
 class Promise {
   static Future<dynamic> resolve(
     final HTFunction function, {
     required final HTFunction onDone,
     final HTFunction? onFail,
-    final TaskTrace? trace,
   }) async {
     try {
       final dynamic result = await function();
 
       return await onDone.call(positionalArgs: <dynamic>[result]);
     } catch (err, stack) {
-      final Error flaw = Flaw.fromError(err, stack, trace);
+      final Flaw flaw = Flaw.fromUnknown(err);
 
       if (onFail != null) {
         return await onFail.call(positionalArgs: <dynamic>[flaw]);
@@ -29,7 +27,6 @@ class Promise {
     final List<HTFunction> functions, {
     required final HTFunction onDone,
     final HTFunction? onFail,
-    final TaskTrace? trace,
   }) async {
     try {
       final List<dynamic> result = await Future.wait(
@@ -38,7 +35,7 @@ class Promise {
 
       return await onDone.call(positionalArgs: <dynamic>[result]);
     } catch (err, stack) {
-      final Error flaw = Flaw.fromError(err, stack, trace);
+      final Flaw flaw = Flaw.fromUnknown(err);
 
       if (onFail != null) {
         return await onFail.call(positionalArgs: <dynamic>[flaw]);

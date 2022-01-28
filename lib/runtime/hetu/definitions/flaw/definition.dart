@@ -16,10 +16,8 @@ external class Flaw {
   
   /// TaskTrace
   final trace;
-
   /// () => string
   fun toString();
-
   /// (Flaw | any, TaskTrace?) => never
   static fun throwFlaw(err, [trace]);
 }

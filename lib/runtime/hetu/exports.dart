@@ -27,7 +27,6 @@ import './definitions/promise/definition.dart';
 import './definitions/regex/definition.dart';
 import './definitions/regex/match/definition.dart';
 import './definitions/string/format/definition.dart';
-import './definitions/task_trace/definition.dart';
 import './definitions/webview/definition.dart';
 import './model.dart';
 
@@ -60,7 +59,6 @@ abstract class HetuHelperExports {
     hPromiseClass,
     hRegexClass,
     hRegexMatchClass,
-    hTaskTraceClass,
     hWebviewClass,
   ];
 
