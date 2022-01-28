@@ -11,6 +11,6 @@ Sub-packages used by Yukino.
 ## Index
 
 - [extensions](https://github.com/yukino-app/packages/tree/extensions)
-- [extensions_test](https://github.com/yukino-app/packages/tree/extensions_test)
+- [extensions_dev_tools](https://github.com/yukino-app/packages/tree/extensions_dev_tools)
 - [utilx](https://github.com/yukino-app/packages/tree/utilx)
 - [devx](https://github.com/yukino-app/packages/tree/devx)
