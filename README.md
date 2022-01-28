@@ -12,10 +12,10 @@ Used for testing Yukino extensions.
 
 ```yaml
 dependencies:
-    extensions_test:
+    extensions_dev_tools:
         git:
             url: git://github.com/yukino-app/packages.git
-            ref: extensions_test
+            ref: extensions_dev_tools
 ```
 
 ## License
