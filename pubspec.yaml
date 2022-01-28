@@ -13,6 +13,7 @@ dependencies:
         git:
             url: git://github.com/yukino-app/packages.git
             ref: extensions
+    hetu_script_dev_tools: ^0.0.8
     utilx:
         git:
             url: git://github.com/yukino-app/packages.git

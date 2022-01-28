@@ -106,7 +106,7 @@ packages:
     description:
       path: "."
       ref: extensions
-      resolved-ref: b0959e1076e8298264f00522f9792b437df068a6
+      resolved-ref: ee3940d8f7dc164b6c956a5260eb8d06ef010c54
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "1.0.3"
@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: extensions_runtime
-      resolved-ref: "99fc4f11441971d99c00febdc2258d05c0b477a3"
+      resolved-ref: "6a2086006c54b2d439851f7e4c7ae529f2c8d0e7"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
@@ -145,6 +145,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.11"
+  hetu_script_dev_tools:
+    dependency: "direct main"
+    description:
+      name: hetu_script_dev_tools
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.8"
   html:
     dependency: transitive
     description:

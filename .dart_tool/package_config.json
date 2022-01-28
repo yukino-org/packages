@@ -87,13 +87,13 @@
     },
     {
       "name": "extensions",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-b0959e1076e8298264f00522f9792b437df068a6/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-ee3940d8f7dc164b6c956a5260eb8d06ef010c54/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "extensions_runtime",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-99fc4f11441971d99c00febdc2258d05c0b477a3/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-6a2086006c54b2d439851f7e4c7ae529f2c8d0e7/",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -120,6 +120,12 @@
       "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/hetu_script-0.3.11",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "hetu_script_dev_tools",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/hetu_script_dev_tools-0.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "html",
@@ -284,7 +290,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-27T12:28:28.141290Z",
+  "generated": "2022-01-28T04:13:05.509904Z",
   "generator": "pub",
   "generatorVersion": "2.16.0-144.0.dev"
 }

@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:extensions/extensions.dart';
+import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
 import '../environment.dart';
@@ -48,21 +48,23 @@ class TAnimeExtractor {
     }
   }
 
-  static Future<void> testFile(
-    final String path, {
+  static Future<void> testFile({
+    required final String root,
+    required final String file,
     required final Future<void> Function(TAnimeExtractor) search,
     required final Future<void> Function(TAnimeExtractor) getInfo,
     required final Future<void> Function(TAnimeExtractor) getSources,
   }) async {
     await TEnvironment.prepare();
 
-    final File script = File(path);
-    final ERuntimeInstance runtime = await ERuntimeManager.create();
-
-    await runtime.loadScriptCode(
-      await script.readAsString(),
-      appendDefinitions: true,
+    final ERuntimeInstance runtime = await ERuntimeManager.create(
+      ERuntimeInstanceOptions(
+        hetuSourceContext: HTFileSystemResourceContext(root: root),
+      ),
     );
+
+    await runtime.loadScriptCode('', appendDefinitions: true);
+    await runtime.loadScriptFile(file);
 
     final AnimeExtractor extractor =
         await runtime.getExtractor<AnimeExtractor>();
