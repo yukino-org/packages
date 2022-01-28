@@ -15,6 +15,7 @@ abstract class TEnvironment {
   static Future<void> runTests(
     final Map<String, Future<void> Function()> tests, {
     final bool parseEnvironmentMethod = true,
+    final bool throwIfAnyFails = true,
   }) async {
     final String? envMethods =
         parseEnvironmentMethod && const bool.hasEnvironment('method')
@@ -61,11 +62,16 @@ abstract class TEnvironment {
       result.entries
           .map(
             (final MapEntry<String, bool> x) => x.value
-                ? ' * ${Colorize('${x.key}()').cyan()}: ${Colorize('P').green()}'
-                : ' * ${Colorize('${x.key}()').cyan()}: ${Colorize('F').red()}',
+                ? '${Colorize('${x.key}()').cyan()}: ${Colorize('P').green()}'
+                : '${Colorize('${x.key}()').cyan()}: ${Colorize('F').red()}',
           )
+          .map((final String x) => ' ${Colorize('*').darkGray()} $x')
           .join('\n'),
     );
+
+    if (throwIfAnyFails && failed > 0) {
+      throw Error();
+    }
   }
 
   static Future<void> dispose() async {
