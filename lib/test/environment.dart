@@ -54,15 +54,15 @@ abstract class TEnvironment {
     final int failed = result.length - passed;
 
     TConsole.p(
-      'Summary: (${Colorize('$passed').green()} ${Colorize('$failed').red()})',
+      'Summary: [${Colorize('+$passed').green()} ${Colorize('-$failed').red()}]',
     );
 
     TConsole.p(
       result.entries
           .map(
             (final MapEntry<String, bool> x) => x.value
-                ? '${Colorize('$x()').cyan()}: ${Colorize('✓').green()}'
-                : '${Colorize('$x()').cyan()}: ${Colorize('⨉').red()}',
+                ? ' * ${Colorize('${x.key}()').cyan()}: ${Colorize('P').green()}'
+                : ' * ${Colorize('${x.key}()').cyan()}: ${Colorize('F').red()}',
           )
           .join('\n'),
     );
