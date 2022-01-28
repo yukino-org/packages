@@ -17,12 +17,15 @@ class ERuntimeInstance {
 
   late final Hetu hetu = Hetu(sourceContext: options?.hetuSourceContext);
 
-  Future<void> loadScriptFile(final String path) async {
+  Future<void> loadScriptFile(
+    final String path, {
+    final bool globallyImport = true,
+  }) async {
     if (options?.hetuSourceContext == null) {
       throw Exception('Not supported when `hetuSourceContext` is not provided');
     }
 
-    await hetu.evalFile(path);
+    await hetu.evalFile(path, globallyImport: globallyImport);
   }
 
   Future<void> loadScriptCode(
