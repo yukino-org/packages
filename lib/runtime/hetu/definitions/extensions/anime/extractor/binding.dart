@@ -2,6 +2,7 @@ import 'package:extensions/models/exports.dart';
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
+import 'package:utilx/utilities/locale.dart';
 import './_parsers.dart';
 import '../../../../model.dart';
 
@@ -23,6 +24,7 @@ class AnimeExtractorClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               AnimeExtractor(
+            defaultLocale: namedArgs['defaultLocale'] as Locale,
             search: toSearch(namedArgs['search'] as HTFunction),
             getInfo: toGetInfo(namedArgs['getInfo'] as HTFunction),
             getSources: toGetSources(namedArgs['getSources'] as HTFunction),
