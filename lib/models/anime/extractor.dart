@@ -10,11 +10,13 @@ typedef GetSourcesFn = Future<List<EpisodeSource>> Function(EpisodeInfo);
 
 class AnimeExtractor {
   const AnimeExtractor({
+    required final this.defaultLocale,
     required final this.search,
     required final this.getInfo,
     required final this.getSources,
   });
 
+  final Locale defaultLocale;
   final SearchFn search;
   final GetAnimeInfoFn getInfo;
   final GetSourcesFn getSources;
