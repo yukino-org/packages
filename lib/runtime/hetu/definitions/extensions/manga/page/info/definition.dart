@@ -7,8 +7,8 @@ final HetuHelperClass hPageInfoClass = HetuHelperClass(
 external class PageInfo {
   /// ({
   ///   url: string,
-  ///   locale: string,
-  /// })
+  ///   locale: Locale,
+  /// }) => PageInfo;
   construct({ url, locale });
   
   /// string

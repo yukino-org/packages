@@ -8,7 +8,7 @@ external class EpisodeInfo {
   /// ({
   ///   episode: string,
   ///   url: string,
-  ///   locale: string,
+  ///   locale: Locale,
   /// }) => EpisodeInfo;
   construct({ episode, url, locale });
 

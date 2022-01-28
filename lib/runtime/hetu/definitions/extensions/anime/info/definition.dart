@@ -9,8 +9,8 @@ external class AnimeInfo {
   ///   title: string,
   ///   url: string,
   ///   episodes: EpisodeInfo[],
-  ///   locale: string,
-  ///   availableLocales: string[],
+  ///   locale: Locale,
+  ///   availableLocales: Locale[],
   ///   thumbnail: ImageDescriber?,
   /// }) => AnimeInfo;
   construct({ title, url, episodes, locale, availableLocales, thumbnail });

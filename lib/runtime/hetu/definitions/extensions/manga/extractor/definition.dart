@@ -6,7 +6,7 @@ final HetuHelperClass hMangaExtractorClass = HetuHelperClass(
   declaration: '''
 external class MangaExtractor {
   /// ({
-  ///   defaultLocale: string,
+  ///   defaultLocale: Locale,
   ///   search: (terms: string, locale: Locale) => DartFuture<List<SearchInfo>>,
   ///   getInfo: (url: string, locale: Locale) => DartFuture<MangaInfo>,
   ///   getChapter: (chapter: ChapterInfo) => DartFuture<List<PageInfo>>,

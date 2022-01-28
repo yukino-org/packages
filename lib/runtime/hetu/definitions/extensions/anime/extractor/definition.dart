@@ -6,7 +6,7 @@ final HetuHelperClass hAnimeExtractorClass = HetuHelperClass(
   declaration: '''
 external class AnimeExtractor {
   /// ({
-  ///   defaultLocale: string,
+  ///   defaultLocale: Locale,
   ///   search: (terms: string, locale: Locale) => DartFuture<List<SearchInfo>>,
   ///   getInfo: (url: string, locale: Locale) => DartFuture<AnimeInfo>,
   ///   getSources: (episode: EpisodeInfo) => DartFuture<List<EpisodeSources>>,

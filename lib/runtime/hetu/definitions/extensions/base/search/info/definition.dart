@@ -8,7 +8,7 @@ external class SearchInfo {
   /// ({
   ///   title: string,
   ///   url: string,
-  ///   locale: string,
+  ///   locale: Locale,
   ///   thumbnail: ImageDescriber?,
   /// }) => SearchInfo;
   construct({ title, url, locale, thumbnail });

@@ -9,7 +9,7 @@ external class EpisodeSource {
   ///   url: string,
   ///   quality: string,
   ///   headers: string,
-  ///   locale: string,
+  ///   locale: Locale,
   /// }) => EpisodeSource;
   construct({ url, quality, headers, locale });
 

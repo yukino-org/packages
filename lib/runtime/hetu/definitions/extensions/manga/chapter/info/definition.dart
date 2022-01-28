@@ -8,7 +8,7 @@ external class ChapterInfo {
   /// ({
   ///   chapter: string,
   ///   url: string,
-  ///   locale: string,
+  ///   locale: Locale,
   ///   title: string?,
   ///   volume: string?,
   /// }) => ChapterInfo;

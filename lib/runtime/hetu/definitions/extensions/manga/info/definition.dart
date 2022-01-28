@@ -9,7 +9,7 @@ external class MangaInfo {
   ///   title: string,
   ///   url: string,
   ///   chapters: ChapterInfo[],
-  ///   locale: string,
+  ///   locale: Locale,
   ///   availableLocales: string[],
   ///   thumbnail: ImageDescriber?,
   /// }) => MangaInfo;
