@@ -27,8 +27,8 @@ class MangaExtractorClassBinding extends HTExternalClass {
             defaultLocale: namedArgs['defaultLocale'] as Locale,
             search: toSearch(namedArgs['search'] as HTFunction),
             getInfo: toGetInfo(namedArgs['getInfo'] as HTFunction),
-            getChapter: toGetChapter(namedArgs['getSources'] as HTFunction),
-            getPage: toGetPage(namedArgs['getSources'] as HTFunction),
+            getChapter: toGetChapter(namedArgs['getChapter'] as HTFunction),
+            getPage: toGetPage(namedArgs['getPage'] as HTFunction),
           ),
         );
 
