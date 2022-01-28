@@ -7,9 +7,9 @@ final HetuHelperClass hFlawClass = HetuHelperClass(
 external class Flaw {
   /// () => string
   fun toString();
-  
+
   /// (any) => Flaw;
-  fromUnknown(err);
+  static fun fromUnknown(err);
 
   /// (Flaw | any) => never
   static fun throwFlaw(err);
