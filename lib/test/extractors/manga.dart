@@ -1,8 +1,11 @@
 import 'package:extensions/extensions.dart';
+import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
 import '../environment.dart';
+
+typedef TMangaExtractorFn = Future<void> Function(TMangaExtractor);
 
 class TMangaExtractor {
   const TMangaExtractor(this.extractor);
@@ -58,10 +61,10 @@ class TMangaExtractor {
   static Future<void> testFile({
     required final String root,
     required final String file,
-    required final Future<void> Function(TMangaExtractor) search,
-    required final Future<void> Function(TMangaExtractor) getInfo,
-    required final Future<void> Function(TMangaExtractor) getChapter,
-    required final Future<void> Function(TMangaExtractor) getPage,
+    required final TMangaExtractorFn search,
+    required final TMangaExtractorFn getInfo,
+    required final TMangaExtractorFn getChapter,
+    required final TMangaExtractorFn getPage,
   }) async {
     await TEnvironment.prepare();
 

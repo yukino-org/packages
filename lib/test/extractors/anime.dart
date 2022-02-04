@@ -1,8 +1,11 @@
 import 'package:extensions/extensions.dart';
+import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../utils/console.dart';
 import '../environment.dart';
+
+typedef TAnimeExtractorFn = Future<void> Function(TAnimeExtractor);
 
 class TAnimeExtractor {
   const TAnimeExtractor(this.extractor);
@@ -51,9 +54,9 @@ class TAnimeExtractor {
   static Future<void> testFile({
     required final String root,
     required final String file,
-    required final Future<void> Function(TAnimeExtractor) search,
-    required final Future<void> Function(TAnimeExtractor) getInfo,
-    required final Future<void> Function(TAnimeExtractor) getSources,
+    required final TAnimeExtractorFn search,
+    required final TAnimeExtractorFn getInfo,
+    required final TAnimeExtractorFn getSources,
   }) async {
     await TEnvironment.prepare();
 

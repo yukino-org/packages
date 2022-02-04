@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "archive",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-3.1.9",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-3.1.11",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -87,13 +87,19 @@
     },
     {
       "name": "extensions",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-54c95ccd2706fabaa8128d8dcb94e51ae01c2da0/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-5fca4a57a988a723d3645b87de423f4aba0a8097/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
+      "name": "extensions_metadata",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-e604eb35897e0e71ff319866eeeb007bb7c6167d/",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "extensions_runtime",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-c292dbf56b603d408911a7496e2ac7bcc776a02c/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-33846d4b4b57d19fc68058936f14b649cae7852b/",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -290,7 +296,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-28T09:31:04.428637Z",
+  "generated": "2022-02-04T08:59:34.751945Z",
   "generator": "pub",
   "generatorVersion": "2.16.0-144.0.dev"
 }

@@ -7,7 +7,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.9"
+    version: "3.1.11"
   args:
     dependency: transitive
     description:
@@ -106,16 +106,25 @@ packages:
     description:
       path: "."
       ref: extensions
-      resolved-ref: "54c95ccd2706fabaa8128d8dcb94e51ae01c2da0"
+      resolved-ref: "5fca4a57a988a723d3645b87de423f4aba0a8097"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "1.0.3"
+  extensions_metadata:
+    dependency: transitive
+    description:
+      path: "."
+      ref: extensions_metadata
+      resolved-ref: e604eb35897e0e71ff319866eeeb007bb7c6167d
+      url: "git://github.com/yukino-app/packages.git"
+    source: git
+    version: "0.0.0"
   extensions_runtime:
     dependency: transitive
     description:
       path: "."
       ref: extensions_runtime
-      resolved-ref: c292dbf56b603d408911a7496e2ac7bcc776a02c
+      resolved-ref: "33846d4b4b57d19fc68058936f14b649cae7852b"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
