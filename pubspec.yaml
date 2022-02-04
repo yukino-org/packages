@@ -1,5 +1,5 @@
 name: extensions_runtime
-description: A new Flutter package project.
+description: Contains the runtime module of Yukino extensions.
 version: 0.0.0
 
 publish_to: none
