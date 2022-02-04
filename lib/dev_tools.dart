@@ -1,4 +1,5 @@
 export './config/config.dart';
+export './config/repository.dart';
 export './test/environment.dart';
 export './test/extractors/anime.dart';
 export './test/extractors/manga.dart';
