@@ -41,6 +41,9 @@ class ERuntimeInstance {
     await hetu.loadBytecode(bytes: bytes, moduleName: extractorIdentifier);
   }
 
+  Future<Uint8List> compileScriptFile(final String path) async =>
+      hetu.compileFile(path)!;
+
   Future<T> getExtractor<T>() async {
     final dynamic result = await hetu.eval(extractorIdentifier);
     return result as T;
