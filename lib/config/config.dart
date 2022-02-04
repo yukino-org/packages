@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
+import 'package:path/path.dart' as path;
 import '../test/extractors/anime.dart';
 import '../test/extractors/manga.dart';
 
@@ -12,7 +13,7 @@ class EConfig {
 
   final EMetadata metadata;
 
-  Future<EMetadata> compile([final String? output]) async {
+  Future<EMetadata> compile([final String? outputDir]) async {
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
         hetuSourceContext:
@@ -33,8 +34,10 @@ class EConfig {
       nsfw: metadata.nsfw,
     );
 
-    if (output != null) {
-      await File(output).writeAsString(json.encode(aotMetadata.toJson()));
+    if (outputDir != null) {
+      await File(
+        path.join(outputDir, '${metadata.id}.json'),
+      ).writeAsString(json.encode(aotMetadata.toJson()));
     }
 
     return aotMetadata;

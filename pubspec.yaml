@@ -14,6 +14,7 @@ dependencies:
             url: git://github.com/yukino-app/packages.git
             ref: extensions
     hetu_script_dev_tools: ^0.0.8
+    path: ^1.8.0
     utilx:
         git:
             url: git://github.com/yukino-app/packages.git
@@ -25,4 +26,3 @@ dev_dependencies:
             url: https://github.com/yukino-app/packages.git
             ref: devx
     lint: ^1.0.0
-    path: ^1.8.0
