@@ -99,7 +99,7 @@ packages:
     description:
       path: "."
       ref: extensions_metadata
-      resolved-ref: "029014a2559fb32c7485d7ff83f2c81fe8ba35dd"
+      resolved-ref: "8295f3ad0d67de67b329487be6dd015398dd2af1"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
@@ -108,7 +108,7 @@ packages:
     description:
       path: "."
       ref: extensions_runtime
-      resolved-ref: c292dbf56b603d408911a7496e2ac7bcc776a02c
+      resolved-ref: "33846d4b4b57d19fc68058936f14b649cae7852b"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
