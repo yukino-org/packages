@@ -106,7 +106,7 @@ packages:
     description:
       path: "."
       ref: extensions
-      resolved-ref: "5fca4a57a988a723d3645b87de423f4aba0a8097"
+      resolved-ref: "7fc2c4eda895d6aceae859565480f4d277db2135"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "1.0.3"
@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: extensions_metadata
-      resolved-ref: e604eb35897e0e71ff319866eeeb007bb7c6167d
+      resolved-ref: c2cf65de6917d67717b53d741547293b78228dec
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
@@ -124,7 +124,7 @@ packages:
     description:
       path: "."
       ref: extensions_runtime
-      resolved-ref: "33846d4b4b57d19fc68058936f14b649cae7852b"
+      resolved-ref: ad9f0b3e94e484dd4c2571d4c478f3dbe9649d52
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
@@ -332,7 +332,7 @@ packages:
     description:
       path: "."
       ref: utilx
-      resolved-ref: "3d40c9f0aadc6fa927a36863dabfb00cc8af190c"
+      resolved-ref: "1b49fff36bdba10a5219e1905434e45f48063a3b"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
