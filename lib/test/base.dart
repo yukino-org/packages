@@ -1,22 +1,16 @@
-import 'package:extensions/extensions.dart';
-import 'package:extensions/runtime.dart';
 import '../utils/console.dart';
 import '../utils/time_tracker.dart';
 
-abstract class TEnvironment {
-  static Future<void> prepare() async {
-    await ExtensionInternals.initialize(
-      runtime: const ERuntimeOptions(
-        http: HttpClientOptions(ignoreSSLCertificate: true),
-        webview: WebviewProviderOptions(),
-      ),
-    );
-  }
+typedef VoidFutureCallback = Future<void> Function();
+
+class TBase {
+  static const Duration defaultTimeout = Duration(seconds: 3);
 
   static Future<void> runTests(
     final Map<String, Future<void> Function()> tests, {
     final bool parseEnvironmentMethod = true,
     final bool throwIfAnyFails = true,
+    final Duration timeout = defaultTimeout,
   }) async {
     final String? envMethods =
         parseEnvironmentMethod && const bool.hasEnvironment('method')
@@ -48,6 +42,7 @@ abstract class TEnvironment {
         }
 
         TConsole.ln();
+        await Future<void>.delayed(defaultTimeout);
       }
     }
 
@@ -73,9 +68,5 @@ abstract class TEnvironment {
     if (throwIfAnyFails && failed > 0) {
       throw Error();
     }
-  }
-
-  static Future<void> dispose() async {
-    await ExtensionInternals.dispose();
   }
 }

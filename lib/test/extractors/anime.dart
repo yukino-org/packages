@@ -1,94 +1,98 @@
 import 'package:extensions/extensions.dart';
+import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
-import 'package:utilx/utilities/locale.dart';
+import '../../environment.dart';
 import '../../utils/console.dart';
-import '../environment.dart';
+import '../base.dart';
 
-typedef TAnimeExtractorFn = Future<void> Function(TAnimeExtractor);
+typedef TAnimeExtractorFn<T> = Future<T> Function(AnimeExtractor);
+
+class TAnimeExtractorOptions {
+  const TAnimeExtractorOptions({
+    required this.source,
+    required this.search,
+    required this.getInfo,
+    required this.getSources,
+    this.handleEnvironment = true,
+  });
+
+  final ELocalFileDS source;
+  final TAnimeExtractorFn<List<SearchInfo>> search;
+  final TAnimeExtractorFn<AnimeInfo> getInfo;
+  final TAnimeExtractorFn<List<EpisodeSource>> getSources;
+  final bool handleEnvironment;
+}
 
 class TAnimeExtractor {
-  const TAnimeExtractor(this.extractor);
+  const TAnimeExtractor(this.options);
 
-  final AnimeExtractor extractor;
+  final TAnimeExtractorOptions options;
 
-  Future<void> search(final String terms, final Locale locale) async {
-    final List<SearchInfo> result = await extractor.search(terms, locale);
-
-    TConsole.p('Results (${result.length}):');
-    TConsole.p(
-      TConsole.qt(
-        result.map((final SearchInfo x) => x.toJson()),
-        spacing: '  ',
-      ),
-    );
-
-    if (result.isEmpty) {
-      throw Exception('Empty result');
+  Future<void> run() async {
+    if (options.handleEnvironment) {
+      await DTEnvironment.prepare();
     }
-  }
-
-  Future<void> getInfo(final String url, final Locale locale) async {
-    final AnimeInfo result = await extractor.getInfo(url, locale);
-
-    TConsole.p('Result:');
-    TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
-  }
-
-  Future<void> getSources(final EpisodeInfo episode) async {
-    final List<EpisodeSource> result = await extractor.getSources(episode);
-
-    TConsole.p('Results (${result.length}):');
-    TConsole.p(
-      TConsole.qt(
-        result.map((final EpisodeSource x) => x.toJson()),
-        spacing: '  ',
-      ),
-    );
-
-    if (result.isEmpty) {
-      throw Exception('Empty result');
-    }
-  }
-
-  static Future<void> testFile({
-    required final String root,
-    required final String file,
-    required final TAnimeExtractorFn search,
-    required final TAnimeExtractorFn getInfo,
-    required final TAnimeExtractorFn getSources,
-  }) async {
-    await TEnvironment.prepare();
 
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
-        hetuSourceContext: HTFileSystemResourceContext(root: root),
+        hetuSourceContext:
+            HTFileSystemResourceContext(root: options.source.root),
       ),
     );
 
     await runtime.loadScriptCode('', appendDefinitions: true);
-    await runtime.loadScriptFile(file);
+    await runtime.loadScriptFile(options.source.file);
 
     final AnimeExtractor extractor =
         await runtime.getExtractor<AnimeExtractor>();
 
-    final TAnimeExtractor client = TAnimeExtractor(extractor);
+    await TBase.runTests(
+      <String, Future<void> Function()>{
+        'search': () async {
+          final List<SearchInfo> result = await options.search(extractor);
 
-    await TEnvironment.runTests(<String, Future<void> Function()>{
-      'search': () async {
-        await search(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      },
-      'getInfo': () async {
-        await getInfo(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      },
-      'getSources': () async {
-        await getSources(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      }
-    });
+          TConsole.p('Results (${result.length}):');
+          TConsole.p(
+            TConsole.qt(
+              result.map((final SearchInfo x) => x.toJson()),
+              spacing: '  ',
+            ),
+          );
 
-    await TEnvironment.dispose();
+          if (result.isEmpty) {
+            throw Exception('Empty result');
+          }
+        },
+        'getInfo': () async {
+          final AnimeInfo result = await options.getInfo(extractor);
+
+          TConsole.p('Result:');
+          TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
+
+          await Future<void>.delayed(const Duration(seconds: 3));
+        },
+        'getSources': () async {
+          final List<EpisodeSource> result =
+              await options.getSources(extractor);
+
+          TConsole.p('Results (${result.length}):');
+          TConsole.p(
+            TConsole.qt(
+              result.map((final EpisodeSource x) => x.toJson()),
+              spacing: '  ',
+            ),
+          );
+
+          if (result.isEmpty) {
+            throw Exception('Empty result');
+          }
+        },
+      },
+    );
+
+    if (options.handleEnvironment) {
+      await DTEnvironment.dispose();
+    }
   }
 }

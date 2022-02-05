@@ -42,34 +42,16 @@ class EConfig {
     return standaloneMetadata;
   }
 
-  Future<void> testAsAnimeExtractor({
-    required final TAnimeExtractorFn search,
-    required final TAnimeExtractorFn getInfo,
-    required final TAnimeExtractorFn getSources,
-  }) async {
-    await TAnimeExtractor.testFile(
-      root: _castedSource.root,
-      file: _castedSource.file,
-      search: search,
-      getInfo: getInfo,
-      getSources: getSources,
-    );
+  Future<void> testAsAnimeExtractor(
+    final TAnimeExtractorOptions options,
+  ) async {
+    await TAnimeExtractor(options).run();
   }
 
-  Future<void> testAsMangaExtractor({
-    required final TMangaExtractorFn search,
-    required final TMangaExtractorFn getInfo,
-    required final TMangaExtractorFn getChapter,
-    required final TMangaExtractorFn getPage,
-  }) async {
-    await TMangaExtractor.testFile(
-      root: _castedSource.root,
-      file: _castedSource.file,
-      search: search,
-      getInfo: getInfo,
-      getChapter: getChapter,
-      getPage: getPage,
-    );
+  Future<void> testAsMangaExtractor(
+    final TMangaExtractorOptions options,
+  ) async {
+    await TMangaExtractor(options).run();
   }
 
   ELocalFileDS get _castedSource {

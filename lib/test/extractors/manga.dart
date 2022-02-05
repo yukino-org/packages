@@ -1,106 +1,103 @@
 import 'package:extensions/extensions.dart';
+import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
-import 'package:utilx/utilities/locale.dart';
+import '../../environment.dart';
 import '../../utils/console.dart';
-import '../environment.dart';
+import '../base.dart';
 
-typedef TMangaExtractorFn = Future<void> Function(TMangaExtractor);
+typedef TMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
+
+class TMangaExtractorOptions {
+  const TMangaExtractorOptions({
+    required this.source,
+    required this.search,
+    required this.getInfo,
+    required this.getChapter,
+    required this.getPage,
+    this.handleEnvironment = true,
+  });
+
+  final ELocalFileDS source;
+  final TMangaExtractorFn<List<SearchInfo>> search;
+  final TMangaExtractorFn<MangaInfo> getInfo;
+  final TMangaExtractorFn<List<PageInfo>> getChapter;
+  final TMangaExtractorFn<ImageDescriber> getPage;
+  final bool handleEnvironment;
+}
 
 class TMangaExtractor {
-  const TMangaExtractor(this.extractor);
+  const TMangaExtractor(this.options);
 
-  final MangaExtractor extractor;
+  final TMangaExtractorOptions options;
 
-  Future<void> search(final String terms, final Locale locale) async {
-    final List<SearchInfo> result = await extractor.search(terms, locale);
-
-    TConsole.p('Results (${result.length}):');
-    TConsole.p(
-      TConsole.qt(
-        result.map((final SearchInfo x) => x.toJson()),
-        spacing: '  ',
-      ),
-    );
-
-    if (result.isEmpty) {
-      throw Exception('Empty result');
+  Future<void> run() async {
+    if (options.handleEnvironment) {
+      await DTEnvironment.prepare();
     }
-  }
-
-  Future<void> getInfo(final String url, final Locale locale) async {
-    final MangaInfo result = await extractor.getInfo(url, locale);
-
-    TConsole.p('Result:');
-    TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
-  }
-
-  Future<void> getChapter(final ChapterInfo chapter) async {
-    final List<PageInfo> result = await extractor.getChapter(chapter);
-
-    TConsole.p('Results (${result.length}):');
-    TConsole.p(
-      TConsole.qt(
-        result.map((final PageInfo x) => x.toJson()),
-        spacing: '  ',
-      ),
-    );
-
-    if (result.isEmpty) {
-      throw Exception('Empty result');
-    }
-  }
-
-  Future<void> getPage(final PageInfo page) async {
-    final ImageDescriber result = await extractor.getPage(page);
-
-    TConsole.p('Result:');
-    TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
-  }
-
-  static Future<void> testFile({
-    required final String root,
-    required final String file,
-    required final TMangaExtractorFn search,
-    required final TMangaExtractorFn getInfo,
-    required final TMangaExtractorFn getChapter,
-    required final TMangaExtractorFn getPage,
-  }) async {
-    await TEnvironment.prepare();
 
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
-        hetuSourceContext: HTFileSystemResourceContext(root: root),
+        hetuSourceContext:
+            HTFileSystemResourceContext(root: options.source.root),
       ),
     );
 
     await runtime.loadScriptCode('', appendDefinitions: true);
-    await runtime.loadScriptFile(file);
+    await runtime.loadScriptFile(options.source.file);
 
     final MangaExtractor extractor =
         await runtime.getExtractor<MangaExtractor>();
 
-    final TMangaExtractor client = TMangaExtractor(extractor);
+    await TBase.runTests(
+      <String, Future<void> Function()>{
+        'search': () async {
+          final List<SearchInfo> result = await options.search(extractor);
 
-    await TEnvironment.runTests(<String, Future<void> Function()>{
-      'search': () async {
-        await search(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      },
-      'getInfo': () async {
-        await getInfo(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      },
-      'getChapter': () async {
-        await getChapter(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      },
-      'getPage': () async {
-        await getPage(client);
-        await Future<void>.delayed(const Duration(seconds: 3));
-      }
-    });
+          TConsole.p('Results (${result.length}):');
+          TConsole.p(
+            TConsole.qt(
+              result.map((final SearchInfo x) => x.toJson()),
+              spacing: '  ',
+            ),
+          );
 
-    await TEnvironment.dispose();
+          if (result.isEmpty) {
+            throw Exception('Empty result');
+          }
+        },
+        'getInfo': () async {
+          final MangaInfo result = await options.getInfo(extractor);
+
+          TConsole.p('Result:');
+          TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
+        },
+        'getChapter': () async {
+          final List<PageInfo> result = await options.getChapter(extractor);
+
+          TConsole.p('Results (${result.length}):');
+          TConsole.p(
+            TConsole.qt(
+              result.map((final PageInfo x) => x.toJson()),
+              spacing: '  ',
+            ),
+          );
+
+          if (result.isEmpty) {
+            throw Exception('Empty result');
+          }
+        },
+        'getPage': () async {
+          final ImageDescriber result = await options.getPage(extractor);
+
+          TConsole.p('Result:');
+          TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
+        }
+      },
+    );
+
+    if (options.handleEnvironment) {
+      await DTEnvironment.dispose();
+    }
   }
 }
