@@ -1,5 +1,6 @@
 import 'package:extensions/extensions.dart';
 import 'package:extensions/runtime.dart';
+import '../utils/runner.dart';
 
 abstract class DTEnvironment {
   static Future<void> prepare() async {
@@ -13,5 +14,11 @@ abstract class DTEnvironment {
 
   static Future<void> dispose() async {
     await ExtensionInternals.dispose();
+  }
+
+  static Future<void> middleware(final VoidFutureCallback fn) async {
+    await prepare();
+    await fn();
+    await dispose();
   }
 }

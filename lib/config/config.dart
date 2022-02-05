@@ -5,15 +5,34 @@ import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:path/path.dart' as path;
+import '../environment.dart';
 import '../test/anime.dart';
 import '../test/manga.dart';
+
+class ECompileOptions {
+  const ECompileOptions({
+    this.outputDir,
+    this.handleEnvironment = true,
+  });
+
+  final String? outputDir;
+  final bool handleEnvironment;
+
+  static const ECompileOptions defaultOptions = ECompileOptions();
+}
 
 class EConfig {
   const EConfig(this.metadata);
 
   final EMetadata metadata;
 
-  Future<EMetadata> compile([final String? outputDir]) async {
+  Future<EMetadata> compile([
+    final ECompileOptions options = ECompileOptions.defaultOptions,
+  ]) async {
+    if (options.handleEnvironment) {
+      await DTEnvironment.prepare();
+    }
+
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
         hetuSourceContext:
@@ -33,10 +52,14 @@ class EConfig {
       nsfw: metadata.nsfw,
     );
 
-    if (outputDir != null) {
+    if (options.outputDir != null) {
       await File(
-        path.join(outputDir, '${metadata.id}.json'),
+        path.join(options.outputDir!, '${metadata.id}.json'),
       ).writeAsString(json.encode(standaloneMetadata.toJson()));
+    }
+
+    if (options.handleEnvironment) {
+      await DTEnvironment.dispose();
     }
 
     return standaloneMetadata;
