@@ -113,7 +113,7 @@ packages:
     source: git
     version: "0.0.0"
   flutter:
-    dependency: "direct main"
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -309,7 +309,7 @@ packages:
     description:
       path: "."
       ref: utilx
-      resolved-ref: "3d40c9f0aadc6fa927a36863dabfb00cc8af190c"
+      resolved-ref: "1b49fff36bdba10a5219e1905434e45f48063a3b"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
