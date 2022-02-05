@@ -24,12 +24,11 @@ class EConfig {
     await runtime.loadScriptCode('', appendDefinitions: true);
 
     final Uint8List bytes = await runtime.compileScriptFile(_castedSource.file);
-    final EMetadata aotMetadata = EMetadata(
+    final EMetadata standaloneMetadata = EMetadata(
       name: metadata.name,
       author: metadata.author,
       type: metadata.type,
-      repo: metadata.repo,
-      source: EAotContext(bytes),
+      source: EBase64DS(bytes),
       thumbnail: metadata.thumbnail,
       nsfw: metadata.nsfw,
     );
@@ -37,10 +36,10 @@ class EConfig {
     if (outputDir != null) {
       await File(
         path.join(outputDir, '${metadata.id}.json'),
-      ).writeAsString(json.encode(aotMetadata.toJson()));
+      ).writeAsString(json.encode(standaloneMetadata.toJson()));
     }
 
-    return aotMetadata;
+    return standaloneMetadata;
   }
 
   Future<void> testAsAnimeExtractor({
@@ -73,11 +72,11 @@ class EConfig {
     );
   }
 
-  ELocalContext get _castedSource {
-    if (metadata.source is! ELocalContext) {
-      throw Exception('Must be a local context');
+  ELocalFileDS get _castedSource {
+    if (metadata.source is! ELocalFileDS) {
+      throw Exception('Must be a local file');
     }
 
-    return metadata.source as ELocalContext;
+    return metadata.source as ELocalFileDS;
   }
 }
