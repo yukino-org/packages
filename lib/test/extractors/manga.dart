@@ -10,7 +10,6 @@ typedef TMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
 class TMangaExtractorOptions {
   const TMangaExtractorOptions({
-    required this.source,
     required this.search,
     required this.getInfo,
     required this.getChapter,
@@ -18,7 +17,6 @@ class TMangaExtractorOptions {
     this.handleEnvironment = true,
   });
 
-  final ELocalFileDS source;
   final TMangaExtractorFn<List<SearchInfo>> search;
   final TMangaExtractorFn<MangaInfo> getInfo;
   final TMangaExtractorFn<List<PageInfo>> getChapter;
@@ -31,20 +29,19 @@ class TMangaExtractor {
 
   final TMangaExtractorOptions options;
 
-  Future<void> run() async {
+  Future<void> run(final ELocalFileDS source) async {
     if (options.handleEnvironment) {
       await DTEnvironment.prepare();
     }
 
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
-        hetuSourceContext:
-            HTFileSystemResourceContext(root: options.source.root),
+        hetuSourceContext: HTFileSystemResourceContext(root: source.root),
       ),
     );
 
     await runtime.loadScriptCode('', appendDefinitions: true);
-    await runtime.loadScriptFile(options.source.file);
+    await runtime.loadScriptFile(source.file);
 
     final MangaExtractor extractor =
         await runtime.getExtractor<MangaExtractor>();

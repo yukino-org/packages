@@ -45,13 +45,13 @@ class EConfig {
   Future<void> testAsAnimeExtractor(
     final TAnimeExtractorOptions options,
   ) async {
-    await TAnimeExtractor(options).run();
+    await TAnimeExtractor(options).run(_castedSource);
   }
 
   Future<void> testAsMangaExtractor(
     final TMangaExtractorOptions options,
   ) async {
-    await TMangaExtractor(options).run();
+    await TMangaExtractor(options).run(_castedSource);
   }
 
   ELocalFileDS get _castedSource {

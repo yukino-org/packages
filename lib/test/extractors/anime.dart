@@ -10,14 +10,12 @@ typedef TAnimeExtractorFn<T> = Future<T> Function(AnimeExtractor);
 
 class TAnimeExtractorOptions {
   const TAnimeExtractorOptions({
-    required this.source,
     required this.search,
     required this.getInfo,
     required this.getSources,
     this.handleEnvironment = true,
   });
 
-  final ELocalFileDS source;
   final TAnimeExtractorFn<List<SearchInfo>> search;
   final TAnimeExtractorFn<AnimeInfo> getInfo;
   final TAnimeExtractorFn<List<EpisodeSource>> getSources;
@@ -29,20 +27,19 @@ class TAnimeExtractor {
 
   final TAnimeExtractorOptions options;
 
-  Future<void> run() async {
+  Future<void> run(final ELocalFileDS source) async {
     if (options.handleEnvironment) {
       await DTEnvironment.prepare();
     }
 
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
-        hetuSourceContext:
-            HTFileSystemResourceContext(root: options.source.root),
+        hetuSourceContext: HTFileSystemResourceContext(root: source.root),
       ),
     );
 
     await runtime.loadScriptCode('', appendDefinitions: true);
-    await runtime.loadScriptFile(options.source.file);
+    await runtime.loadScriptFile(source.file);
 
     final AnimeExtractor extractor =
         await runtime.getExtractor<AnimeExtractor>();
