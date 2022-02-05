@@ -4,7 +4,7 @@ import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import '../../environment.dart';
 import '../../utils/console.dart';
-import '../base.dart';
+import '../../utils/runner.dart';
 
 typedef TMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
@@ -46,7 +46,7 @@ class TMangaExtractor {
     final MangaExtractor extractor =
         await runtime.getExtractor<MangaExtractor>();
 
-    await TBase.runTests(
+    await Runner.run(
       <String, Future<void> Function()>{
         'search': () async {
           final List<SearchInfo> result = await options.search(extractor);

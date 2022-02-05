@@ -1,12 +1,12 @@
-import '../utils/console.dart';
-import '../utils/time_tracker.dart';
+import './console.dart';
+import './time_tracker.dart';
 
 typedef VoidFutureCallback = Future<void> Function();
 
-class TBase {
+class Runner {
   static const Duration defaultTimeout = Duration(seconds: 3);
 
-  static Future<void> runTests(
+  static Future<void> run(
     final Map<String, Future<void> Function()> tests, {
     final bool parseEnvironmentMethod = true,
     final bool throwIfAnyFails = true,

@@ -5,8 +5,8 @@ import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:path/path.dart' as path;
-import '../test/extractors/anime.dart';
-import '../test/extractors/manga.dart';
+import '../test/anime.dart';
+import '../test/manga.dart';
 
 class EConfig {
   const EConfig(this.metadata);
@@ -42,16 +42,14 @@ class EConfig {
     return standaloneMetadata;
   }
 
-  Future<void> testAsAnimeExtractor(
-    final TAnimeExtractorOptions options,
-  ) async {
-    await TAnimeExtractor(options).run(_castedSource);
-  }
-
-  Future<void> testAsMangaExtractor(
-    final TMangaExtractorOptions options,
-  ) async {
-    await TMangaExtractor(options).run(_castedSource);
+  Future<void> test<T>(final T options) async {
+    if (options is TAnimeExtractorOptions) {
+      await TAnimeExtractor(options).run(_castedSource);
+    } else if (options is TMangaExtractorOptions) {
+      await TMangaExtractor(options).run(_castedSource);
+    } else {
+      throw Exception('Unsupported options');
+    }
   }
 
   ELocalFileDS get _castedSource {
