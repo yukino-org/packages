@@ -3,13 +3,21 @@ import 'package:extensions/metadata.dart';
 import './config.dart';
 import '../environment.dart';
 
-class ECompileAllOptions extends ECompileOptions {
+class ECompileAllOptions {
   const ECompileAllOptions({
+    final this.outputDir,
     this.clearOutputDir = true,
-    final String? outputDir,
-  }) : super(outputDir: outputDir, handleEnvironment: false);
+    this.handleEnvironment = true,
+  });
 
+  final String? outputDir;
   final bool clearOutputDir;
+  final bool handleEnvironment;
+
+  ECompileOptions get compileOptions => ECompileOptions(
+        outputDir: outputDir,
+        handleEnvironment: false,
+      );
 
   static const ECompileAllOptions defaultOptions = ECompileAllOptions();
 }
@@ -30,8 +38,9 @@ class EConfigRepository {
       await Directory(options.outputDir!).delete(recursive: true);
     }
 
-    final List<EMetadata> metadatas =
-        await Future.wait(configs.map((final EConfig x) => x.compile(options)));
+    final List<EMetadata> metadatas = await Future.wait(
+      configs.map((final EConfig x) => x.compile(options.compileOptions)),
+    );
 
     if (options.handleEnvironment) {
       await DTEnvironment.dispose();
