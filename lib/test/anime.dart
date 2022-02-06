@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:extensions/extensions.dart';
 import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
@@ -14,12 +15,16 @@ class TAnimeExtractorOptions {
     required this.getInfo,
     required this.getSources,
     this.handleEnvironment = true,
+    this.exitAfterRun = false,
+    this.setExitCode = true,
   });
 
   final TAnimeExtractorFn<List<SearchInfo>> search;
   final TAnimeExtractorFn<AnimeInfo> getInfo;
   final TAnimeExtractorFn<List<EpisodeSource>> getSources;
   final bool handleEnvironment;
+  final bool exitAfterRun;
+  final bool setExitCode;
 }
 
 class TAnimeExtractor {
@@ -44,7 +49,7 @@ class TAnimeExtractor {
     final AnimeExtractor extractor =
         await runtime.getExtractor<AnimeExtractor>();
 
-    await Runner.run(
+    final Map<String, bool> results = await Runner.run(
       <String, Future<void> Function()>{
         'search': () async {
           final List<SearchInfo> result = await options.search(extractor);
@@ -90,6 +95,14 @@ class TAnimeExtractor {
 
     if (options.handleEnvironment) {
       await DTEnvironment.dispose();
+    }
+
+    if (options.setExitCode) {
+      exitCode = results.values.any((final bool x) => !x) ? 1 : 0;
+    }
+
+    if (options.exitAfterRun) {
+      exit(exitCode);
     }
   }
 }

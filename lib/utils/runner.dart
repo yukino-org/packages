@@ -6,10 +6,9 @@ typedef VoidFutureCallback = Future<void> Function();
 class Runner {
   static const Duration defaultTimeout = Duration(seconds: 3);
 
-  static Future<void> run(
+  static Future<Map<String, bool>> run(
     final Map<String, Future<void> Function()> tests, {
     final bool parseEnvironmentMethod = true,
-    final bool throwIfAnyFails = true,
     final Duration timeout = defaultTimeout,
   }) async {
     final String? envMethods =
@@ -65,8 +64,6 @@ class Runner {
           .join('\n'),
     );
 
-    if (throwIfAnyFails && failed > 0) {
-      throw Error();
-    }
+    return result;
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:extensions/extensions.dart';
 import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
@@ -15,6 +16,8 @@ class TMangaExtractorOptions {
     required this.getChapter,
     required this.getPage,
     this.handleEnvironment = true,
+    this.exitAfterRun = false,
+    this.setExitCode = true,
   });
 
   final TMangaExtractorFn<List<SearchInfo>> search;
@@ -22,6 +25,8 @@ class TMangaExtractorOptions {
   final TMangaExtractorFn<List<PageInfo>> getChapter;
   final TMangaExtractorFn<ImageDescriber> getPage;
   final bool handleEnvironment;
+  final bool exitAfterRun;
+  final bool setExitCode;
 }
 
 class TMangaExtractor {
@@ -46,7 +51,7 @@ class TMangaExtractor {
     final MangaExtractor extractor =
         await runtime.getExtractor<MangaExtractor>();
 
-    await Runner.run(
+    final Map<String, bool> results = await Runner.run(
       <String, Future<void> Function()>{
         'search': () async {
           final List<SearchInfo> result = await options.search(extractor);
@@ -95,6 +100,14 @@ class TMangaExtractor {
 
     if (options.handleEnvironment) {
       await DTEnvironment.dispose();
+    }
+
+    if (options.setExitCode) {
+      exitCode = results.values.any((final bool x) => !x) ? 1 : 0;
+    }
+
+    if (options.exitAfterRun) {
+      exit(exitCode);
     }
   }
 }
