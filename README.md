@@ -6,16 +6,16 @@
 
 # UtilX
 
-Contains utility tools.
+Contains utility tools related to desktop.
 
 ## Installation
 
 ```yaml
 dependencies:
-    utilx:
+    utilx_desktop:
         git:
             url: git://github.com/yukino-app/packages.git
-            ref: utilx
+            ref: utilx_desktop
 ```
 
 ## License
