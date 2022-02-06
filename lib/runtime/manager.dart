@@ -11,6 +11,8 @@ abstract class ERuntimeManager {
   static bool ready = false;
 
   static Future<void> initialize(final ERuntimeOptions options) async {
+    if (ready) throw Exception('Cannot initialize twice');
+
     HetuHttpClient.initialize(options.http);
     await WebviewManager.initialize(options.webview);
 

@@ -2,7 +2,7 @@ import 'package:utilx/utilities/webview/webview.dart';
 import './hetu/helpers/http.dart';
 
 export 'package:utilx/utilities/webview/webview.dart'
-    show WebviewProviderOptions;
+    show WebviewManagerInitializeOptions;
 export './hetu/helpers/http.dart' show HttpClientOptions;
 
 class ERuntimeOptions {
@@ -12,5 +12,5 @@ class ERuntimeOptions {
   });
 
   final HttpClientOptions http;
-  final WebviewProviderOptions webview;
+  final WebviewManagerInitializeOptions webview;
 }
