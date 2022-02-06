@@ -58,8 +58,14 @@ class EConfig {
     );
 
     if (options.outputDir != null) {
+      final Directory directory = Directory(options.outputDir!);
+
+      if (!(await directory.exists())) {
+        await directory.create(recursive: true);
+      }
+
       await File(
-        path.join(options.outputDir!, '${metadata.id}.json'),
+        path.join(directory.path, '${metadata.id}.json'),
       ).writeAsString(json.encode(standaloneMetadata.toJson()));
     }
 
