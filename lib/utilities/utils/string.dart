@@ -18,6 +18,9 @@ abstract class StringUtils {
     ).join();
   }
 
+  static String toHex(final String input) =>
+      input.codeUnits.map((final int x) => x.toRadixString(16)).join();
+
   static String render(
     final String template,
     final Map<String, String> context,
