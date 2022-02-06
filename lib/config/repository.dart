@@ -35,7 +35,11 @@ class EConfigRepository {
     }
 
     if (options.outputDir != null && options.clearOutputDir) {
-      await Directory(options.outputDir!).delete(recursive: true);
+      final Directory directory = Directory(options.outputDir!);
+
+      if (await directory.exists()) {
+        await directory.delete(recursive: true);
+      }
     }
 
     final List<EMetadata> metadatas = await Future.wait(
