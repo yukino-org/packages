@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
@@ -42,13 +41,19 @@ class EConfig {
 
     await runtime.loadScriptCode('', appendDefinitions: true);
 
-    final Uint8List bytes = await runtime.compileScriptFile(_castedSource.file);
+    final EDataSource source =
+        EBase64DS(await runtime.compileScriptFile(_castedSource.file));
+
+    final EDataSource image = metadata.source is ELocalFileDS
+        ? (await EBase64DS.fromLocalFile(metadata.source as ELocalFileDS))
+        : metadata.source;
+
     final EMetadata standaloneMetadata = EMetadata(
       name: metadata.name,
       author: metadata.author,
       type: metadata.type,
-      source: EBase64DS(bytes),
-      thumbnail: metadata.thumbnail,
+      source: source,
+      thumbnail: image,
       nsfw: metadata.nsfw,
     );
 
