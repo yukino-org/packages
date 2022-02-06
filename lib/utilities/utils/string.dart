@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:math';
 
 abstract class StringUtils {
@@ -6,20 +5,17 @@ abstract class StringUtils {
       ? '${string.substring(0, 1).toUpperCase()}${string.substring(1).toLowerCase()}'
       : string;
 
-  static String random([final int inputLength = 6]) {
-    final List<int> chars = utf8.encode(
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-=',
-    );
-    final Random rand = Random();
+  static String random({
+    final int inputLength = 6,
+    final String characters =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-=',
+  }) {
+    final Random r = Random();
 
-    return base64
-        .encode(
-          List<int>.generate(
-            inputLength,
-            (final int i) => chars[rand.nextInt(chars.length)],
-          ),
-        )
-        .replaceFirst(RegExp(r'[=]*$'), '');
+    return List<String>.generate(
+      inputLength,
+      (final int i) => characters[r.nextInt(characters.length)],
+    ).join();
   }
 
   static String render(
