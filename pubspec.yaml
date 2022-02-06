@@ -1,6 +1,6 @@
 name: extensions
 description: Exposes the extensions system of Yukino.
-version: 1.0.3
+version: 1.0.4
 
 publish_to: none
 
@@ -8,8 +8,6 @@ environment:
     sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-    crypto: ^3.0.1
-    encrypt: ^5.0.0
     extensions_metadata:
         git:
             url: git://github.com/yukino-app/packages.git
@@ -18,13 +16,7 @@ dependencies:
         git:
             url: git://github.com/yukino-app/packages.git
             ref: extensions_runtime
-    flutter_inappwebview: ^5.3.2
-    fuzzy: ^0.4.0-nullsafety.0
-    hetu_script: ^0.3.9
-    html: ^0.15.0
     http: ^0.13.3
-    meta: ^1.7.0
-    puppeteer: ^2.3.0
     utilx:
         git:
             url: git://github.com/yukino-app/packages.git
