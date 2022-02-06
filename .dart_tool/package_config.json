@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "lint",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/lint-1.8.1",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/lint-1.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -14,7 +14,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-10T04:54:53.239259Z",
+  "generated": "2022-02-06T09:33:13.267622Z",
   "generator": "pub",
   "generatorVersion": "2.16.0-144.0.dev"
 }
