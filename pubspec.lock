@@ -83,7 +83,7 @@ packages:
     description:
       path: "."
       ref: devx
-      resolved-ref: "96017f7b512cf18c7d227e8a46b4b308377b646d"
+      resolved-ref: "32c7eb1c3036c166f9e795bba5eef09d07f6b687"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
