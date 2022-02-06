@@ -1,5 +1,5 @@
 name: devx
-description: Custom developer tools for Yukino
+description: Contains developer guideline preferences of Yukino.
 version: 0.0.0
 
 publish_to: none
