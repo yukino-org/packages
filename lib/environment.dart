@@ -1,13 +1,17 @@
 import 'package:extensions/extensions.dart';
 import 'package:extensions/runtime.dart';
+import 'package:utilx_desktop/utilities/webview/providers/puppeteer/provider.dart';
 import '../utils/runner.dart';
 
 abstract class DTEnvironment {
   static Future<void> prepare() async {
     await ExtensionInternals.initialize(
-      runtime: const ERuntimeOptions(
-        http: HttpClientOptions(ignoreSSLCertificate: true),
-        webview: WebviewProviderOptions(),
+      runtime: ERuntimeOptions(
+        http: const HttpClientOptions(ignoreSSLCertificate: true),
+        webview: WebviewManagerInitializeOptions(
+          PuppeteerProvider(),
+          const WebviewProviderOptions(),
+        ),
       ),
     );
   }
