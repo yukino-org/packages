@@ -5,7 +5,7 @@ import '../utils/runner.dart';
 
 abstract class DTEnvironment {
   static Future<void> prepare() async {
-    await ExtensionInternals.initialize(
+    await EInternals.initialize(
       runtime: ERuntimeOptions(
         http: const HttpClientOptions(ignoreSSLCertificate: true),
         webview: WebviewManagerInitializeOptions(
@@ -17,7 +17,7 @@ abstract class DTEnvironment {
   }
 
   static Future<void> dispose() async {
-    await ExtensionInternals.dispose();
+    await EInternals.dispose();
   }
 
   static Future<void> middleware(final VoidFutureCallback fn) async {
