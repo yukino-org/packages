@@ -1,6 +1,6 @@
 import 'package:extensions_runtime/extensions_runtime.dart';
 
-abstract class ExtensionInternals {
+abstract class EInternals {
   static Future<void> initialize({
     required final ERuntimeOptions runtime,
   }) async {
