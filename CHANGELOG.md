@@ -70,3 +70,7 @@
 
 -   Mirgrated all function into namespace (class)
 -   Added class bindings for anime/manga entities
+
+## 1.0.5
+
+-   Remove unused core models
