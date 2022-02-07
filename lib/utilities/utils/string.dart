@@ -40,4 +40,9 @@ abstract class StringUtils {
         RegExp('[A-Z]'),
         (final Match match) => ' ${match.group(0)!}',
       );
+
+  static String snakeToPascalCase(final String snake) => snake.replaceAllMapped(
+        RegExp('_(.)'),
+        (final Match match) => match.group(1)!.toUpperCase(),
+      );
 }
