@@ -50,7 +50,6 @@ class EConfig {
 
     final EMetadata standaloneMetadata = EMetadata(
       name: metadata.name,
-      author: metadata.author,
       type: metadata.type,
       source: source,
       thumbnail: image,

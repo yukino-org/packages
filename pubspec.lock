@@ -106,7 +106,7 @@ packages:
     description:
       path: "."
       ref: extensions
-      resolved-ref: eec07d10cb30e78e129020b7d77e2f2ebfa626d9
+      resolved-ref: "6f84c66112bca226fe42d85c93ce1598993c2a13"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "1.0.5"
@@ -115,7 +115,7 @@ packages:
     description:
       path: "."
       ref: extensions_metadata
-      resolved-ref: ce9c8759cb4dfced281d50fdc6aab8d1c5b5d0ca
+      resolved-ref: "2d89e6091a915246486999197c00c814274f38fa"
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
@@ -232,7 +232,7 @@ packages:
       name: pointycastle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.5.0"
+    version: "3.5.1"
   pool:
     dependency: transitive
     description:
