@@ -15,7 +15,6 @@ import './definitions/extensions/manga/chapter/info/definition.dart';
 import './definitions/extensions/manga/extractor/definition.dart';
 import './definitions/extensions/manga/info/definition.dart';
 import './definitions/extensions/manga/page/info/definition.dart';
-import './definitions/flaw/definition.dart';
 import './definitions/fuzzy/definition.dart';
 import './definitions/fuzzy/key/definition.dart';
 import './definitions/fuzzy/result_item/definition.dart';
@@ -48,7 +47,6 @@ abstract class HetuHelperExports {
     hMangaExtractorClass,
     hMangaInfoClass,
     hPageInfoClass,
-    hFlawClass,
     hFuzzySearchClass,
     hFuzzySearchKeyClass,
     hFuzzySearchResultItemClass,

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:hetu_script/values.dart';
-import '../flaw/class.dart';
 
 class Promise {
   static Future<dynamic> resolve(
@@ -12,14 +11,11 @@ class Promise {
       final dynamic result = await function();
 
       return await onDone.call(positionalArgs: <dynamic>[result]);
-    } catch (err, stack) {
-      final Flaw flaw = Flaw.fromUnknown(err);
-
+    } catch (err) {
       if (onFail != null) {
-        return await onFail.call(positionalArgs: <dynamic>[flaw]);
-      } else {
-        await Future<void>.error(flaw, stack);
+        return await onFail.call(positionalArgs: <dynamic>[err.toString()]);
       }
+      rethrow;
     }
   }
 
@@ -34,14 +30,11 @@ class Promise {
       ).timeout(const Duration(seconds: 30));
 
       return await onDone.call(positionalArgs: <dynamic>[result]);
-    } catch (err, stack) {
-      final Flaw flaw = Flaw.fromUnknown(err);
-
+    } catch (err) {
       if (onFail != null) {
-        return await onFail.call(positionalArgs: <dynamic>[flaw]);
-      } else {
-        await Future<void>.error(flaw, stack);
+        return await onFail.call(positionalArgs: <dynamic>[err.toString()]);
       }
+      rethrow;
     }
   }
 
