@@ -1,4 +1,5 @@
 import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/utilities/utils.dart';
 import './chapter/info.dart';
 import '../base/image_describer.dart';
 
@@ -47,4 +48,9 @@ class MangaInfo {
         'availableLocales':
             availableLocales.map((final Locale x) => x.toCodeString()).toList(),
       };
+
+  List<ChapterInfo> get sortedChapters => ListUtils.tryArrange(
+        chapters,
+        (final ChapterInfo x) => x.chapter,
+      );
 }
