@@ -37,8 +37,15 @@ class ERuntimeInstance {
     );
   }
 
-  Future<void> loadByteCode(final Uint8List bytes) async {
-    await hetu.loadBytecode(bytes: bytes, moduleName: extractorIdentifier);
+  Future<void> loadByteCode(
+    final Uint8List bytes, {
+    final bool globallyImport = true,
+  }) async {
+    await hetu.loadBytecode(
+      bytes: bytes,
+      moduleName: extractorIdentifier,
+      globallyImport: globallyImport,
+    );
   }
 
   Future<Uint8List> compileScriptFile(final String path) async =>
