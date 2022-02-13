@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "archive",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-3.1.11",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -87,19 +87,19 @@
     },
     {
       "name": "extensions",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-6f84c66112bca226fe42d85c93ce1598993c2a13/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-22d1a47638fe113c68704f80c536ac6a7e401985/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "extensions_metadata",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-2d89e6091a915246486999197c00c814274f38fa/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-72187a44ffa0db4e7217c95fe2591831f4240a84/",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
       "name": "extensions_runtime",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-eada479bb483e77cd18d67747f8c16697ed0ef99/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-acb44cf948ac06f4366e02e1b30d6e347888e401/",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -255,7 +255,7 @@
     },
     {
       "name": "utilx",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-b9dbd0fd27b9bdcdf71baa40d7b48f650de790c2/",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/packages-6bcf446cda043e70a46cdd8f8ae56312eafd77b2/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -278,7 +278,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-02-13T08:46:24.057234Z",
+  "generated": "2022-02-13T14:16:30.228513Z",
   "generator": "pub",
   "generatorVersion": "2.17.0-87.0.dev"
 }
