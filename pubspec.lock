@@ -321,5 +321,12 @@ packages:
       url: "git://github.com/yukino-app/packages.git"
     source: git
     version: "0.0.0"
+  yaml:
+    dependency: "direct main"
+    description:
+      name: yaml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
 sdks:
   dart: ">=2.16.0-144.0.dev <3.0.0"

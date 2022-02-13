@@ -1,12 +1,13 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:extensions/metadata.dart';
 import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
-import 'package:path/path.dart' as path;
-import '../environment.dart';
+import 'package:yaml/yaml.dart';
 import '../test/anime.dart';
 import '../test/manga.dart';
+
+export 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart'
+    show HTFileSystemResourceContext;
 
 class ECompileOptions {
   const ECompileOptions({
@@ -23,15 +24,13 @@ class ECompileOptions {
 class EConfig {
   const EConfig(this.metadata);
 
+  factory EConfig.parse(final String yaml) => EConfig(
+        EMetadata.fromJson(loadYaml(yaml) as Map<dynamic, dynamic>),
+      );
+
   final EMetadata metadata;
 
-  Future<EMetadata> compile([
-    final ECompileOptions options = ECompileOptions.defaultOptions,
-  ]) async {
-    if (options.handleEnvironment) {
-      await DTEnvironment.prepare();
-    }
-
+  Future<EMetadata> compile() async {
     final ERuntimeInstance runtime = await ERuntimeManager.create(
       ERuntimeInstanceOptions(
         hetuSourceContext:
@@ -56,22 +55,6 @@ class EConfig {
       nsfw: metadata.nsfw,
     );
 
-    if (options.outputDir != null) {
-      final Directory directory = Directory(options.outputDir!);
-
-      if (!(await directory.exists())) {
-        await directory.create(recursive: true);
-      }
-
-      await File(
-        path.join(directory.path, '${metadata.id}.json'),
-      ).writeAsString(json.encode(standaloneMetadata.toJson()));
-    }
-
-    if (options.handleEnvironment) {
-      await DTEnvironment.dispose();
-    }
-
     return standaloneMetadata;
   }
 
@@ -92,4 +75,7 @@ class EConfig {
 
     return metadata.source as ELocalFileDS;
   }
+
+  static Future<EConfig> parseFile(final File file) async =>
+      EConfig.parse(await file.readAsString());
 }

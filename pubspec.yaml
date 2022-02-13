@@ -23,6 +23,7 @@ dependencies:
         git:
             url: git://github.com/yukino-app/packages.git
             ref: utilx_desktop
+    yaml: ^3.1.0
 
 dev_dependencies:
     devx:
