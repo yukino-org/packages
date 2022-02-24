@@ -1,6 +1,6 @@
 import 'dart:io';
-import './linux.dart';
-import './windows.dart';
+import 'linux.dart';
+import 'windows.dart';
 
 abstract class ChromeFinder {
   static Future<String?> find() async {

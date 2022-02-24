@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:puppeteer/puppeteer.dart';
 import 'package:utilx/utilities/webview/webview.dart';
-import './chrome_finder/chrome_finder.dart';
-import './webview.dart';
+import 'chrome_finder/chrome_finder.dart';
+import 'webview.dart';
 
 class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   Browser? browser;

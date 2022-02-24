@@ -2,7 +2,7 @@ import 'package:puppeteer/protocol/network.dart';
 import 'package:puppeteer/puppeteer.dart';
 import 'package:utilx/utilities/utils.dart';
 import 'package:utilx/utilities/webview/webview.dart';
-import './provider.dart';
+import 'provider.dart';
 
 class PuppeteerWebview extends Webview<PuppeteerProvider> {
   PuppeteerWebview({
