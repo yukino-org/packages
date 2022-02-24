@@ -1,0 +1,160 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
+import 'url.dart';
+import '../metadata/exports.dart';
+import '../store/exports.dart';
+
+class TenkaRepository {
+  TenkaRepository({
+    required this.resolver,
+    required this.baseDir,
+  });
+
+  final TenkaStoreURLResolver resolver;
+  final String baseDir;
+
+  late final TenkaStore store;
+  late final Map<String, TenkaMetadata> installed;
+
+  Future<void> initialize() async {
+    await _createDirs();
+    await _loadStore();
+    await _loadExtensions();
+  }
+
+  bool isInstalled(final TenkaMetadata metadata) =>
+      installed.containsKey(metadata.id);
+
+  Future<void> install(final TenkaMetadata metadata) async {
+    final TenkaMetadata resolved = await resolveMetadata(metadata);
+    installed[resolved.id] = resolved;
+    await saveLocalExtensions();
+  }
+
+  Future<void> uninstall(final TenkaMetadata metadata) async {
+    installed.remove(metadata.id);
+    await saveLocalExtensions();
+  }
+
+  Future<void> _createDirs() async {
+    final List<String> dirs = <String>[baseDir, cacheDirPath];
+
+    for (final String x in dirs) {
+      final Directory dir = Directory(x);
+      if (!(await dir.exists())) {
+        await dir.create(recursive: true);
+      }
+    }
+  }
+
+  Future<TenkaMetadata> resolveMetadata(final TenkaMetadata metadata) async {
+    if (metadata.thumbnail is! TenkaCloudDS || metadata.source is! TenkaCloudDS) {
+      throw Exception('`thumbnail` and `source` must be `ECloudDS`');
+    }
+
+    final EDataSource source = await _getBase64FromCloudDS(
+      metadata.source as TenkaCloudDS
+    );
+
+    final EDataSource thumbnail = await _getBase64FromCloudDS(
+      metadata.thumbnail as TenkaCloudDS
+    );
+
+    return TenkaMetadata(
+      id: metadata.id,
+      name: metadata.name,
+      type: metadata.type,
+      author: metadata.author,
+      source: source,
+      thumbnail: thumbnail,
+      nsfw: metadata.nsfw,
+      version: metadata.version,
+    );
+  }
+
+  Future<TenkaBase64DS> _getBase64FromCloudDS(final ECloudDS source) async {
+    final http.Response resp =
+        await http.get(Uri.parse(resolver.resolveURL(source.url)));
+
+    return TenkaBase64DS(resp.bodyBytes);
+  }
+
+  Future<void> saveLocalExtensions() async {
+    final File extensionsFile = File(extensionsFilePath);
+
+    await extensionsFile.writeAsString(
+      json.encode(
+        installed.values.map((final TenkaMetadata x) => x.toJson()).toList(),
+      ),
+    );
+  }
+
+  Future<void> _loadExtensions() async {
+    final File extensionsFile = File(extensionsFilePath);
+
+    installed = <String, TenkaMetadata>{};
+
+    if (await extensionsFile.exists()) {
+      for (final dynamic x in json.decode(await extensionsFile.readAsString())
+          as List<dynamic>) {
+        EMetadata metadata = TenkaMetadata.fromJson(x as Map<dynamic, dynamic>);
+
+        final TenkaMetadata? currentMetadata = store.extensions[metadata];
+
+        if (currentMetadata != null &&
+            currentMetadata.version > metadata.version) {
+          metadata = await resolveMetadata(currentMetadata);
+        }
+
+        installed[metadata.id] = metadata;
+      }
+    }
+
+    await saveLocalExtensions();
+  }
+
+  Future<void> _loadStore() async {
+    final String currentChecksum = await _getLatestChecksum();
+    final File storeChecksumCacheFile = File(cachedStoreChecksumFilePath);
+    final File storeCacheFile = File(cachedStoreFilePath);
+
+    if (await storeChecksumCacheFile.exists()) {
+      final String cachedChecksum = await storeChecksumCacheFile.readAsString();
+
+      if (cachedChecksum == currentChecksum) {
+        store = TenkaStore.fromJson(
+          json.decode(await storeCacheFile.readAsString())
+              as Map<dynamic, dynamic>,
+        );
+
+        return;
+      }
+    }
+
+    final TenkaStore currentStore = await _getLatestStore();
+    await storeChecksumCacheFile.writeAsString(currentChecksum);
+    await storeCacheFile.writeAsString(json.encode(currentStore.toJson()));
+
+    store = currentStore;
+  }
+
+  Future<String> _getLatestChecksum() async {
+    final http.Response resp = await http.get(Uri.parse(resolver.checksumURL));
+
+    return resp.body;
+  }
+
+  Future<EStore> _getLatestStore() async {
+    final http.Response resp = await http.get(Uri.parse(resolver.storeURL));
+
+    return TenkaStore.fromJson(json.decode(resp.body) as Map<dynamic, dynamic>);
+  }
+
+  String get mainFilePath => path.join(baseDir, 'extensions.json');
+  String get cacheDirPath => path.join(baseDir, 'cache');
+  String get cachedStoreFilePath => path.join(cacheDirPath, 'store.json');
+  String get cachedStoreChecksumFilePath =>
+      path.join(cacheDirPath, '.checksum');
+}

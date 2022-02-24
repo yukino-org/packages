@@ -1,1 +1,1 @@
-export './internals.dart';
+export 'internals.dart';

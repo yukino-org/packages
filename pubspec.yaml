@@ -1,5 +1,5 @@
-name: extensions
-description: Exposes the extensions system of Yukino.
+name: tenka
+description: "🌌 An simple & easy to use Tenka wrapper."
 version: 1.0.5
 
 publish_to: none
@@ -8,23 +8,19 @@ environment:
     sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-    extensions_metadata:
-        git:
-            url: git://github.com/yukino-app/packages.git
-            ref: extensions_metadata
-    extensions_runtime:
-        git:
-            url: git://github.com/yukino-app/packages.git
-            ref: extensions_runtime
     http: ^0.13.3
+    tenka_runtime:
+        git:
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_tenka_runtime
+    path: ^1.8.0
     utilx:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: utilx
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_utilx
 
 dev_dependencies:
     devx:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: devx
-    lint: ^1.5.3
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_devx

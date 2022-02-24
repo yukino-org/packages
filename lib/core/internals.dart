@@ -1,13 +1,13 @@
-import 'package:extensions_runtime/extensions_runtime.dart';
+import 'package:tenka_runtime/tenka_runtime.dart';
 
-abstract class EInternals {
+abstract class TenkaInternals {
   static Future<void> initialize({
-    required final ERuntimeOptions runtime,
+    required final TenkaRuntimeOptions runtime,
   }) async {
-    await ERuntimeManager.initialize(runtime);
+    await TenkaRuntimeManager.initialize(runtime);
   }
 
   static Future<void> dispose() async {
-    await ERuntimeManager.dispose();
+    await TenkaRuntimeManager.dispose();
   }
 }

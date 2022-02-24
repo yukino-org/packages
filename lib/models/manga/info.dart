@@ -1,6 +1,6 @@
 import 'package:utilx/utilities/locale.dart';
 import 'package:utilx/utilities/utils.dart';
-import './chapter/info.dart';
+import 'chapter/info.dart';
 import '../base/image_describer.dart';
 
 class MangaInfo {

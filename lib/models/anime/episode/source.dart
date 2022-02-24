@@ -1,5 +1,5 @@
 import 'package:utilx/utilities/locale.dart';
-import './quality.dart';
+import 'quality.dart';
 
 class EpisodeSource {
   const EpisodeSource({

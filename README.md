@@ -1,23 +1,24 @@
-<br />
-
 <p align="center">
-    <img src="https://github.com/yukino-app/yukino/raw/next/media/large.png" width="50%">
+    <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# Extensions
+# Tenka (Dart)
 
-Exposes the extensions system of Yukino.
+🌌 An simple & easy to use Tenka wrapper.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Analysis (Dart Tenka)](<https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_tenka).yml/badge.svg>)](<https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_tenka).yml>)
 
 ## Installation
 
 ```yaml
 dependencies:
-    extensions:
+    tenka:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: extensions
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_tenka
 ```
 
 ## License
 
-[GPL-3.0](./LICENSE)
+[MIT](./LICENSE)
