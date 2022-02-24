@@ -2,7 +2,7 @@
     <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# DevX
+# DevX (Dart)
 
 🚨 Contains developer guideline preferences of Dart projects related to Yukino Org.
 
