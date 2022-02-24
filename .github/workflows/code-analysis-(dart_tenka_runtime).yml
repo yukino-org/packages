@@ -1,0 +1,30 @@
+name: Code Analysis (Dart Tenka Runtime)
+
+on:
+    push:
+        branches:
+            - dart_tenka_runtime
+        paths:
+            - "lib/**"
+    workflow_dispatch:
+
+jobs:
+    dart-analyze:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ref: dart_tenka_runtime
+
+            - uses: dart-lang/setup-dart@v1
+
+            - name: 🚧 Do prerequisites
+              run: |
+                  dart pub get
+
+            - name: 🩺 Check code format
+              run: dart format --output=none --set-exit-if-changed .
+
+            - name: 🩺 Analyze code
+              run: dart analyze
