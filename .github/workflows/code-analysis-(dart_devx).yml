@@ -12,6 +12,7 @@ on:
         paths:
             - "lib/**"
     workflow_dispatch:
+        ref: dart_dl
 
 jobs:
     dart-analyze:
