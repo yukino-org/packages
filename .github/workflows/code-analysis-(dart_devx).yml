@@ -1,7 +1,7 @@
+name: Code Analysis (Dart DevX)
+
 env:
     ACTION_BRANCH: dart_devx
-
-name: Code Analysis (${{ env.ACTION_BRANCH }})
 
 on:
     push:
