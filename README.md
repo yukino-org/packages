@@ -2,7 +2,7 @@
     <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# UtilX (Dart)
+# UtilX Desktop (Dart)
 
 🔧 Contains desktop specific utility tools used in Dart projects related to Yukino Org.
 
