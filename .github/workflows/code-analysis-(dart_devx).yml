@@ -1,0 +1,33 @@
+name: Code Analysis (dart_devx)
+
+on:
+    push:
+        branches:
+            - dart_dl
+        paths:
+            - "lib/**"
+    pull_request:
+        branches:
+            - dart_dl
+        paths:
+            - "lib/**"
+    workflow_dispatch:
+
+jobs:
+    dart-analyze:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: dart-lang/setup-dart@v1
+
+            - name: 🚧 Do prerequisites
+              run: |
+                  dart pub get
+
+            - name: 🩺 Check code format
+              run: dart format --output=none --set-exit-if-changed .
+
+            - name: 🩺 Analyze code
+              run: dart analyze
