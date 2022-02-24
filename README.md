@@ -2,7 +2,7 @@
     <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# Tenka Runtime
+# Tenka Runtime (Dart)
 
 🚁 Contains the runtime of Tenka.
 
