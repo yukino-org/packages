@@ -1,5 +1,5 @@
 name: utilx_mobile
-description: Custom utility tools related to mobile.
+description: "🔧 Contains mobile specific utility tools used in Dart projects related to Yukino Org."
 version: 0.0.0
 
 publish_to: none
@@ -12,12 +12,12 @@ dependencies:
     flutter_inappwebview: ^5.3.2
     utilx:
         git:
-            url: git://github.com/yukino-app/packages.git
+            url: git://github.com/yukino-org/packages.git
             ref: utilx
 
 dev_dependencies:
     devx:
         git:
-            url: git://github.com/yukino-app/packages.git
+            url: git://github.com/yukino-org/packages.git
             ref: devx
     lint: ^1.5.3

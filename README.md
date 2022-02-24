@@ -1,12 +1,13 @@
-<br />
-
 <p align="center">
-    <img src="https://github.com/yukino-app/yukino/raw/next/media/large.png" width="50%">
+    <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# UtilX
+# UtilX Mobile (Dart)
 
-Contains utility tools related to mobile.
+🔧 Contains mobile specific utility tools used in Dart projects related to Yukino Org.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Analysis (Dart UtilX Mobile)](https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_utilx_mobile).yml/badge.svg)](https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_utilx_mobile).yml)
 
 ## Installation
 
@@ -14,10 +15,10 @@ Contains utility tools related to mobile.
 dependencies:
     utilx_mobile:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: utilx_mobile
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_utilx_mobile
 ```
 
 ## License
 
-[GPL-3.0](./LICENSE)
+[MIT](./LICENSE)

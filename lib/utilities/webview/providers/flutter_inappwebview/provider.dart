@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:utilx/utilities/webview/webview.dart';
-import './webview.dart';
+import 'webview.dart';
 
 class FlutterWebviewProvider extends WebviewProvider<FlutterWebviewProvider> {
   CookieManager? cookies = CookieManager.instance();
