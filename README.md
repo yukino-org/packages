@@ -1,23 +1,24 @@
-<br />
-
 <p align="center">
-    <img src="https://github.com/yukino-app/yukino/raw/next/media/large.png" width="50%">
+    <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# Extensions Runtime
+# Tenka Runtime
 
-Contains the runtime module of Yukino extensions.
+🚁 Contains the runtime of Tenka.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Analysis (Dart Tenka Runtime)](<https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_tenka_runtime).yml/badge.svg>)](<https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_tenka_runtime).yml>)
 
 ## Installation
 
 ```yaml
 dependencies:
-    extensions_runtime:
+    tenka_runtime:
         git:
             url: git://github.com/yukino-app/packages.git
-            ref: extensions_runtime
+            ref: dart_tenka_runtime
 ```
 
 ## License
 
-[GPL-3.0](./LICENSE)
+[MIT](./LICENSE)

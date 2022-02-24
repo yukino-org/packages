@@ -1,5 +1,5 @@
-import './binding.dart';
 import '../../model.dart';
+import 'binding.dart';
 
 final HetuHelperClass hFuzzySearchClass = HetuHelperClass(
   definition: FuzzySearchClassBinding(),

@@ -1,10 +1,10 @@
 import 'package:hetu_script/hetu_script.dart';
 import 'package:utilx/utilities/webview/webview.dart';
-import './error.dart';
-import './hetu/exports.dart';
-import './hetu/helpers/http.dart';
-import './instance.dart';
-import './options.dart';
+import 'error.dart';
+import 'hetu/exports.dart';
+import 'hetu/helpers/http.dart';
+import 'instance.dart';
+import 'options.dart';
 
 abstract class ERuntimeManager {
   static int? _hetuDepLines;

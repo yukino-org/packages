@@ -1,5 +1,5 @@
-import './functions.dart';
 import '../../../model.dart';
+import 'functions.dart';
 
 final HetuHelperFunction hStrFmtFunction = HetuHelperFunction(
   name: 'strFmt',

@@ -1,9 +1,9 @@
 import 'package:utilx/utilities/webview/webview.dart';
-import './hetu/helpers/http.dart';
+import 'hetu/helpers/http.dart';
 
 export 'package:utilx/utilities/webview/webview.dart'
     show WebviewManagerInitializeOptions, WebviewProviderOptions;
-export './hetu/helpers/http.dart' show HttpClientOptions;
+export 'hetu/helpers/http.dart' show HttpClientOptions;
 
 class ERuntimeOptions {
   const ERuntimeOptions({

@@ -1,8 +1,8 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
-import './class.dart';
 import '../../model.dart';
+import 'class.dart';
 
 class CollectionClassBinding extends HTExternalClass {
   CollectionClassBinding() : super('Collection');

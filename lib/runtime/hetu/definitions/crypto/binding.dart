@@ -2,9 +2,9 @@ import 'package:encrypt/encrypt.dart' as crypto;
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:utilx/utilities/utils.dart';
-import './class.dart';
 import '../../model.dart';
 import '../converter/bytes/class.dart';
+import 'class.dart';
 
 class CryptoClassBinding extends HTExternalClass {
   CryptoClassBinding() : super('Crypto');

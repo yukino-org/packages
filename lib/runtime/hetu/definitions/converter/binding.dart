@@ -1,8 +1,8 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import './bytes/class.dart';
-import './class.dart';
 import '../../model.dart';
+import 'bytes/class.dart';
+import 'class.dart';
 
 class ConverterClassBinding extends HTExternalClass {
   ConverterClassBinding() : super('Converter');

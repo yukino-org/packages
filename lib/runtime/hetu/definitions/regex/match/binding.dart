@@ -1,7 +1,7 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import './class.dart';
 import '../../../model.dart';
+import 'class.dart';
 
 class RegexMatchClassBinding extends HTExternalClass {
   RegexMatchClassBinding() : super('RegexMatch');

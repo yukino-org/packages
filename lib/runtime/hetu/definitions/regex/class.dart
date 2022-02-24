@@ -1,4 +1,4 @@
-import './match/class.dart';
+import 'match/class.dart';
 
 class Regex {
   const Regex(this._stringified);

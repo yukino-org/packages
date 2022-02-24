@@ -1,5 +1,5 @@
 import 'dart:convert';
-import './bytes/class.dart';
+import 'bytes/class.dart';
 
 class Converter {
   static String jsonEncode(final dynamic data) => json.encode(data);

@@ -1,8 +1,8 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/value/function/function.dart';
-import './class.dart';
 import '../../../model.dart';
+import 'class.dart';
 
 class FuzzySearchKeyClassBinding extends HTExternalClass {
   FuzzySearchKeyClassBinding() : super('FuzzySearchKey');

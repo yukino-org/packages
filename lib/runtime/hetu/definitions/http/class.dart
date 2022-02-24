@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:http/http.dart';
-import './result/class.dart';
 import '../../helpers/http.dart';
+import 'result/class.dart';
 
 class Http {
   static const Duration timeout = Duration(seconds: 10);

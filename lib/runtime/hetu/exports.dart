@@ -1,36 +1,37 @@
 import 'package:hetu_script/binding.dart';
-import './definitions/clock/definition.dart';
-import './definitions/collection/definition.dart';
-import './definitions/converter/bytes/definition.dart';
-import './definitions/converter/definition.dart';
-import './definitions/crypto/definition.dart';
-import './definitions/extensions/anime/episode/info/definition.dart';
-import './definitions/extensions/anime/episode/source/definition.dart';
-import './definitions/extensions/anime/extractor/definition.dart';
-import './definitions/extensions/anime/info/definition.dart';
-import './definitions/extensions/base/image_describer/definition.dart';
-import './definitions/extensions/base/locale/definition.dart';
-import './definitions/extensions/base/search/info/definition.dart';
-import './definitions/extensions/manga/chapter/info/definition.dart';
-import './definitions/extensions/manga/extractor/definition.dart';
-import './definitions/extensions/manga/info/definition.dart';
-import './definitions/extensions/manga/page/info/definition.dart';
-import './definitions/fuzzy/definition.dart';
-import './definitions/fuzzy/key/definition.dart';
-import './definitions/fuzzy/result_item/definition.dart';
-import './definitions/html/definition.dart';
-import './definitions/http/definition.dart';
-import './definitions/http/result/definition.dart';
-import './definitions/languages/definition.dart';
-import './definitions/promise/definition.dart';
-import './definitions/regex/definition.dart';
-import './definitions/regex/match/definition.dart';
-import './definitions/string/format/definition.dart';
-import './definitions/webview/definition.dart';
-import './model.dart';
+import 'definitions/async_task/definition.dart';
+import 'definitions/clock/definition.dart';
+import 'definitions/collection/definition.dart';
+import 'definitions/converter/bytes/definition.dart';
+import 'definitions/converter/definition.dart';
+import 'definitions/crypto/definition.dart';
+import 'definitions/fuzzy/definition.dart';
+import 'definitions/fuzzy/key/definition.dart';
+import 'definitions/fuzzy/result_item/definition.dart';
+import 'definitions/html/definition.dart';
+import 'definitions/http/definition.dart';
+import 'definitions/http/result/definition.dart';
+import 'definitions/languages/definition.dart';
+import 'definitions/regex/definition.dart';
+import 'definitions/regex/match/definition.dart';
+import 'definitions/string/format/definition.dart';
+import 'definitions/tenka/anime/episode/info/definition.dart';
+import 'definitions/tenka/anime/episode/source/definition.dart';
+import 'definitions/tenka/anime/extractor/definition.dart';
+import 'definitions/tenka/anime/info/definition.dart';
+import 'definitions/tenka/base/image_describer/definition.dart';
+import 'definitions/tenka/base/locale/definition.dart';
+import 'definitions/tenka/base/search/info/definition.dart';
+import 'definitions/tenka/manga/chapter/info/definition.dart';
+import 'definitions/tenka/manga/extractor/definition.dart';
+import 'definitions/tenka/manga/info/definition.dart';
+import 'definitions/tenka/manga/page/info/definition.dart';
+import 'definitions/webview/definition.dart';
+import 'model.dart';
 
 abstract class HetuHelperExports {
   static final List<HetuHelperClass> classes = <HetuHelperClass>[
+    hAsyncTaskClass,
     hClockClass,
     hCollectionClass,
     hBytesContainerClass,
@@ -54,7 +55,6 @@ abstract class HetuHelperExports {
     hHttpClass,
     hHttpResponseClass,
     hLanguagesClass,
-    hPromiseClass,
     hRegexClass,
     hRegexMatchClass,
     hWebviewClass,

@@ -1,7 +1,7 @@
 import 'package:fuzzy/data/result.dart';
 import 'package:fuzzy/fuzzy.dart';
-import './key/class.dart';
-import './result_item/class.dart';
+import 'key/class.dart';
+import 'result_item/class.dart';
 
 class FuzzySearch {
   FuzzySearch({
