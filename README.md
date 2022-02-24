@@ -1,12 +1,14 @@
 <br />
 
 <p align="center">
-    <img src="https://github.com/yukino-app/yukino/raw/next/media/large.png" width="50%">
+    <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true" width="70%">
 </p>
 
 # DevX
 
-Contains developer guideline preferences of Yukino.
+🚨 Contains developer guideline preferences of Dart projects related to Yukino Org.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
@@ -15,9 +17,9 @@ dependencies:
     devx:
         git:
             url: git://github.com/yukino-app/packages.git
-            ref: devx
+            ref: dart_devx
 ```
 
 ## License
 
-[GPL-3.0](./LICENSE)
+[MIT](./LICENSE)
