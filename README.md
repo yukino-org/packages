@@ -2,7 +2,7 @@
     <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
-# UtilX Mobile (Dart)
+# UtilX Mobile (Dart/Flutter)
 
 🔧 Contains mobile specific utility tools used in Dart projects related to Yukino Org.
 
