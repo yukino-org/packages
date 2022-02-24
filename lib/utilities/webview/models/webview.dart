@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
-import './provider.dart';
+import 'provider.dart';
 
 enum WebviewWaitUntil {
   none,

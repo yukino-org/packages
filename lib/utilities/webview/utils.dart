@@ -1,4 +1,4 @@
-import './models/webview.dart';
+import 'models/webview.dart';
 
 /// `true` = Needs to be bypassed | `false` = Has been bypassed
 typedef HtmlBypassBrowserCheck = bool Function(String);

@@ -1,5 +1,5 @@
 name: utilx
-description: Custom utility tools.
+description: "🔧 Contains utility tools used in Dart projects related to Yukino Org."
 version: 0.0.0
 
 publish_to: none
@@ -13,6 +13,5 @@ dependencies:
 dev_dependencies:
     devx:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: devx
-    lint: ^1.5.3
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_devx

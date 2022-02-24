@@ -1,8 +1,8 @@
 import 'dart:async';
-import './models/provider.dart';
+import 'models/provider.dart';
 
-export './models/provider.dart';
-export './models/webview.dart';
+export 'models/provider.dart';
+export 'models/webview.dart';
 
 class WebviewManagerInitializeOptions {
   const WebviewManagerInitializeOptions(this.provider, this.options);

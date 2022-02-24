@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import './webview.dart';
+import 'webview.dart';
 
 class WebviewProviderOptions {
   const WebviewProviderOptions({
