@@ -1,18 +1,20 @@
-name: Code Analysis (dart_devx)
+env:
+    ACTION_BRANCH: dart_devx
+
+name: Code Analysis (${{ env.ACTION_BRANCH }})
 
 on:
     push:
         branches:
-            - dart_dl
+            - ${{ env.ACTION_BRANCH }}
         paths:
             - "lib/**"
     pull_request:
         branches:
-            - dart_dl
+            - ${{ env.ACTION_BRANCH }}
         paths:
             - "lib/**"
     workflow_dispatch:
-        ref: dart_dl
 
 jobs:
     dart-analyze:
@@ -20,6 +22,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
+              with:
+                  ref: ${{ env.ACTION_BRANCH }}
 
             - uses: dart-lang/setup-dart@v1
 
