@@ -6,11 +6,6 @@ on:
             - dart_devx
         paths:
             - "lib/**"
-    pull_request:
-        branches:
-            - dart_devx
-        paths:
-            - "lib/**"
     workflow_dispatch:
 
 jobs:
