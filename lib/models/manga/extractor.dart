@@ -1,9 +1,9 @@
 import 'package:utilx/utilities/locale.dart';
+import '../base/image_describer.dart';
+import '../base/search/info.dart';
 import 'chapter/info.dart';
 import 'info.dart';
 import 'page/info.dart';
-import '../base/image_describer.dart';
-import '../base/search/info.dart';
 
 typedef GetMangaInfoFn = Future<MangaInfo> Function(String, Locale);
 

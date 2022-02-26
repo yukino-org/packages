@@ -1,8 +1,8 @@
 import 'package:utilx/utilities/locale.dart';
+import '../base/search/info.dart';
 import 'episode/info.dart';
 import 'episode/source.dart';
 import 'info.dart';
-import '../base/search/info.dart';
 
 typedef GetAnimeInfoFn = Future<AnimeInfo> Function(String, Locale);
 

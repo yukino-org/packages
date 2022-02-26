@@ -2,13 +2,28 @@ import 'dart:convert';
 import 'package:path/path.dart' as path;
 import '../model.dart';
 
-class TenkaLocalFileDS extends EDataSource {
+class TenkaLocalFileDS extends TenkaDataSource {
   TenkaLocalFileDS({
     required this.root,
     required this.file,
   });
 
-  factory TenkaLocalFileDS._fromStringifiedJson(final String data) {
+  final String root;
+  final String file;
+
+  String get fullPath => path.join(root, file);
+
+  @override
+  TenkaDataSourceConverter<dynamic> get converter =>
+      TenkaLocalFileDSConverter();
+}
+
+class TenkaLocalFileDSConverter
+    extends TenkaDataSourceConverter<TenkaLocalFileDS> {
+  @override
+  final String type = 'local_file';
+
+  TenkaLocalFileDS _fromStringifiedJson(final String data) {
     final Map<dynamic, dynamic> parsed =
         json.decode(data) as Map<dynamic, dynamic>;
 
@@ -18,31 +33,32 @@ class TenkaLocalFileDS extends EDataSource {
     );
   }
 
-  factory TenkaLocalFileDS.fromFullPath(final String fullPath) => ELocalFileDS(
+  @override
+  TenkaLocalFileDS fromTenkaDataSourceManifest(
+    final TenkaDataSourceManifest manifest,
+  ) {
+    if (manifest.type != type) throw Exception('Invalid type');
+    return _fromStringifiedJson(manifest.data);
+  }
+
+  TenkaLocalFileDS fromFullPath(final String fullPath) => TenkaLocalFileDS(
         root: path.dirname(fullPath),
         file: path.basename(fullPath),
       );
 
-  factory TenkaLocalFileDS.fromEDataSourceJson(final EDataSourceJson parsed) {
-    if (parsed.type != type) throw Exception('Invalid type');
-    return TenkaLocalFileDS._fromStringifiedJson(parsed.data);
-  }
-
-  final String root;
-  final String file;
-
-  String _toStringifiedJson() => json.encode(
+  String _toStringifiedJson(final TenkaLocalFileDS source) => json.encode(
         <dynamic, dynamic>{
-          'root': root,
-          'file': file,
+          'root': source.root,
+          'file': source.file,
         },
       );
 
   @override
-  TenkaDataSourceJson toTenkaDataSourceJson() =>
-      TenkaDataSourceJson(type, _toStringifiedJson());
+  TenkaDataSourceManifest toTenkaDataSourceManifest(
+    final TenkaLocalFileDS source,
+  ) =>
+      TenkaDataSourceManifest(type, _toStringifiedJson(source));
 
-  String get fullPath => path.join(root, file);
-
-  static const String type = 'local_file';
+  static final TenkaLocalFileDSConverter converter =
+      TenkaLocalFileDSConverter();
 }

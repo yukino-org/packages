@@ -2,11 +2,11 @@ import 'prebuilts/base64.dart';
 import 'prebuilts/cloud.dart';
 import 'prebuilts/local_file.dart';
 
-class TenkaDataSourceJson {
-  const TenkaDataSourceJson(this.type, this.data);
+class TenkaDataSourceManifest {
+  const TenkaDataSourceManifest(this.type, this.data);
 
-  factory TenkaDataSourceJson.fromJson(final Map<dynamic, dynamic> json) =>
-      TenkaDataSourceJson(json['type'] as String, json['data'] as String);
+  factory TenkaDataSourceManifest.fromJson(final Map<dynamic, dynamic> json) =>
+      TenkaDataSourceManifest(json['type'] as String, json['data'] as String);
 
   final String type;
   final String data;
@@ -18,26 +18,40 @@ class TenkaDataSourceJson {
 }
 
 abstract class TenkaDataSource {
-  TenkaDataSourceJson toTenkaDataSourceJson();
+  TenkaDataSourceConverter<dynamic> get converter;
 
-  Map<dynamic, dynamic> toJson() => toTenkaDataSourceJson().toJson();
+  Map<dynamic, dynamic> toJson() =>
+      converter.toTenkaDataSourceManifest(this).toJson();
 
-  static TenkaDataSource fromJson(final Map<dynamic, dynamic> json) =>
-      fromTenkaDataSourceJson(TenkaDataSourceJson.fromJson(json));
+  static T fromTenkaDataSourceManifest<T extends TenkaDataSource>(
+    final TenkaDataSourceManifest manifest,
+  ) =>
+      TenkaDataSourceConverter.getConverter<T>(manifest)
+          .fromTenkaDataSourceManifest(manifest);
 
-  static TenkaDataSource fromTenkaDataSourceJson(final TenkaDataSourceJson parsed) {
-    switch (parsed.type) {
-      case TenkaBase64DS.type:
-        return TenkaBase64DS.fromTenkaDataSourceJson(parsed);
+  static T fromJson<T extends TenkaDataSource>(
+    final Map<dynamic, dynamic> json,
+  ) =>
+      fromTenkaDataSourceManifest(TenkaDataSourceManifest.fromJson(json));
+}
 
-      case ECloudDS.type:
-        return TenkaCloudDS.fromTenkaDataSourceJson(parsed);
+abstract class TenkaDataSourceConverter<T extends TenkaDataSource> {
+  T fromTenkaDataSourceManifest(final TenkaDataSourceManifest manifest);
+  TenkaDataSourceManifest toTenkaDataSourceManifest(final T source);
 
-      case ELocalFileDS.type:
-        return TenkaLocalFileDS.fromTenkaDataSourceJson(parsed);
+  String get type;
 
-      default:
-        throw Exception('Unsupported type');
-    }
-  }
+  static final List<TenkaDataSourceConverter<dynamic>> converters =
+      <TenkaDataSourceConverter<dynamic>>[
+    TenkaBase64DSConverter.converter,
+    TenkaCloudDSConverter.converter,
+    TenkaLocalFileDSConverter.converter,
+  ];
+
+  static TenkaDataSourceConverter<T> getConverter<T extends TenkaDataSource>(
+    final TenkaDataSourceManifest manifest,
+  ) =>
+      TenkaDataSourceConverter.converters.firstWhere(
+        (final TenkaDataSourceConverter<dynamic> x) => x.type == manifest.type,
+      ) as TenkaDataSourceConverter<T>;
 }

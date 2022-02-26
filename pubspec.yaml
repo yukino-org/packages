@@ -1,5 +1,5 @@
 name: tenka
-description: "🌌 An simple & easy to use Tenka wrapper."
+description: "🌌 An easy to use Tenka wrapper."
 version: 1.0.5
 
 publish_to: none
@@ -9,11 +9,11 @@ environment:
 
 dependencies:
     http: ^0.13.3
+    path: ^1.8.0
     tenka_runtime:
         git:
             url: git://github.com/yukino-org/packages.git
             ref: dart_tenka_runtime
-    path: ^1.8.0
     utilx:
         git:
             url: git://github.com/yukino-org/packages.git

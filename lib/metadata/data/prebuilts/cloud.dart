@@ -1,17 +1,31 @@
 import '../model.dart';
 
-class TenkaCloudDS extends EDataSource {
+class TenkaCloudDS extends TenkaDataSource {
   TenkaCloudDS(this.url);
-
-  factory TenkaCloudDS.fromEDataSourceJson(final TenkaDataSourceJson parsed) {
-    if (parsed.type != type) throw Exception('Invalid type');
-    return TenkaCloudDS(parsed.data);
-  }
 
   final String url;
 
   @override
-  TenkaDataSourceJson toTenkaDataSourceJson() => TenkaDataSourceJson(type, url);
+  TenkaDataSourceConverter<dynamic> get converter => TenkaCloudDSConverter();
+}
 
-  static const String type = 'cloud';
+class TenkaCloudDSConverter extends TenkaDataSourceConverter<TenkaCloudDS> {
+  @override
+  final String type = 'cloud';
+
+  @override
+  TenkaCloudDS fromTenkaDataSourceManifest(
+    final TenkaDataSourceManifest manifest,
+  ) {
+    if (manifest.type != type) throw Exception('Invalid type');
+    return TenkaCloudDS(manifest.data);
+  }
+
+  @override
+  TenkaDataSourceManifest toTenkaDataSourceManifest(
+    final TenkaCloudDS source,
+  ) =>
+      TenkaDataSourceManifest(type, source.url);
+
+  static final TenkaCloudDSConverter converter = TenkaCloudDSConverter();
 }

@@ -1,5 +1,6 @@
 import 'package:utilx/utilities/utils.dart';
-import '../metadata/exports.dart';
+
+import '../metadata.dart';
 
 class TenkaStore {
   const TenkaStore({
@@ -16,9 +17,9 @@ class TenkaStore {
             .cast<String, Map<dynamic, dynamic>>()
             .map(
               (final String i, final Map<dynamic, dynamic> x) =>
-                  MapEntry<String, EMetadata>(
+                  MapEntry<String, TenkaMetadata>(
                 i,
-                EMetadata.fromJson(x),
+                TenkaMetadata.fromJson(x),
               ),
             ),
         builtAt: DateTime.parse(json['builtAt'] as String),

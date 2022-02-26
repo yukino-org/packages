@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
-import 'url.dart';
-import '../metadata/exports.dart';
+import '../data/exports.dart';
+import '../metadata.dart';
 import '../store/exports.dart';
+import 'url.dart';
 
 class TenkaRepository {
   TenkaRepository({
@@ -50,17 +51,16 @@ class TenkaRepository {
   }
 
   Future<TenkaMetadata> resolveMetadata(final TenkaMetadata metadata) async {
-    if (metadata.thumbnail is! TenkaCloudDS || metadata.source is! TenkaCloudDS) {
+    if (metadata.thumbnail is! TenkaCloudDS ||
+        metadata.source is! TenkaCloudDS) {
       throw Exception('`thumbnail` and `source` must be `ECloudDS`');
     }
 
-    final EDataSource source = await _getBase64FromCloudDS(
-      metadata.source as TenkaCloudDS
-    );
+    final TenkaDataSource source =
+        await _getBase64FromCloudDS(metadata.source as TenkaCloudDS);
 
-    final EDataSource thumbnail = await _getBase64FromCloudDS(
-      metadata.thumbnail as TenkaCloudDS
-    );
+    final TenkaDataSource thumbnail =
+        await _getBase64FromCloudDS(metadata.thumbnail as TenkaCloudDS);
 
     return TenkaMetadata(
       id: metadata.id,
@@ -74,7 +74,7 @@ class TenkaRepository {
     );
   }
 
-  Future<TenkaBase64DS> _getBase64FromCloudDS(final ECloudDS source) async {
+  Future<TenkaBase64DS> _getBase64FromCloudDS(final TenkaCloudDS source) async {
     final http.Response resp =
         await http.get(Uri.parse(resolver.resolveURL(source.url)));
 
@@ -82,9 +82,9 @@ class TenkaRepository {
   }
 
   Future<void> saveLocalExtensions() async {
-    final File extensionsFile = File(extensionsFilePath);
+    final File mainFile = File(mainFilePath);
 
-    await extensionsFile.writeAsString(
+    await mainFile.writeAsString(
       json.encode(
         installed.values.map((final TenkaMetadata x) => x.toJson()).toList(),
       ),
@@ -92,14 +92,15 @@ class TenkaRepository {
   }
 
   Future<void> _loadExtensions() async {
-    final File extensionsFile = File(extensionsFilePath);
+    final File mainFile = File(mainFilePath);
 
     installed = <String, TenkaMetadata>{};
 
-    if (await extensionsFile.exists()) {
-      for (final dynamic x in json.decode(await extensionsFile.readAsString())
-          as List<dynamic>) {
-        EMetadata metadata = TenkaMetadata.fromJson(x as Map<dynamic, dynamic>);
+    if (await mainFile.exists()) {
+      for (final dynamic x
+          in json.decode(await mainFile.readAsString()) as List<dynamic>) {
+        TenkaMetadata metadata =
+            TenkaMetadata.fromJson(x as Map<dynamic, dynamic>);
 
         final TenkaMetadata? currentMetadata = store.extensions[metadata];
 
@@ -146,7 +147,7 @@ class TenkaRepository {
     return resp.body;
   }
 
-  Future<EStore> _getLatestStore() async {
+  Future<TenkaStore> _getLatestStore() async {
     final http.Response resp = await http.get(Uri.parse(resolver.storeURL));
 
     return TenkaStore.fromJson(json.decode(resp.body) as Map<dynamic, dynamic>);

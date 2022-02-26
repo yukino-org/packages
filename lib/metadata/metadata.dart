@@ -19,7 +19,8 @@ class TenkaMetadata {
     required this.version,
   });
 
-  factory TenkaMetadata.fromJson(final Map<dynamic, dynamic> json) => TenkaMetadata(
+  factory TenkaMetadata.fromJson(final Map<dynamic, dynamic> json) =>
+      TenkaMetadata(
         id: json['id'] as String,
         name: json['name'] as String,
         type: EnumUtils.find(TenkaType.values, json['type'] as String),

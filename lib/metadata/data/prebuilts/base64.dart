@@ -1,16 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'local_file.dart';
 import '../model.dart';
+import 'local_file.dart';
 
-class TenkaBase64DS extends EDataSource {
+class TenkaBase64DS extends TenkaDataSource {
   TenkaBase64DS(this.data);
-
-  factory TenkaBase64DS.fromEDataSourceJson(final TenkaDataSourceJson parsed) {
-    if (parsed.type != type) throw Exception('Invalid type');
-    return TenkaBase64DS(base64.decode(parsed.data));
-  }
 
   final Uint8List data;
 
@@ -22,11 +17,31 @@ class TenkaBase64DS extends EDataSource {
   }
 
   @override
-  TenkaDataSourceJson toEDataSourceJson() =>
-      TenkaDataSourceJson(type, base64.encode(data));
+  TenkaDataSourceConverter<dynamic> get converter => TenkaBase64DSConverter();
+}
 
-  static const String type = 'base64';
+class TenkaBase64DSConverter extends TenkaDataSourceConverter<TenkaBase64DS> {
+  @override
+  final String type = 'base64';
 
-  static Future<TenkaBase64DS> fromLocalFile(final ELocalFileDS local) async =>
+  @override
+  TenkaBase64DS fromTenkaDataSourceManifest(
+    final TenkaDataSourceManifest manifest,
+  ) {
+    if (manifest.type != type) throw Exception('Invalid type');
+    return TenkaBase64DS(base64.decode(manifest.data));
+  }
+
+  Future<TenkaBase64DS> fromLocalFile(
+    final TenkaLocalFileDS local,
+  ) async =>
       TenkaBase64DS(await File(local.fullPath).readAsBytes());
+
+  @override
+  TenkaDataSourceManifest toTenkaDataSourceManifest(
+    final TenkaBase64DS source,
+  ) =>
+      TenkaDataSourceManifest(type, base64.encode(source.data));
+
+  static final TenkaBase64DSConverter converter = TenkaBase64DSConverter();
 }
