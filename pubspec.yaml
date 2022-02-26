@@ -13,11 +13,10 @@ dependencies:
     utilx:
         git:
             url: git://github.com/yukino-org/packages.git
-            ref: utilx
+            ref: dart_utilx
 
 dev_dependencies:
     devx:
         git:
             url: git://github.com/yukino-org/packages.git
-            ref: devx
-    lint: ^1.5.3
+            ref: dart_devx
