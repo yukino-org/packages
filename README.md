@@ -6,6 +6,9 @@
 
 👷 Developer tools of Tenka.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Analysis (Dart Tenka Dev Tools)](https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_tenka_dev_tools).yml/badge.svg)](https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_tenka_dev_tools).yml)
+
 ## Installation
 
 ```yaml
