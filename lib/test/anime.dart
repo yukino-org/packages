@@ -32,7 +32,7 @@ class MockedAnimeExtractorRunner {
   final bool exitAfterRun;
   final bool setExitCode;
 
-  Future<void> run(final TenkaLocalFileDS source) async {
+  Future<Map<String, bool>> run(final TenkaLocalFileDS source) async {
     if (handleEnvironment) {
       await TenkaDevEnvironment.prepare();
     }
@@ -104,5 +104,7 @@ class MockedAnimeExtractorRunner {
     if (exitAfterRun) {
       exit(exitCode);
     }
+
+    return results;
   }
 }
