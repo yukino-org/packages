@@ -1,5 +1,5 @@
-name: extensions_dev_tools
-description: Consists of developer tools for Yukino extensions.
+name: tenka_dev_tools
+description: "👷 Developer tools of Tenka."
 version: 0.0.0
 
 publish_to: none

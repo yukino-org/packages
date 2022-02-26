@@ -1,23 +1,21 @@
-<br />
-
 <p align="center">
-    <img src="https://github.com/yukino-app/yukino/raw/next/media/large.png" width="50%">
+    <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-packages-banner.png?raw=true">
 </p>
 
 # Extensions Dev Tools
 
-Consists of developer tools for Yukino extensions.
+👷 Developer tools of Tenka.
 
 ## Installation
 
 ```yaml
 dependencies:
-    extensions_dev_tools:
+    tenka_dev_tools:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: extensions_dev_tools
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_tenka_dev_tools
 ```
 
 ## License
 
-[GPL-3.0](./LICENSE)
+[MIT](./LICENSE)
