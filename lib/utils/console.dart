@@ -97,7 +97,7 @@ abstract class TenkaDevConsole {
   }
 
   static void _print(final String text) {
-    _stream.add(text);
+    _stream.add('$text\n');
     print(text);
   }
 }
