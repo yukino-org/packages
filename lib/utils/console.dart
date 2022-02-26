@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_print
+import 'dart:async';
 import 'package:colorize/colorize.dart';
 
 export 'package:colorize/colorize.dart';
@@ -7,17 +8,22 @@ bool _isKindOfMap(final dynamic data) =>
     data is Map<dynamic, dynamic> || data is Iterable<dynamic>;
 
 abstract class TenkaDevConsole {
+  static final StreamController<String> _stream =
+      StreamController<String>.broadcast();
+
+  static late final Stream<String> stream = _stream.stream;
+
   static void ln() {
-    print(' ');
+    _print(' ');
   }
 
   static void p(final String text) {
-    print(text);
+    _print(text);
   }
 
   static void err(final Object err, final StackTrace stackTrace) {
-    print(Colorize(err.toString()).red().toString().trim());
-    print(Colorize(stackTrace.toString()).darkGray().toString().trim());
+    _print(Colorize(err.toString()).red().toString().trim());
+    _print(Colorize(stackTrace.toString()).darkGray().toString().trim());
   }
 
   static String qt(
@@ -88,5 +94,10 @@ abstract class TenkaDevConsole {
           (final Match match) =>
               Colorize(match.group(0)!).underline().toString(),
         );
+  }
+
+  static void _print(final String text) {
+    _stream.add(text);
+    print(text);
   }
 }
