@@ -4,8 +4,6 @@ on:
     push:
         branches:
             - dart_utilx
-        paths:
-            - "lib/**"
     workflow_dispatch:
 
 jobs:

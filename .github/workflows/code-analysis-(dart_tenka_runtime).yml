@@ -4,8 +4,6 @@ on:
     push:
         branches:
             - dart_tenka_runtime
-        paths:
-            - "lib/**"
     workflow_dispatch:
 
 jobs:
