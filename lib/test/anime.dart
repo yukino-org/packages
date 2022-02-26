@@ -16,7 +16,10 @@ class MockedAnimeExtractor {
   final TAnimeExtractorFn<AnimeInfo> getInfo;
   final TAnimeExtractorFn<List<EpisodeSource>> getSources;
 
-  Future<Map<String, bool>> run(final TenkaLocalFileDS source) async {
+  Future<Map<String, bool>> run(
+    final TenkaLocalFileDS source, {
+    final bool verbose = true,
+  }) async {
     final TenkaRuntimeInstance runtime = await TenkaRuntimeManager.create(
       TenkaRuntimeInstanceOptions(
         hetuSourceContext: HTFileSystemResourceContext(root: source.root),
@@ -29,18 +32,21 @@ class MockedAnimeExtractor {
     final AnimeExtractor extractor =
         await runtime.getExtractor<AnimeExtractor>();
 
+    final OnlyOnAgreeFn whenVerbose = onlyOnAgree(verbose);
     final Map<String, bool> results = await Runner.run(
       <String, Future<void> Function()>{
         'search': () async {
           final List<SearchInfo> result = await search(extractor);
 
-          TenkaDevConsole.p('Results (${result.length}):');
-          TenkaDevConsole.p(
-            TenkaDevConsole.qt(
-              result.map((final SearchInfo x) => x.toJson()),
-              spacing: '  ',
-            ),
-          );
+          whenVerbose(() {
+            TenkaDevConsole.p('Results (${result.length}):');
+            TenkaDevConsole.p(
+              TenkaDevConsole.qt(
+                result.map((final SearchInfo x) => x.toJson()),
+                spacing: '  ',
+              ),
+            );
+          });
 
           if (result.isEmpty) {
             throw Exception('Empty result');
@@ -49,21 +55,27 @@ class MockedAnimeExtractor {
         'getInfo': () async {
           final AnimeInfo result = await getInfo(extractor);
 
-          TenkaDevConsole.p('Result:');
-          TenkaDevConsole.p(TenkaDevConsole.qt(result.toJson(), spacing: '  '));
+          whenVerbose(() {
+            TenkaDevConsole.p('Result:');
+            TenkaDevConsole.p(
+              TenkaDevConsole.qt(result.toJson(), spacing: '  '),
+            );
+          });
 
           await Future<void>.delayed(const Duration(seconds: 3));
         },
         'getSources': () async {
           final List<EpisodeSource> result = await getSources(extractor);
 
-          TenkaDevConsole.p('Results (${result.length}):');
-          TenkaDevConsole.p(
-            TenkaDevConsole.qt(
-              result.map((final EpisodeSource x) => x.toJson()),
-              spacing: '  ',
-            ),
-          );
+          whenVerbose(() {
+            TenkaDevConsole.p('Results (${result.length}):');
+            TenkaDevConsole.p(
+              TenkaDevConsole.qt(
+                result.map((final EpisodeSource x) => x.toJson()),
+                spacing: '  ',
+              ),
+            );
+          });
 
           if (result.isEmpty) {
             throw Exception('Empty result');
