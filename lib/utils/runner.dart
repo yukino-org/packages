@@ -1,5 +1,5 @@
-import './console.dart';
-import './time_tracker.dart';
+import 'console.dart';
+import 'time_tracker.dart';
 
 typedef VoidFutureCallback = Future<void> Function();
 
@@ -24,23 +24,23 @@ class Runner {
         final TimeTracker time = TimeTracker()..start();
 
         try {
-          TConsole.p('Running: ${Colorize('$x()').cyan()}');
+          TenkaDevConsole.p('Running: ${Colorize('$x()').cyan()}');
 
           await tests[x]!();
 
           result[x] = true;
-          TConsole.p(
+          TenkaDevConsole.p(
             'Passed: ${Colorize('$x()').cyan()} ${Colorize('(${time.elapsed}ms)').darkGray()}',
           );
         } catch (err, stack) {
           result[x] = false;
-          TConsole.err(err, stack);
-          TConsole.p(
+          TenkaDevConsole.err(err, stack);
+          TenkaDevConsole.p(
             'Failed: ${Colorize('$x()').cyan()} ${Colorize('(${time.elapsed}ms)').darkGray()}',
           );
         }
 
-        TConsole.ln();
+        TenkaDevConsole.ln();
         await Future<void>.delayed(defaultTimeout);
       }
     }
@@ -49,11 +49,11 @@ class Runner {
         result.values.fold(0, (final int pv, final bool x) => x ? pv + 1 : pv);
     final int failed = result.length - passed;
 
-    TConsole.p(
+    TenkaDevConsole.p(
       'Summary: [${Colorize('+$passed').green()} ${Colorize('-$failed').red()}]',
     );
 
-    TConsole.p(
+    TenkaDevConsole.p(
       result.entries
           .map(
             (final MapEntry<String, bool> x) => x.value

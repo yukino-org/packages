@@ -9,25 +9,24 @@ environment:
 
 dependencies:
     colorize: ^3.0.0
-    extensions:
-        git:
-            url: git://github.com/yukino-app/packages.git
-            ref: extensions
     hetu_script_dev_tools: ^0.0.8
     path: ^1.8.0
+    tenka:
+        git:
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_tenka
     utilx:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: utilx
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_utilx
     utilx_desktop:
         git:
-            url: git://github.com/yukino-app/packages.git
-            ref: utilx_desktop
+            url: git://github.com/yukino-org/packages.git
+            ref: dart_utilx_desktop
     yaml: ^3.1.0
 
 dev_dependencies:
     devx:
         git:
-            url: https://github.com/yukino-app/packages.git
-            ref: devx
-    lint: ^1.0.0
+            url: https://github.com/yukino-org/packages.git
+            ref: dart_devx

@@ -1,16 +1,14 @@
 import 'dart:io';
-import 'package:extensions/extensions.dart';
-import 'package:extensions/metadata.dart';
-import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
+import 'package:tenka/tenka.dart';
 import '../../environment.dart';
 import '../../utils/console.dart';
 import '../../utils/runner.dart';
 
 typedef TAnimeExtractorFn<T> = Future<T> Function(AnimeExtractor);
 
-class TAnimeExtractorOptions {
-  const TAnimeExtractorOptions({
+class MockedAnimeExtractorOptions {
+  const MockedAnimeExtractorOptions({
     required this.search,
     required this.getInfo,
     required this.getSources,
@@ -27,18 +25,18 @@ class TAnimeExtractorOptions {
   final bool setExitCode;
 }
 
-class TAnimeExtractor {
-  const TAnimeExtractor(this.options);
+class MockedAnimeExtractor {
+  const MockedAnimeExtractor(this.options);
 
-  final TAnimeExtractorOptions options;
+  final MockedAnimeExtractorOptions options;
 
-  Future<void> run(final ELocalFileDS source) async {
+  Future<void> run(final TenkaLocalFileDS source) async {
     if (options.handleEnvironment) {
-      await DTEnvironment.prepare();
+      await TenkaDevEnvironment.prepare();
     }
 
-    final ERuntimeInstance runtime = await ERuntimeManager.create(
-      ERuntimeInstanceOptions(
+    final TenkaRuntimeInstance runtime = await TenkaRuntimeManager.create(
+      TenkaRuntimeInstanceOptions(
         hetuSourceContext: HTFileSystemResourceContext(root: source.root),
       ),
     );
@@ -54,9 +52,9 @@ class TAnimeExtractor {
         'search': () async {
           final List<SearchInfo> result = await options.search(extractor);
 
-          TConsole.p('Results (${result.length}):');
-          TConsole.p(
-            TConsole.qt(
+          TenkaDevConsole.p('Results (${result.length}):');
+          TenkaDevConsole.p(
+            TenkaDevConsole.qt(
               result.map((final SearchInfo x) => x.toJson()),
               spacing: '  ',
             ),
@@ -69,8 +67,8 @@ class TAnimeExtractor {
         'getInfo': () async {
           final AnimeInfo result = await options.getInfo(extractor);
 
-          TConsole.p('Result:');
-          TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
+          TenkaDevConsole.p('Result:');
+          TenkaDevConsole.p(TenkaDevConsole.qt(result.toJson(), spacing: '  '));
 
           await Future<void>.delayed(const Duration(seconds: 3));
         },
@@ -78,9 +76,9 @@ class TAnimeExtractor {
           final List<EpisodeSource> result =
               await options.getSources(extractor);
 
-          TConsole.p('Results (${result.length}):');
-          TConsole.p(
-            TConsole.qt(
+          TenkaDevConsole.p('Results (${result.length}):');
+          TenkaDevConsole.p(
+            TenkaDevConsole.qt(
               result.map((final EpisodeSource x) => x.toJson()),
               spacing: '  ',
             ),
@@ -94,7 +92,7 @@ class TAnimeExtractor {
     );
 
     if (options.handleEnvironment) {
-      await DTEnvironment.dispose();
+      await TenkaDevEnvironment.dispose();
     }
 
     if (options.setExitCode) {

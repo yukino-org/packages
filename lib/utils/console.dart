@@ -6,7 +6,7 @@ export 'package:colorize/colorize.dart';
 bool _isKindOfMap(final dynamic data) =>
     data is Map<dynamic, dynamic> || data is Iterable<dynamic>;
 
-abstract class TConsole {
+abstract class TenkaDevConsole {
   static void ln() {
     print(' ');
   }

@@ -1,13 +1,12 @@
-import 'package:extensions/extensions.dart';
-import 'package:extensions/runtime.dart';
+import 'package:tenka/tenka.dart';
 import 'package:utilx_desktop/utilities/webview/providers/puppeteer/provider.dart';
 import '../utils/runner.dart';
 
-abstract class DTEnvironment {
+abstract class TenkaDevEnvironment {
   static Future<void> prepare() async {
-    await EInternals.initialize(
-      runtime: ERuntimeOptions(
-        http: const HttpClientOptions(ignoreSSLCertificate: true),
+    await TenkaInternals.initialize(
+      runtime: TenkaRuntimeOptions(
+        http: const TenkaRuntimeHttpClientOptions(ignoreSSLCertificate: true),
         webview: WebviewManagerInitializeOptions(
           PuppeteerProvider(),
           const WebviewProviderOptions(),
@@ -17,7 +16,7 @@ abstract class DTEnvironment {
   }
 
   static Future<void> dispose() async {
-    await EInternals.dispose();
+    await TenkaInternals.dispose();
   }
 
   static Future<void> middleware(final VoidFutureCallback fn) async {

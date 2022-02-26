@@ -1,16 +1,14 @@
 import 'dart:io';
-import 'package:extensions/extensions.dart';
-import 'package:extensions/metadata.dart';
-import 'package:extensions/runtime.dart';
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
+import 'package:tenka/tenka.dart';
 import '../../environment.dart';
 import '../../utils/console.dart';
 import '../../utils/runner.dart';
 
-typedef TMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
+typedef MockedMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
-class TMangaExtractorOptions {
-  const TMangaExtractorOptions({
+class MockedMangaExtractorOptions {
+  const MockedMangaExtractorOptions({
     required this.search,
     required this.getInfo,
     required this.getChapter,
@@ -20,27 +18,27 @@ class TMangaExtractorOptions {
     this.setExitCode = true,
   });
 
-  final TMangaExtractorFn<List<SearchInfo>> search;
-  final TMangaExtractorFn<MangaInfo> getInfo;
-  final TMangaExtractorFn<List<PageInfo>> getChapter;
-  final TMangaExtractorFn<ImageDescriber> getPage;
+  final MockedMangaExtractorFn<List<SearchInfo>> search;
+  final MockedMangaExtractorFn<MangaInfo> getInfo;
+  final MockedMangaExtractorFn<List<PageInfo>> getChapter;
+  final MockedMangaExtractorFn<ImageDescriber> getPage;
   final bool handleEnvironment;
   final bool exitAfterRun;
   final bool setExitCode;
 }
 
-class TMangaExtractor {
-  const TMangaExtractor(this.options);
+class MockedMangaExtractor {
+  const MockedMangaExtractor(this.options);
 
-  final TMangaExtractorOptions options;
+  final MockedMangaExtractorOptions options;
 
-  Future<void> run(final ELocalFileDS source) async {
+  Future<void> run(final TenkaLocalFileDS source) async {
     if (options.handleEnvironment) {
-      await DTEnvironment.prepare();
+      await TenkaDevEnvironment.prepare();
     }
 
-    final ERuntimeInstance runtime = await ERuntimeManager.create(
-      ERuntimeInstanceOptions(
+    final TenkaRuntimeInstance runtime = await TenkaRuntimeManager.create(
+      TenkaRuntimeInstanceOptions(
         hetuSourceContext: HTFileSystemResourceContext(root: source.root),
       ),
     );
@@ -56,9 +54,9 @@ class TMangaExtractor {
         'search': () async {
           final List<SearchInfo> result = await options.search(extractor);
 
-          TConsole.p('Results (${result.length}):');
-          TConsole.p(
-            TConsole.qt(
+          TenkaDevConsole.p('Results (${result.length}):');
+          TenkaDevConsole.p(
+            TenkaDevConsole.qt(
               result.map((final SearchInfo x) => x.toJson()),
               spacing: '  ',
             ),
@@ -71,15 +69,15 @@ class TMangaExtractor {
         'getInfo': () async {
           final MangaInfo result = await options.getInfo(extractor);
 
-          TConsole.p('Result:');
-          TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
+          TenkaDevConsole.p('Result:');
+          TenkaDevConsole.p(TenkaDevConsole.qt(result.toJson(), spacing: '  '));
         },
         'getChapter': () async {
           final List<PageInfo> result = await options.getChapter(extractor);
 
-          TConsole.p('Results (${result.length}):');
-          TConsole.p(
-            TConsole.qt(
+          TenkaDevConsole.p('Results (${result.length}):');
+          TenkaDevConsole.p(
+            TenkaDevConsole.qt(
               result.map((final PageInfo x) => x.toJson()),
               spacing: '  ',
             ),
@@ -92,14 +90,14 @@ class TMangaExtractor {
         'getPage': () async {
           final ImageDescriber result = await options.getPage(extractor);
 
-          TConsole.p('Result:');
-          TConsole.p(TConsole.qt(result.toJson(), spacing: '  '));
+          TenkaDevConsole.p('Result:');
+          TenkaDevConsole.p(TenkaDevConsole.qt(result.toJson(), spacing: '  '));
         }
       },
     );
 
     if (options.handleEnvironment) {
-      await DTEnvironment.dispose();
+      await TenkaDevEnvironment.dispose();
     }
 
     if (options.setExitCode) {
