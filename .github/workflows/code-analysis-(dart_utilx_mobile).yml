@@ -15,14 +15,16 @@ jobs:
               with:
                   ref: dart_utilx_mobile
 
-            - uses: dart-lang/setup-dart@v1
+            - uses: subosito/flutter-action@v2
+              with:
+                  channel: "stable"
 
             - name: 🚧 Do prerequisites
               run: |
-                  dart pub get
+                  flutter pub get
 
             - name: 🩺 Check code format
-              run: dart format --output=none --set-exit-if-changed .
+              run: flutter format --output=none --set-exit-if-changed .
 
             - name: 🩺 Analyze code
-              run: dart analyze
+              run: flutter analyze
