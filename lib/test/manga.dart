@@ -92,6 +92,7 @@ class MockedMangaExtractor {
           });
         }
       },
+      verbose: verbose,
     );
 
     return results;

@@ -82,6 +82,7 @@ class MockedAnimeExtractor {
           }
         },
       },
+      verbose: verbose,
     );
 
     return results;
