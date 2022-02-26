@@ -22,7 +22,7 @@ class TenkaRepository {
   Future<void> initialize() async {
     await _createDirs();
     await _loadStore();
-    await _loadExtensions();
+    await _loadModules();
   }
 
   bool isInstalled(final TenkaMetadata metadata) =>
@@ -31,12 +31,12 @@ class TenkaRepository {
   Future<void> install(final TenkaMetadata metadata) async {
     final TenkaMetadata resolved = await resolveMetadata(metadata);
     installed[resolved.id] = resolved;
-    await saveLocalExtensions();
+    await saveLocalModules();
   }
 
   Future<void> uninstall(final TenkaMetadata metadata) async {
     installed.remove(metadata.id);
-    await saveLocalExtensions();
+    await saveLocalModules();
   }
 
   Future<void> _createDirs() async {
@@ -81,8 +81,8 @@ class TenkaRepository {
     return TenkaBase64DS(resp.bodyBytes);
   }
 
-  Future<void> saveLocalExtensions() async {
-    final File mainFile = File(mainFilePath);
+  Future<void> saveLocalModules() async {
+    final File mainFile = File(modulesFilePath);
 
     await mainFile.writeAsString(
       json.encode(
@@ -91,8 +91,8 @@ class TenkaRepository {
     );
   }
 
-  Future<void> _loadExtensions() async {
-    final File mainFile = File(mainFilePath);
+  Future<void> _loadModules() async {
+    final File mainFile = File(modulesFilePath);
 
     installed = <String, TenkaMetadata>{};
 
@@ -102,7 +102,7 @@ class TenkaRepository {
         TenkaMetadata metadata =
             TenkaMetadata.fromJson(x as Map<dynamic, dynamic>);
 
-        final TenkaMetadata? currentMetadata = store.extensions[metadata];
+        final TenkaMetadata? currentMetadata = store.modules[metadata];
 
         if (currentMetadata != null &&
             currentMetadata.version > metadata.version) {
@@ -113,7 +113,7 @@ class TenkaRepository {
       }
     }
 
-    await saveLocalExtensions();
+    await saveLocalModules();
   }
 
   Future<void> _loadStore() async {
@@ -153,7 +153,7 @@ class TenkaRepository {
     return TenkaStore.fromJson(json.decode(resp.body) as Map<dynamic, dynamic>);
   }
 
-  String get mainFilePath => path.join(baseDir, 'extensions.json');
+  String get modulesFilePath => path.join(baseDir, 'modules.json');
   String get cacheDirPath => path.join(baseDir, 'cache');
   String get cachedStoreFilePath => path.join(cacheDirPath, 'store.json');
   String get cachedStoreChecksumFilePath =>

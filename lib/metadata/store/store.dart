@@ -5,7 +5,7 @@ import '../metadata.dart';
 class TenkaStore {
   const TenkaStore({
     required this.baseURLs,
-    required this.extensions,
+    required this.modules,
     required this.builtAt,
     required this.checksum,
   });
@@ -13,7 +13,7 @@ class TenkaStore {
   factory TenkaStore.fromJson(final Map<dynamic, dynamic> json) => TenkaStore(
         baseURLs:
             (json['baseURLs'] as Map<dynamic, dynamic>).cast<String, String>(),
-        extensions: (json['extensions'] as Map<dynamic, dynamic>)
+        modules: (json['modules'] as Map<dynamic, dynamic>)
             .cast<String, Map<dynamic, dynamic>>()
             .map(
               (final String i, final Map<dynamic, dynamic> x) =>
@@ -27,13 +27,13 @@ class TenkaStore {
       );
 
   final Map<String, String> baseURLs;
-  final Map<String, TenkaMetadata> extensions;
+  final Map<String, TenkaMetadata> modules;
   final DateTime builtAt;
   final String checksum;
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'baseURLs': baseURLs,
-        'extensions': extensions.map(
+        'modules': modules.map(
           (final String i, final TenkaMetadata x) =>
               MapEntry<String, Map<dynamic, dynamic>>(i, x.toJson()),
         ),
