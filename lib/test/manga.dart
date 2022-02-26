@@ -7,33 +7,35 @@ import '../../utils/runner.dart';
 
 typedef MockedMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
-class MockedMangaExtractorOptions {
-  const MockedMangaExtractorOptions({
+class MockedMangaExtractor {
+  const MockedMangaExtractor({
     required this.search,
     required this.getInfo,
     required this.getChapter,
     required this.getPage,
-    this.handleEnvironment = true,
-    this.exitAfterRun = false,
-    this.setExitCode = true,
   });
 
   final MockedMangaExtractorFn<List<SearchInfo>> search;
   final MockedMangaExtractorFn<MangaInfo> getInfo;
   final MockedMangaExtractorFn<List<PageInfo>> getChapter;
   final MockedMangaExtractorFn<ImageDescriber> getPage;
+}
+
+class MockedMangaExtractorRunner {
+  const MockedMangaExtractorRunner(
+    this.options, {
+    this.handleEnvironment = true,
+    this.exitAfterRun = false,
+    this.setExitCode = true,
+  });
+
+  final MockedMangaExtractor options;
   final bool handleEnvironment;
   final bool exitAfterRun;
   final bool setExitCode;
-}
-
-class MockedMangaExtractor {
-  const MockedMangaExtractor(this.options);
-
-  final MockedMangaExtractorOptions options;
 
   Future<void> run(final TenkaLocalFileDS source) async {
-    if (options.handleEnvironment) {
+    if (handleEnvironment) {
       await TenkaDevEnvironment.prepare();
     }
 
@@ -96,15 +98,15 @@ class MockedMangaExtractor {
       },
     );
 
-    if (options.handleEnvironment) {
+    if (handleEnvironment) {
       await TenkaDevEnvironment.dispose();
     }
 
-    if (options.setExitCode) {
+    if (setExitCode) {
       exitCode = results.values.any((final bool x) => !x) ? 1 : 0;
     }
 
-    if (options.exitAfterRun) {
+    if (exitAfterRun) {
       exit(exitCode);
     }
   }

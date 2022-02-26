@@ -7,31 +7,33 @@ import '../../utils/runner.dart';
 
 typedef TAnimeExtractorFn<T> = Future<T> Function(AnimeExtractor);
 
-class MockedAnimeExtractorOptions {
-  const MockedAnimeExtractorOptions({
+class MockedAnimeExtractor {
+  const MockedAnimeExtractor({
     required this.search,
     required this.getInfo,
     required this.getSources,
-    this.handleEnvironment = true,
-    this.exitAfterRun = false,
-    this.setExitCode = true,
   });
 
   final TAnimeExtractorFn<List<SearchInfo>> search;
   final TAnimeExtractorFn<AnimeInfo> getInfo;
   final TAnimeExtractorFn<List<EpisodeSource>> getSources;
+}
+
+class MockedAnimeExtractorRunner {
+  const MockedAnimeExtractorRunner(
+    this.options, {
+    this.handleEnvironment = true,
+    this.exitAfterRun = false,
+    this.setExitCode = true,
+  });
+
+  final MockedAnimeExtractor options;
   final bool handleEnvironment;
   final bool exitAfterRun;
   final bool setExitCode;
-}
-
-class MockedAnimeExtractor {
-  const MockedAnimeExtractor(this.options);
-
-  final MockedAnimeExtractorOptions options;
 
   Future<void> run(final TenkaLocalFileDS source) async {
-    if (options.handleEnvironment) {
+    if (handleEnvironment) {
       await TenkaDevEnvironment.prepare();
     }
 
@@ -91,15 +93,15 @@ class MockedAnimeExtractor {
       },
     );
 
-    if (options.handleEnvironment) {
+    if (handleEnvironment) {
       await TenkaDevEnvironment.dispose();
     }
 
-    if (options.setExitCode) {
+    if (setExitCode) {
       exitCode = results.values.any((final bool x) => !x) ? 1 : 0;
     }
 
-    if (options.exitAfterRun) {
+    if (exitAfterRun) {
       exit(exitCode);
     }
   }
