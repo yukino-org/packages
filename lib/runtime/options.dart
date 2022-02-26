@@ -3,14 +3,14 @@ import 'hetu/helpers/http.dart';
 
 export 'package:utilx/utilities/webview/webview.dart'
     show WebviewManagerInitializeOptions, WebviewProviderOptions;
-export 'hetu/helpers/http.dart' show HttpClientOptions;
+export 'hetu/helpers/http.dart' show TenkaRuntimeHttpClientOptions;
 
-class ERuntimeOptions {
-  const ERuntimeOptions({
+class TenkaRuntimeOptions {
+  const TenkaRuntimeOptions({
     required final this.http,
     required final this.webview,
   });
 
-  final HttpClientOptions http;
+  final TenkaRuntimeHttpClientOptions http;
   final WebviewManagerInitializeOptions webview;
 }

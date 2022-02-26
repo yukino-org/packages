@@ -2,18 +2,18 @@ import 'dart:typed_data';
 import 'package:hetu_script/hetu_script.dart';
 import 'manager.dart';
 
-class ERuntimeInstanceOptions {
-  const ERuntimeInstanceOptions({
+class TenkaRuntimeInstanceOptions {
+  const TenkaRuntimeInstanceOptions({
     final this.hetuSourceContext,
   });
 
   final HTResourceContext<HTSource>? hetuSourceContext;
 }
 
-class ERuntimeInstance {
-  ERuntimeInstance([this.options]);
+class TenkaRuntimeInstance {
+  TenkaRuntimeInstance([this.options]);
 
-  final ERuntimeInstanceOptions? options;
+  final TenkaRuntimeInstanceOptions? options;
 
   late final Hetu hetu = Hetu(sourceContext: options?.hetuSourceContext);
 
@@ -33,7 +33,7 @@ class ERuntimeInstance {
     final bool appendDefinitions = false,
   }) async {
     await hetu.eval(
-      appendDefinitions ? ERuntimeManager.prependDefinitions(code) : code,
+      appendDefinitions ? TenkaRuntimeManager.prependDefinitions(code) : code,
     );
   }
 

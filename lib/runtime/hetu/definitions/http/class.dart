@@ -1,7 +1,58 @@
 import 'dart:io';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'package:utilx/utilities/utils.dart';
 import '../../helpers/http.dart';
 import 'result/class.dart';
+
+enum HttpMethods {
+  get,
+  post,
+  head,
+  patch,
+  delete,
+  put,
+}
+
+extension HttpMethodsUtils on HttpMethods {
+  Future<http.Response> send({
+    required final Uri uri,
+    required final Map<String, String> headers,
+    required final Duration timeout,
+    final String? body,
+  }) {
+    switch (this) {
+      case HttpMethods.get:
+        return TenkaRuntimeHttpClient.client
+            .get(uri, headers: headers)
+            .timeout(timeout);
+
+      case HttpMethods.post:
+        return TenkaRuntimeHttpClient.client
+            .post(uri, body: body, headers: headers)
+            .timeout(timeout);
+
+      case HttpMethods.head:
+        return TenkaRuntimeHttpClient.client
+            .head(uri, headers: headers)
+            .timeout(timeout);
+
+      case HttpMethods.patch:
+        return TenkaRuntimeHttpClient.client
+            .patch(uri, body: body, headers: headers)
+            .timeout(timeout);
+
+      case HttpMethods.delete:
+        return TenkaRuntimeHttpClient.client
+            .delete(uri, body: body, headers: headers)
+            .timeout(timeout);
+
+      case HttpMethods.put:
+        return TenkaRuntimeHttpClient.client
+            .put(uri, body: body, headers: headers)
+            .timeout(timeout);
+    }
+  }
+}
 
 class Http {
   static const Duration timeout = Duration(seconds: 10);
@@ -13,52 +64,21 @@ class Http {
     final Map<String, String>? headers,
     final String? body,
   }) async {
-    final String encodedURL = tryEncodeURL(url);
+    final Uri uri = Uri.parse(tryEncodeURL(url));
 
     final Map<String, String> castedHeaders =
         headers?.cast<String, String>() ?? <String, String>{};
 
-    final Response res;
-    switch (method) {
-      case 'get':
-        res = await HetuHttpClient.client
-            .get(Uri.parse(encodedURL), headers: castedHeaders)
-            .timeout(timeout);
-        break;
+    final HttpMethods? parsedMethod =
+        EnumUtils.findOrNull(HttpMethods.values, method.toLowerCase());
+    if (parsedMethod == null) throw Exception('Invalid method: $method');
 
-      case 'post':
-        res = await HetuHttpClient.client
-            .post(Uri.parse(encodedURL), body: body, headers: castedHeaders)
-            .timeout(timeout);
-        break;
-
-      case 'head':
-        res = await HetuHttpClient.client
-            .head(Uri.parse(encodedURL), headers: castedHeaders)
-            .timeout(timeout);
-        break;
-
-      case 'patch':
-        res = await HetuHttpClient.client
-            .patch(Uri.parse(encodedURL), body: body, headers: castedHeaders)
-            .timeout(timeout);
-        break;
-
-      case 'delete':
-        res = await HetuHttpClient.client
-            .delete(Uri.parse(encodedURL), body: body, headers: castedHeaders)
-            .timeout(timeout);
-        break;
-
-      case 'put':
-        res = await HetuHttpClient.client
-            .put(Uri.parse(encodedURL), body: body, headers: castedHeaders)
-            .timeout(timeout);
-        break;
-
-      default:
-        throw AssertionError('Unknown "method": $method');
-    }
+    final http.Response res = await parsedMethod.send(
+      uri: uri,
+      headers: castedHeaders,
+      timeout: timeout,
+      body: body,
+    );
 
     return HttpResponse(
       body: res.body,

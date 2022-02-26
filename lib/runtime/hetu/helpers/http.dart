@@ -2,19 +2,19 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
-class HttpClientOptions {
-  const HttpClientOptions({
+class TenkaRuntimeHttpClientOptions {
+  const TenkaRuntimeHttpClientOptions({
     required final this.ignoreSSLCertificate,
   });
 
   final bool ignoreSSLCertificate;
 }
 
-abstract class HetuHttpClient {
+abstract class TenkaRuntimeHttpClient {
   static late Client client;
-  static late HttpClientOptions options;
+  static late TenkaRuntimeHttpClientOptions options;
 
-  static void initialize(final HttpClientOptions options) {
+  static void initialize(final TenkaRuntimeHttpClientOptions options) {
     final HttpClient client = HttpClient();
 
     if (options.ignoreSSLCertificate) {
@@ -23,6 +23,6 @@ abstract class HetuHttpClient {
               true;
     }
 
-    HetuHttpClient.client = IOClient(client);
+    TenkaRuntimeHttpClient.client = IOClient(client);
   }
 }

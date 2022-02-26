@@ -1,7 +1,7 @@
 import 'package:hetu_script/hetu_script.dart';
 
-class ERuntimeError {
-  const ERuntimeError({
+class TenkaRuntimeError {
+  const TenkaRuntimeError({
     required final this.error,
     final this.line,
   });

@@ -6,25 +6,25 @@ import 'hetu/helpers/http.dart';
 import 'instance.dart';
 import 'options.dart';
 
-abstract class ERuntimeManager {
+abstract class TenkaRuntimeManager {
   static int? _hetuDepLines;
   static bool ready = false;
 
-  static Future<void> initialize(final ERuntimeOptions options) async {
+  static Future<void> initialize(final TenkaRuntimeOptions options) async {
     if (ready) throw Exception('Cannot initialize twice');
 
-    HetuHttpClient.initialize(options.http);
+    TenkaRuntimeHttpClient.initialize(options.http);
     await WebviewManager.initialize(options.webview);
 
     ready = true;
   }
 
-  static Future<ERuntimeInstance> create([
-    final ERuntimeInstanceOptions? options,
+  static Future<TenkaRuntimeInstance> create([
+    final TenkaRuntimeInstanceOptions? options,
   ]) async {
-    if (!ready) throw Error();
+    if (!ready) throw Exception('Not ready');
 
-    final ERuntimeInstance instance = ERuntimeInstance(options);
+    final TenkaRuntimeInstance instance = TenkaRuntimeInstance(options);
 
     instance.hetu.init(
       externalClasses: HetuHelperExports.externalClasses,
@@ -40,11 +40,11 @@ ${HetuHelperExports.declarations}
 $code
 ''';
 
-  static ERuntimeError modifyHTError(final HTError error) {
+  static TenkaRuntimeError modifyHTError(final HTError error) {
     _hetuDepLines ??=
         RegExp('\n').allMatches(prependDefinitions('')).length - 1;
 
-    return ERuntimeError(error: error, line: error.line! - _hetuDepLines!);
+    return TenkaRuntimeError(error: error, line: error.line! - _hetuDepLines!);
   }
 
   static Future<void> dispose() async {
