@@ -1,6 +1,6 @@
 import 'package:tenka/tenka.dart';
 import 'package:utilx_desktop/utilities/webview/providers/puppeteer/provider.dart';
-import '../utils/runner.dart';
+import 'utils/benchmark.dart';
 
 abstract class TenkaDevEnvironment {
   static Future<void> prepare() async {

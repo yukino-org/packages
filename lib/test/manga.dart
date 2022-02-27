@@ -1,7 +1,8 @@
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:tenka/tenka.dart';
 import '../../utils/console.dart';
-import '../../utils/runner.dart';
+import '../utils/benchmark.dart';
+import '../utils/exception_with_data.dart';
 
 typedef MockedMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
@@ -18,7 +19,7 @@ class MockedMangaExtractor {
   final MockedMangaExtractorFn<List<PageInfo>> getChapter;
   final MockedMangaExtractorFn<ImageDescriber> getPage;
 
-  Future<Map<String, bool>> run(
+  Future<Map<String, Benchmarks>> run(
     final TenkaLocalFileDS source, {
     final bool verbose = true,
   }) async {
@@ -35,8 +36,9 @@ class MockedMangaExtractor {
         await runtime.getExtractor<MangaExtractor>();
 
     final OnlyOnAgreeFn whenVerbose = onlyOnAgree(verbose);
-    final Map<String, bool> results = await Runner.run(
-      <String, Future<void> Function()>{
+
+    return BenchmarkRunner.run(
+      <String, Future<dynamic> Function()>{
         'search': () async {
           final List<SearchInfo> result = await search(extractor);
 
@@ -51,8 +53,10 @@ class MockedMangaExtractor {
           });
 
           if (result.isEmpty) {
-            throw Exception('Empty result');
+            throw ExceptionWithData('Empty result', result);
           }
+
+          return result;
         },
         'getInfo': () async {
           final MangaInfo result = await getInfo(extractor);
@@ -63,6 +67,8 @@ class MockedMangaExtractor {
               TenkaDevConsole.qt(result.toJson(), spacing: '  '),
             );
           });
+
+          return result;
         },
         'getChapter': () async {
           final List<PageInfo> result = await getChapter(extractor);
@@ -78,8 +84,10 @@ class MockedMangaExtractor {
           });
 
           if (result.isEmpty) {
-            throw Exception('Empty result');
+            throw ExceptionWithData('Empty result', result);
           }
+
+          return result;
         },
         'getPage': () async {
           final ImageDescriber result = await getPage(extractor);
@@ -90,11 +98,11 @@ class MockedMangaExtractor {
               TenkaDevConsole.qt(result.toJson(), spacing: '  '),
             );
           });
+
+          return result;
         }
       },
       verbose: verbose,
     );
-
-    return results;
   }
 }

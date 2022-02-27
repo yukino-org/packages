@@ -9,11 +9,25 @@ OnlyOnAgreeFn onlyOnAgree(final bool agree) => (final void Function() fn) {
       if (agree) fn();
     };
 
-class Runner {
+class Benchmarks {
+  const Benchmarks({
+    required this.name,
+    required this.time,
+    required this.success,
+    required this.result,
+  });
+
+  final String name;
+  final TimeTracker time;
+  final bool success;
+  final dynamic result;
+}
+
+class BenchmarkRunner {
   static const Duration defaultTimeout = Duration(seconds: 3);
 
-  static Future<Map<String, bool>> run(
-    final Map<String, Future<void> Function()> tests, {
+  static Future<Map<String, Benchmarks>> run(
+    final Map<String, Future<dynamic> Function()> tests, {
     final bool parseEnvironmentMethod = true,
     final Duration timeout = defaultTimeout,
     final bool verbose = true,
@@ -26,7 +40,7 @@ class Runner {
             : null;
 
     final List<String> methods = envMethods?.split(',') ?? tests.keys.toList();
-    final Map<String, bool> result = <String, bool>{};
+    final Map<String, Benchmarks> results = <String, Benchmarks>{};
 
     for (final String x in methods) {
       if (tests.containsKey(x)) {
@@ -37,17 +51,29 @@ class Runner {
             TenkaDevConsole.p('Running: ${Colorize('$x()').cyan()}');
           });
 
-          await tests[x]!();
-          result[x] = true;
+          final dynamic result = await tests[x]!();
+          results[x] = Benchmarks(
+            name: x,
+            time: time,
+            success: true,
+            result: result,
+          );
 
+          time.end();
           whenVerbose(() {
             TenkaDevConsole.p(
               'Passed: ${Colorize('$x()').cyan()} ${Colorize('(${time.elapsed}ms)').darkGray()}',
             );
           });
         } catch (err, stack) {
-          result[x] = false;
+          results[x] = Benchmarks(
+            name: x,
+            time: time,
+            success: false,
+            result: err,
+          );
 
+          time.end();
           whenVerbose(() {
             TenkaDevConsole.err(err, stack);
             TenkaDevConsole.p(
@@ -64,19 +90,19 @@ class Runner {
       }
     }
 
-    final int passed =
-        result.values.fold(0, (final int pv, final bool x) => x ? pv + 1 : pv);
-    final int failed = result.length - passed;
-
     whenVerbose(() {
+      final int passed =
+          results.values.where((final Benchmarks x) => x.success).length;
+      final int failed = results.length - passed;
+
       TenkaDevConsole.p(
         'Summary: [${Colorize('+$passed').green()} ${Colorize('-$failed').red()}]',
       );
 
       TenkaDevConsole.p(
-        result.entries
+        results.entries
             .map(
-              (final MapEntry<String, bool> x) => x.value
+              (final MapEntry<String, Benchmarks> x) => x.value.success
                   ? '${Colorize('${x.key}()').cyan()}: ${Colorize('P').green()}'
                   : '${Colorize('${x.key}()').cyan()}: ${Colorize('F').red()}',
             )
@@ -85,6 +111,6 @@ class Runner {
       );
     });
 
-    return result;
+    return results;
   }
 }

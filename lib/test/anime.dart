@@ -1,7 +1,8 @@
 import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
 import 'package:tenka/tenka.dart';
 import '../../utils/console.dart';
-import '../../utils/runner.dart';
+import '../utils/benchmark.dart';
+import '../utils/exception_with_data.dart';
 
 typedef TAnimeExtractorFn<T> = Future<T> Function(AnimeExtractor);
 
@@ -16,7 +17,7 @@ class MockedAnimeExtractor {
   final TAnimeExtractorFn<AnimeInfo> getInfo;
   final TAnimeExtractorFn<List<EpisodeSource>> getSources;
 
-  Future<Map<String, bool>> run(
+  Future<Map<String, Benchmarks>> run(
     final TenkaLocalFileDS source, {
     final bool verbose = true,
   }) async {
@@ -33,8 +34,9 @@ class MockedAnimeExtractor {
         await runtime.getExtractor<AnimeExtractor>();
 
     final OnlyOnAgreeFn whenVerbose = onlyOnAgree(verbose);
-    final Map<String, bool> results = await Runner.run(
-      <String, Future<void> Function()>{
+
+    return BenchmarkRunner.run(
+      <String, Future<dynamic> Function()>{
         'search': () async {
           final List<SearchInfo> result = await search(extractor);
 
@@ -49,8 +51,10 @@ class MockedAnimeExtractor {
           });
 
           if (result.isEmpty) {
-            throw Exception('Empty result');
+            throw ExceptionWithData('Empty result', result);
           }
+
+          return result;
         },
         'getInfo': () async {
           final AnimeInfo result = await getInfo(extractor);
@@ -62,7 +66,7 @@ class MockedAnimeExtractor {
             );
           });
 
-          await Future<void>.delayed(const Duration(seconds: 3));
+          return result;
         },
         'getSources': () async {
           final List<EpisodeSource> result = await getSources(extractor);
@@ -78,13 +82,13 @@ class MockedAnimeExtractor {
           });
 
           if (result.isEmpty) {
-            throw Exception('Empty result');
+            throw ExceptionWithData('Empty result', result);
           }
+
+          return result;
         },
       },
       verbose: verbose,
     );
-
-    return results;
   }
 }

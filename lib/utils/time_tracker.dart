@@ -1,9 +1,15 @@
 class TimeTracker {
-  late final int _start;
+  late final DateTime startedAt;
+  late final DateTime endedAt;
 
   void start() {
-    _start = DateTime.now().millisecondsSinceEpoch;
+    startedAt = DateTime.now();
   }
 
-  int get elapsed => DateTime.now().millisecondsSinceEpoch - _start;
+  void end() {
+    endedAt = DateTime.now();
+  }
+
+  int get elapsed =>
+      endedAt.millisecondsSinceEpoch - startedAt.millisecondsSinceEpoch;
 }
