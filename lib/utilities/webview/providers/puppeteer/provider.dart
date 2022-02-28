@@ -12,6 +12,8 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
 
   @override
   Future<void> initialize(final WebviewProviderOptions options) async {
+    headless = !options.devMode;
+
     final String? foundPath = await ChromeFinder.find();
 
     final List<Future<bool> Function()> tasks = <Future<bool> Function()>[
@@ -34,8 +36,6 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
         break;
       } catch (_) {}
     }
-
-    headless = !options.devMode;
 
     await super.initialize(options);
   }
