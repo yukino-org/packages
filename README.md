@@ -15,7 +15,7 @@
 dependencies:
     devx:
         git:
-            url: git://github.com/yukino-app/packages.git
+            url: git://github.com/yukino-org/packages.git
             ref: dart_devx
 ```
 
