@@ -8,6 +8,7 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   Browser? browser;
   BrowserContext? context;
   String? chromePath;
+  late bool headless;
 
   @override
   Future<void> initialize(final WebviewProviderOptions options) async {
@@ -24,7 +25,7 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
             await downloadChrome(cachePath: options.localChromiumPath);
         await _launch(revision.executablePath);
         return true;
-      }
+      },
     ];
 
     for (final Future<bool> Function() x in tasks) {
@@ -33,6 +34,8 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
         break;
       } catch (_) {}
     }
+
+    headless = !options.devMode;
 
     await super.initialize(options);
   }
@@ -45,6 +48,7 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
         '--no-zygote',
         '--no-sandbox',
       ],
+      headless: headless,
     );
 
     context = await browser!.createIncognitoBrowserContext();
