@@ -4,9 +4,11 @@ import 'webview.dart';
 class WebviewProviderOptions {
   const WebviewProviderOptions({
     final this.localChromiumPath,
+    final this.devMode = false,
   });
 
   final String? localChromiumPath;
+  final bool devMode;
 }
 
 abstract class WebviewProvider<T extends WebviewProvider<T>> {
