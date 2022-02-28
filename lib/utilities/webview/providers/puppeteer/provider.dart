@@ -43,11 +43,13 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   Future<void> _launch(final String executablePath) async {
     browser = await puppeteer.launch(
       executablePath: executablePath,
-      args: <String>[
-        '--single-process',
-        '--no-zygote',
-        '--no-sandbox',
-      ],
+      args: headless
+          ? <String>[
+              '--single-process',
+              '--no-zygote',
+              '--no-sandbox',
+            ]
+          : null,
       headless: headless,
     );
 
