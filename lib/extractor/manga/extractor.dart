@@ -1,15 +1,14 @@
 import 'package:utilx/utilities/locale.dart';
 import '../base/image_describer.dart';
 import '../base/search/info.dart';
-import 'chapter/info.dart';
 import 'info.dart';
 import 'page/info.dart';
 
 typedef GetMangaInfoFn = Future<MangaInfo> Function(String, Locale);
 
-typedef GetChapterFn = Future<List<PageInfo>> Function(ChapterInfo);
+typedef GetChapterFn = Future<List<PageInfo>> Function(String, Locale);
 
-typedef GetPageFn = Future<ImageDescriber> Function(PageInfo);
+typedef GetPageFn = Future<ImageDescriber> Function(String, Locale);
 
 class MangaExtractor {
   const MangaExtractor({
