@@ -3,4 +3,7 @@ class ExceptionWithData implements Exception {
 
   final String error;
   final dynamic data;
+
+  @override
+  String toString() => 'ExceptionWithData: $error\nData:\n$data';
 }

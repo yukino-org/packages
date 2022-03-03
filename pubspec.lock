@@ -90,7 +90,7 @@ packages:
     description:
       path: "."
       ref: dart_devx
-      resolved-ref: "0e184b5a87e228d8920e77b483d35861d2f7f2d3"
+      resolved-ref: fd4d70ed67925465e416a6705b29c51c73c1973f
       url: "https://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
@@ -267,7 +267,7 @@ packages:
     description:
       path: "."
       ref: dart_tenka
-      resolved-ref: "8bebeabdb53743af5159c57253a0ffb7b8b13887"
+      resolved-ref: "2b8b1e7a9dc818d7d1b902ccf2496a19199f75a0"
       url: "git://github.com/yukino-org/packages.git"
     source: git
     version: "1.0.5"
@@ -299,7 +299,7 @@ packages:
     description:
       path: "."
       ref: dart_utilx
-      resolved-ref: f85ccc1bfde927b6f9aa09746d1424679abfec4c
+      resolved-ref: a86442540293261f9b6e44e04a9eeadd9d09c55f
       url: "git://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
@@ -308,7 +308,7 @@ packages:
     description:
       path: "."
       ref: dart_utilx_desktop
-      resolved-ref: "4a4fa86d32017474809d69bb8d9b9c428d425bdc"
+      resolved-ref: "4a49863c6d920178dae5b9d476dddc131bb888a8"
       url: "git://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
