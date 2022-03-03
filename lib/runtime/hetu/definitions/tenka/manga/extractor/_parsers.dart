@@ -19,14 +19,17 @@ GetMangaInfoFn toGetInfo(final HTFunction fn) =>
     };
 
 GetChapterFn toGetChapter(final HTFunction fn) =>
-    (final ChapterInfo chapter) async {
-      final dynamic result = await fn.call(positionalArgs: <dynamic>[chapter]);
+    (final String url, final Locale locale) async {
+      final dynamic result =
+          await fn.call(positionalArgs: <dynamic>[url, locale]);
 
       return (result as List<dynamic>).cast<PageInfo>();
     };
 
-GetPageFn toGetPage(final HTFunction fn) => (final PageInfo page) async {
-      final dynamic result = await fn.call(positionalArgs: <dynamic>[page]);
+GetPageFn toGetPage(final HTFunction fn) =>
+    (final String url, final Locale locale) async {
+      final dynamic result =
+          await fn.call(positionalArgs: <dynamic>[url, locale]);
 
       return result as ImageDescriber;
     };

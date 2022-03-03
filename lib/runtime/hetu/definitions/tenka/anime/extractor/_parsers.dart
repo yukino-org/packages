@@ -19,8 +19,9 @@ GetAnimeInfoFn toGetInfo(final HTFunction fn) =>
     };
 
 GetSourcesFn toGetSources(final HTFunction fn) =>
-    (final EpisodeInfo episode) async {
-      final dynamic result = await fn.call(positionalArgs: <dynamic>[episode]);
+    (final String url, final Locale locale) async {
+      final dynamic result =
+          await fn.call(positionalArgs: <dynamic>[url, locale]);
 
       return (result as List<dynamic>).cast<EpisodeSource>();
     };
