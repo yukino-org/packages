@@ -1,6 +1,5 @@
 import 'package:utilx/utilities/utils.dart';
-
-import '../metadata.dart';
+import '../metadata/exports.dart';
 
 class TenkaStore {
   const TenkaStore({

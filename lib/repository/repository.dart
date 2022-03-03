@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import '../data/exports.dart';
-import '../metadata.dart';
+import '../metadata/exports.dart';
 import '../store/exports.dart';
 import 'url.dart';
 

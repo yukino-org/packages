@@ -1,5 +1,5 @@
 import 'package:utilx/utilities/utils.dart';
-import 'data/model.dart';
+import '../data/model.dart';
 import 'version.dart';
 
 enum TenkaType {
