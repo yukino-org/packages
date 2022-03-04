@@ -1,9 +1,27 @@
 import 'package:crypto/crypto.dart';
-import 'package:encrypt/encrypt.dart' as crypto;
+import 'package:encrypt/encrypt.dart';
 import '../converter/bytes/class.dart';
 
+enum AESPadding {
+  none,
+  pkcs7,
+}
+
+extension AESPaddingUtils on AESPadding {
+  String? get encryptPadding {
+    switch (this) {
+      case AESPadding.none:
+        return null;
+
+      case AESPadding.pkcs7:
+        return 'PKCS7';
+    }
+  }
+}
+
 class Crypto {
-  static const crypto.AESMode defaultAesMode = crypto.AESMode.sic;
+  static const AESMode defaultAESMode = AESMode.sic;
+  static const AESPadding defaultAESPadding = AESPadding.pkcs7;
 
   static BytesContainer md5Convert(final BytesContainer data) =>
       BytesContainer.fromList(md5.convert(data.list).bytes);
@@ -12,18 +30,20 @@ class Crypto {
     required final BytesContainer input,
     required final BytesContainer key,
     final BytesContainer? iv,
-    final crypto.AESMode aesMode = defaultAesMode,
+    final AESMode mode = defaultAESMode,
+    final AESPadding padding = defaultAESPadding,
   }) =>
       BytesContainer.fromList(
-        crypto.Encrypter(
-          crypto.AES(
-            crypto.Key(key.bytes),
-            mode: aesMode,
+        Encrypter(
+          AES(
+            Key(key.bytes),
+            mode: mode,
+            padding: padding.encryptPadding,
           ),
         )
             .encryptBytes(
               input.bytes,
-              iv: iv != null ? crypto.IV(iv.bytes) : null,
+              iv: iv != null ? IV(iv.bytes) : null,
             )
             .bytes,
       );
@@ -32,17 +52,19 @@ class Crypto {
     required final BytesContainer encrypted,
     required final BytesContainer key,
     final BytesContainer? iv,
-    final crypto.AESMode aesMode = defaultAesMode,
+    final AESMode mode = defaultAESMode,
+    final AESPadding padding = defaultAESPadding,
   }) =>
       BytesContainer.fromList(
-        crypto.Encrypter(
-          crypto.AES(
-            crypto.Key(key.bytes),
-            mode: aesMode,
+        Encrypter(
+          AES(
+            Key(key.bytes),
+            mode: mode,
+            padding: padding.encryptPadding,
           ),
         ).decryptBytes(
-          crypto.Encrypted(encrypted.bytes),
-          iv: iv != null ? crypto.IV(iv.bytes) : null,
+          Encrypted(encrypted.bytes),
+          iv: iv != null ? IV(iv.bytes) : null,
         ),
       );
 }

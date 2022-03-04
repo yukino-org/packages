@@ -12,17 +12,19 @@ external class Crypto {
   ///   input: BytesContainer,
   ///   key: BytesContainer,
   ///   iv: BytesContainer?,
-  ///   aesMode: 'cbc' | 'cfb64' | 'ctr' | 'ecb' | 'ofb64Gctr' | 'ofb64' | 'sic' = 'sic',
+  ///   mode: 'cbc' | 'cfb64' | 'ctr' | 'ecb' | 'ofb64Gctr' | 'ofb64' | 'sic' = 'sic',
+  ///   padding: 'none' | 'pkcs7',
   /// }) => BytesContainer;
-  static fun aesEncrypt({ input, key, iv, aesMode });
+  static fun aesEncrypt({ input, key, iv, mode, padding });
 
   /// ({
   ///   encrypted: BytesContainer,
   ///   key: BytesContainer,
   ///   iv: BytesContainer?,
-  ///   aesMode: 'cbc' | 'cfb64' | 'ctr' | 'ecb' | 'ofb64Gctr' | 'ofb64' | 'sic' = 'sic',
+  ///   mode: 'cbc' | 'cfb64' | 'ctr' | 'ecb' | 'ofb64Gctr' | 'ofb64' | 'sic' = 'sic',
+  ///   padding: 'none' | 'pkcs7',
   /// }) => BytesContainer;
-  static fun aesDecrypt({ encrypted, key, iv, aesMode });
+  static fun aesDecrypt({ encrypted, key, iv, mode, padding });
 }
       '''
       .trim(),

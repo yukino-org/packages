@@ -1,4 +1,4 @@
-import 'package:encrypt/encrypt.dart' as crypto;
+import 'package:encrypt/encrypt.dart';
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:utilx/utilities/utils.dart';
@@ -38,12 +38,18 @@ class CryptoClassBinding extends HTExternalClass {
             input: namedArgs['input'] as BytesContainer,
             key: namedArgs['key'] as BytesContainer,
             iv: namedArgs['iv'] as BytesContainer?,
-            aesMode: namedArgs['aesMode'] is String
+            mode: namedArgs['mode'] is String
                 ? EnumUtils.find(
-                    crypto.AESMode.values,
-                    namedArgs['aesMode'] as String,
+                    AESMode.values,
+                    namedArgs['mode'] as String,
                   )
-                : Crypto.defaultAesMode,
+                : Crypto.defaultAESMode,
+            padding: namedArgs['padding'] is String
+                ? EnumUtils.find(
+                    AESPadding.values,
+                    namedArgs['padding'] as String,
+                  )
+                : Crypto.defaultAESPadding,
           ),
         );
 
@@ -59,12 +65,18 @@ class CryptoClassBinding extends HTExternalClass {
             encrypted: namedArgs['encrypted'] as BytesContainer,
             key: namedArgs['key'] as BytesContainer,
             iv: namedArgs['iv'] as BytesContainer?,
-            aesMode: namedArgs['aesMode'] is String
+            mode: namedArgs['mode'] is String
                 ? EnumUtils.find(
-                    crypto.AESMode.values,
-                    namedArgs['aesMode'] as String,
+                    AESMode.values,
+                    namedArgs['mode'] as String,
                   )
-                : Crypto.defaultAesMode,
+                : Crypto.defaultAESMode,
+            padding: namedArgs['padding'] is String
+                ? EnumUtils.find(
+                    AESPadding.values,
+                    namedArgs['padding'] as String,
+                  )
+                : Crypto.defaultAESPadding,
           ),
         );
 
