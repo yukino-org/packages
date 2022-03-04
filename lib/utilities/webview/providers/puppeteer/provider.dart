@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:puppeteer/puppeteer.dart';
 import 'package:utilx/utilities/webview/webview.dart';
-import 'chrome_finder/chrome_finder.dart';
 import 'webview.dart';
 
 class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
@@ -14,14 +13,11 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   Future<void> initialize(final WebviewProviderOptions options) async {
     headless = !options.devMode;
 
-    final String? foundPath = await ChromeFinder.find();
-
     final List<Future<bool> Function()> tasks = <Future<bool> Function()>[
-      if (foundPath != null)
-        () async {
-          await _launch(foundPath);
-          return true;
-        },
+      () async {
+        await _launch(BrowserPath.chrome);
+        return true;
+      },
       () async {
         final RevisionInfo revision =
             await downloadChrome(cachePath: options.localChromiumPath);
