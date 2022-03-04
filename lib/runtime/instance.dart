@@ -15,7 +15,10 @@ class TenkaRuntimeInstance {
 
   final TenkaRuntimeInstanceOptions? options;
 
-  late final Hetu hetu = Hetu(sourceContext: options?.hetuSourceContext);
+  late final Hetu hetu = Hetu(
+    sourceContext: options?.hetuSourceContext,
+    config: const InterpreterConfig(showDartStackTrace: true),
+  );
 
   Future<void> loadScriptFile(
     final String path, {
