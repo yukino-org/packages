@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:puppeteer/plugins/stealth.dart';
 import 'package:puppeteer/puppeteer.dart';
 import 'package:utilx/utils.dart';
 import 'package:utilx/webview/webview.dart';
@@ -35,6 +36,8 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   }
 
   Future<void> _launch(final String executablePath) async {
+    puppeteer.plugins.add(StealthPlugin());
+
     browser = await puppeteer.launch(
       executablePath: executablePath,
       args: headless
