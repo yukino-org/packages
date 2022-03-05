@@ -1,7 +1,7 @@
 import 'package:encrypt/encrypt.dart';
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../model.dart';
 import '../converter/bytes/class.dart';
 import 'class.dart';

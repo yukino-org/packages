@@ -1,6 +1,6 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 import '../../../../model.dart';
 
 class LocaleClassBinding extends HTExternalClass {

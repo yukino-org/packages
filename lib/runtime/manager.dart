@@ -1,5 +1,5 @@
 import 'package:hetu_script/hetu_script.dart';
-import 'package:utilx/utilities/webview/webview.dart';
+import 'package:utilx/webview/webview.dart';
 import 'error.dart';
 import 'hetu/exports.dart';
 import 'hetu/helpers/http.dart';

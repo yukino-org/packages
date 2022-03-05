@@ -1,6 +1,6 @@
 import 'package:hetu_script/values.dart';
 import 'package:tenka/tenka.dart';
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 
 SearchFn toSearch(final HTFunction fn) =>
     (final String terms, final Locale locale) async {

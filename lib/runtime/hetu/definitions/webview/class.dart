@@ -1,8 +1,8 @@
 import 'package:hetu_script/values.dart';
-import 'package:utilx/utilities/webview/utils.dart';
-import 'package:utilx/utilities/webview/webview.dart' as webview;
+import 'package:utilx/webview/utils.dart';
+import 'package:utilx/webview/webview.dart' as webview;
 
-export 'package:utilx/utilities/webview/webview.dart' show WebviewWaitUntil;
+export 'package:utilx/webview/webview.dart' show WebviewWaitUntil;
 
 class Webview {
   const Webview(this.instance);

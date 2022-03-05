@@ -1,7 +1,7 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
-import 'package:utilx/utilities/utils/enum.dart';
+import 'package:utilx/utils/enum.dart';
 import '../../model.dart';
 import 'class.dart';
 

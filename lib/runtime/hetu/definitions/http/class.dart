@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../helpers/http.dart';
 import 'result/class.dart';
 
