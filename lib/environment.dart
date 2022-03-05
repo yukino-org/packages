@@ -1,5 +1,5 @@
 import 'package:tenka/tenka.dart';
-import 'package:utilx_desktop/utilities/webview/providers/puppeteer/provider.dart';
+import 'package:utilx_desktop/webview/puppeteer/provider.dart';
 import 'utils/benchmark.dart';
 
 abstract class TenkaDevEnvironment {
