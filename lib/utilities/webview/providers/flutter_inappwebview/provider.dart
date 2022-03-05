@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:utilx/utilities/webview/webview.dart';
+import 'package:utilx/webview/webview.dart';
 import 'webview.dart';
 
 class FlutterWebviewProvider extends WebviewProvider<FlutterWebviewProvider> {
