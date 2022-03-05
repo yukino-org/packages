@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'tuple.dart';
 
 abstract class FunctionUtils {
   static Future<T> tryLoop<T>(
@@ -28,4 +29,22 @@ abstract class FunctionUtils {
   }
 
   static U withValue<T, U>(final T value, final U Function(T) fn) => fn(value);
+
+  static TwinTuple<dynamic, T?> tryCatch<T>(final T Function() fn) {
+    try {
+      return TwinTuple<dynamic, T?>(null, fn());
+    } catch (err) {
+      return TwinTuple<dynamic, T?>(err, null);
+    }
+  }
+
+  static Future<TwinTuple<dynamic, T?>> tryCatchAsync<T>(
+    final Future<T> Function() fn,
+  ) async {
+    try {
+      return TwinTuple<dynamic, T?>(null, await fn());
+    } catch (err) {
+      return TwinTuple<dynamic, T?>(err, null);
+    }
+  }
 }
