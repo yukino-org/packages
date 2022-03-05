@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:puppeteer/puppeteer.dart';
-import 'package:utilx/utilities/webview/webview.dart';
+import 'package:utilx/utils.dart';
+import 'package:utilx/webview/webview.dart';
 import 'webview.dart';
 
 class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
@@ -13,9 +14,9 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   Future<void> initialize(final WebviewProviderOptions options) async {
     headless = !options.devMode;
 
-    final List<Future<bool> Function()> tasks = <Future<bool> Function()>[
+    for (final Future<bool> Function() x in <Future<bool> Function()>[
       () async {
-        await _launch(BrowserPath.chrome);
+        await _launch(_getBrowserPath());
         return true;
       },
       () async {
@@ -24,13 +25,10 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
         await _launch(revision.executablePath);
         return true;
       },
-    ];
-
-    for (final Future<bool> Function() x in tasks) {
-      try {
-        await x();
+    ]) {
+      if ((await FunctionUtils.tryCatchAsync<bool>(x)).last == true) {
         break;
-      } catch (_) {}
+      }
     }
 
     await super.initialize(options);
@@ -82,4 +80,20 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
 
   static bool isSupported() =>
       Platform.isWindows || Platform.isLinux || Platform.isMacOS;
+
+  static String _getBrowserPath() {
+    for (final String? Function() x in <String? Function()>[
+      () => BrowserPath.chrome,
+      () => BrowserPath.chromeBeta,
+      () => BrowserPath.chromeCanary,
+      () => BrowserPath.chromeDev,
+    ]) {
+      final String? path = FunctionUtils.tryCatch<String?>(x).last;
+      if (path != null) {
+        return path;
+      }
+    }
+
+    throw Exception('Chrome is not installed');
+  }
 }
