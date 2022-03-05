@@ -1,4 +1,4 @@
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 import '../base/search/info.dart';
 import 'episode/source.dart';
 import 'info.dart';

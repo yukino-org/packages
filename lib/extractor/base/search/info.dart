@@ -1,4 +1,4 @@
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 import '../image_describer.dart';
 
 typedef SearchFn = Future<List<SearchInfo>> Function(

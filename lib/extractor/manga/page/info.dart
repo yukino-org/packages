@@ -1,4 +1,4 @@
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 
 class PageInfo {
   const PageInfo({

@@ -1,5 +1,5 @@
-import 'package:utilx/utilities/locale.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/locale.dart';
+import 'package:utilx/utils.dart';
 import '../base/image_describer.dart';
 import 'episode/info.dart';
 

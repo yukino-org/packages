@@ -1,4 +1,4 @@
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../metadata/exports.dart';
 
 class TenkaStore {
