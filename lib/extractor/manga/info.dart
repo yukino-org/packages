@@ -4,14 +4,17 @@ import '../base/image_describer.dart';
 import 'chapter/info.dart';
 
 class MangaInfo {
-  const MangaInfo({
+  MangaInfo({
     required final this.url,
     required final this.title,
-    required final this.chapters,
+    required final List<ChapterInfo> chapters,
     required final this.locale,
     required final this.availableLocales,
     final this.thumbnail,
-  });
+  }) : chapters = ListUtils.tryArrange(
+          chapters,
+          (final ChapterInfo x) => x.chapter,
+        );
 
   factory MangaInfo.fromJson(final Map<dynamic, dynamic> json) => MangaInfo(
         title: json['title'] as String,
@@ -48,9 +51,4 @@ class MangaInfo {
         'availableLocales':
             availableLocales.map((final Locale x) => x.toCodeString()).toList(),
       };
-
-  List<ChapterInfo> get sortedChapters => ListUtils.tryArrange(
-        chapters,
-        (final ChapterInfo x) => x.chapter,
-      );
 }

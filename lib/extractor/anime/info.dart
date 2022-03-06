@@ -4,14 +4,17 @@ import '../base/image_describer.dart';
 import 'episode/info.dart';
 
 class AnimeInfo {
-  const AnimeInfo({
+  AnimeInfo({
     required final this.title,
     required final this.url,
-    required final this.episodes,
+    required final List<EpisodeInfo> episodes,
     required final this.locale,
     required final this.availableLocales,
     final this.thumbnail,
-  });
+  }) : episodes = ListUtils.tryArrange(
+          episodes,
+          (final EpisodeInfo x) => x.episode,
+        );
 
   factory AnimeInfo.fromJson(final Map<dynamic, dynamic> json) => AnimeInfo(
         title: json['title'] as String,
@@ -48,9 +51,4 @@ class AnimeInfo {
         'availableLocales':
             availableLocales.map((final Locale x) => x.toCodeString()).toList(),
       };
-
-  List<EpisodeInfo> get sortedEpisodes => ListUtils.tryArrange(
-        episodes,
-        (final EpisodeInfo x) => x.episode,
-      );
 }
