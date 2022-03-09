@@ -30,28 +30,22 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
     beforeMethod();
 
     final Until? until;
-    bool waitForNavigation = false;
 
     switch (waitUntil) {
       case WebviewWaitUntil.none:
-        until = null;
+        until = Until.all(<Until>[]);
         break;
 
       case WebviewWaitUntil.load:
         until = Until.load;
-        waitForNavigation = true;
         break;
 
       case WebviewWaitUntil.domContentLoaded:
         until = Until.domContentLoaded;
-        waitForNavigation = true;
         break;
     }
 
-    await page!.goto(url, wait: Until.all(<Until>[]));
-    if (waitForNavigation) {
-      await page!.waitForNavigation(wait: until);
-    }
+    await page!.goto(url, wait: until);
   }
 
   @override
