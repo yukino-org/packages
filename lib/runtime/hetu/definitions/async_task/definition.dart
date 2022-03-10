@@ -17,8 +17,8 @@ external class AsyncTask {
   /// })<T = any, U = any> => DartFuture<U>;
   static fun resolveAll(functions, { trace, onDone, onFail });
   
-  /// (int, () => DartFutureOr<T>)<T = any> => DartFuture<T>;
-  static fun wait(ms, callback);
+  /// (Duration, () => DartFutureOr<T>)<T = any> => DartFuture<T>;
+  static fun wait(duration, callback);
 }
       '''
       .trim(),

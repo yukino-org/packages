@@ -53,7 +53,7 @@ class AsyncTaskClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               AsyncTask.wait(
-            positionalArgs[0] as int,
+            positionalArgs[0] as Duration,
             positionalArgs[1] as HTFunction,
           ),
         );

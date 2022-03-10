@@ -39,10 +39,10 @@ class AsyncTask {
   }
 
   static Future<dynamic> wait(
-    final int ms,
+    final Duration duration,
     final HTFunction callback,
   ) async {
-    await Future<void>.delayed(Duration(milliseconds: ms));
+    await Future<void>.delayed(duration);
     return await callback.call();
   }
 }
