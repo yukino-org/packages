@@ -1,5 +1,5 @@
 import '../../model.dart';
-import 'class.dart';
+import 'function.dart';
 
 final HetuHelperFunction hZonedTaskFunction = HetuHelperFunction(
   name: 'runAsZoned',
