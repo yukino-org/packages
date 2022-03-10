@@ -6,8 +6,8 @@ Future<dynamic> runAsZoned(
   required final HTFunction onFail,
 }) async {
   try {
-    return function.call();
+    return await function.call();
   } catch (err) {
-    return onFail.call(positionalArgs: <dynamic>[err.toString()]);
+    return await onFail.call(positionalArgs: <dynamic>[err.toString()]);
   }
 }
