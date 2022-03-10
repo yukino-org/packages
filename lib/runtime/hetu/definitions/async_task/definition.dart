@@ -6,14 +6,12 @@ final HetuHelperClass hAsyncTaskClass = HetuHelperClass(
   declaration: '''
 external class AsyncTask {
   /// (() => DartFutureOr<T>, {
-  ///   trace: TaskTrace,
   ///   onDone: (T) => DartFutureOr<U>,
   ///   onFail: (Flaw) => DartFutureOr<U>,
   /// })<T = any, U = any> => DartFuture<U>;
   static fun resolve(function, { trace, onDone, onFail });
   
   /// ((() => DartFutureOr<T>)[], {
-  ///   trace: TaskTrace,
   ///   onDone: (T[]) => DartFutureOr<U>,
   ///   onFail: (Flaw) => DartFutureOr<U>,
   /// })<T = any, U = any> => DartFuture<U>;

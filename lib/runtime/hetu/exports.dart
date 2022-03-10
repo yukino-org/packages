@@ -5,6 +5,7 @@ import 'definitions/collection/definition.dart';
 import 'definitions/converter/bytes/definition.dart';
 import 'definitions/converter/definition.dart';
 import 'definitions/crypto/definition.dart';
+import 'definitions/duration/definition.dart';
 import 'definitions/fuzzy/definition.dart';
 import 'definitions/fuzzy/key/definition.dart';
 import 'definitions/fuzzy/result_item/definition.dart';
@@ -27,6 +28,7 @@ import 'definitions/tenka/manga/extractor/definition.dart';
 import 'definitions/tenka/manga/info/definition.dart';
 import 'definitions/tenka/manga/page/info/definition.dart';
 import 'definitions/webview/definition.dart';
+import 'definitions/zoned_task/definition.dart';
 import 'model.dart';
 
 abstract class HetuHelperExports {
@@ -37,6 +39,7 @@ abstract class HetuHelperExports {
     hBytesContainerClass,
     hConverterClass,
     hCryptoClass,
+    hDurationClass,
     hEpisodeInfoClass,
     hEpisodeSourceClass,
     hAnimeExtractorClass,
@@ -62,6 +65,7 @@ abstract class HetuHelperExports {
 
   static final List<HetuHelperFunction> functions = <HetuHelperFunction>[
     hStrFmtFunction,
+    hZonedTaskFunction,
   ];
 
   static List<HTExternalClass> get externalClasses =>
