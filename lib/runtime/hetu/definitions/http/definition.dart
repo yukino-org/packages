@@ -16,6 +16,9 @@ external class Http {
   /// (string) => string
   static fun ensureURL(url);
   
+  /// (string) => string
+  static fun getDomainFromURL(url);
+  
   /// string
   static get defaultUserAgent;
 }

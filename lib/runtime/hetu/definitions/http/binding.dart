@@ -41,6 +41,17 @@ class HttpClassBinding extends HTExternalClass {
               Http.ensureURL(positionalArgs[0] as String),
         );
 
+      case 'Http.getDomainFromURL':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Http.getDomainFromURL(positionalArgs[0] as String),
+        );
+
       case 'Http.defaultUserAgent':
         return Http.defaultUserAgent;
 
