@@ -7,4 +7,4 @@ export 'utils/http.dart';
 export 'utils/list.dart';
 export 'utils/string.dart';
 export 'utils/tuple.dart';
-export 'utils/types.dart';
+export 'utils/type.dart';
