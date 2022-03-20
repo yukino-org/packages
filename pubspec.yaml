@@ -13,15 +13,15 @@ dependencies:
     path: ^1.8.0
     tenka:
         git:
-            url: git://github.com/yukino-org/packages.git
+            url: https://github.com/yukino-org/packages.git
             ref: dart_tenka
     utilx:
         git:
-            url: git://github.com/yukino-org/packages.git
+            url: https://github.com/yukino-org/packages.git
             ref: dart_utilx
     utilx_desktop:
         git:
-            url: git://github.com/yukino-org/packages.git
+            url: https://github.com/yukino-org/packages.git
             ref: dart_utilx_desktop
     yaml: ^3.1.0
 
