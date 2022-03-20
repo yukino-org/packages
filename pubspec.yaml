@@ -10,14 +10,14 @@ environment:
 dependencies:
     puppeteer:
         git:
-            url: git://github.com/xvrh/puppeteer-dart.git
+            url: https://github.com/xvrh/puppeteer-dart.git
     utilx:
         git:
-            url: git://github.com/yukino-org/packages.git
+            url: https://github.com/yukino-org/packages.git
             ref: dart_utilx
 
 dev_dependencies:
     devx:
         git:
-            url: git://github.com/yukino-org/packages.git
+            url: https://github.com/yukino-org/packages.git
             ref: dart_devx
