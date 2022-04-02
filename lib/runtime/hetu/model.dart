@@ -15,12 +15,24 @@ HTExternalFunction createHTExternalFunction<T>(
     function;
 
 Map<dynamic, dynamic> parseHetuReturnedMap(final dynamic map) {
+  if (map is Map<dynamic, dynamic>) {
+    return map;
+  }
+
   if (map is HTStruct) {
     return map.toJson();
   }
 
-  if (map is Map<dynamic, dynamic>) {
-    return map;
+  throw TypeError();
+}
+
+List<dynamic> parseHetuReturnedList(final dynamic list) {
+  if (list is List<dynamic>) {
+    return list;
+  }
+
+  if (list is Iterable<dynamic>) {
+    return list.toList();
   }
 
   throw TypeError();

@@ -37,8 +37,8 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.mergeList(
-            positionalArgs[0] as List<dynamic>,
-            positionalArgs[1] as List<dynamic>,
+            parseHetuReturnedList(positionalArgs[0]),
+            parseHetuReturnedList(positionalArgs[1]),
           ),
         );
 
@@ -51,7 +51,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.eachList(
-            positionalArgs[0] as List<dynamic>,
+            parseHetuReturnedList(positionalArgs[0]),
             positionalArgs[1] as HTFunction,
           ),
         );
@@ -65,7 +65,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.mapList(
-            positionalArgs[0] as List<dynamic>,
+            parseHetuReturnedList(positionalArgs[0]),
             positionalArgs[1] as HTFunction,
           ),
         );
@@ -79,7 +79,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.filterList(
-            positionalArgs[0] as List<dynamic>,
+            parseHetuReturnedList(positionalArgs[0]),
             positionalArgs[1] as HTFunction,
           ),
         );
@@ -93,7 +93,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.findList(
-            positionalArgs[0] as List<dynamic>,
+            parseHetuReturnedList(positionalArgs[0]),
             positionalArgs[1] as HTFunction,
           ),
         );
@@ -107,7 +107,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.flattenList(
-            positionalArgs[0] as List<dynamic>,
+            parseHetuReturnedList(positionalArgs[0]),
             positionalArgs[1] as int,
           ),
         );
@@ -120,7 +120,9 @@ class CollectionClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Collection.deepFlattenList(positionalArgs[0] as List<dynamic>),
+              Collection.deepFlattenList(
+            parseHetuReturnedList(positionalArgs[0]),
+          ),
         );
 
       case 'Collection.mergeMap':

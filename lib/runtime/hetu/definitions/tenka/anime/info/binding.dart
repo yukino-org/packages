@@ -24,11 +24,12 @@ class AnimeInfoClassBinding extends HTExternalClass {
               AnimeInfo(
             title: namedArgs['title'] as String,
             url: namedArgs['url'] as String,
-            episodes:
-                (namedArgs['episodes'] as List<dynamic>).cast<EpisodeInfo>(),
+            episodes: parseHetuReturnedList(namedArgs['episodes'])
+                .cast<EpisodeInfo>(),
             locale: namedArgs['locale'] as Locale,
             availableLocales:
-                (namedArgs['availableLocales'] as List<dynamic>).cast<Locale>(),
+                parseHetuReturnedList(namedArgs['availableLocales'])
+                    .cast<Locale>(),
             thumbnail: namedArgs['thumbnail'] as ImageDescriber?,
           ),
         );

@@ -38,7 +38,7 @@ class AsyncTaskClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               AsyncTask.resolveAll(
-            (positionalArgs[0] as List<dynamic>).cast<HTFunction>(),
+            parseHetuReturnedList(positionalArgs[0]).cast<HTFunction>(),
             onDone: namedArgs['onDone'] as HTFunction,
             onFail: namedArgs['onFail'] as HTFunction?,
           ),

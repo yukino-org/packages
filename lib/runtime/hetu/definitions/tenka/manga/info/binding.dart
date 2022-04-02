@@ -24,11 +24,12 @@ class MangaInfoClassBinding extends HTExternalClass {
               MangaInfo(
             title: namedArgs['title'] as String,
             url: namedArgs['url'] as String,
-            chapters:
-                (namedArgs['chapters'] as List<dynamic>).cast<ChapterInfo>(),
+            chapters: parseHetuReturnedList(namedArgs['chapters'])
+                .cast<ChapterInfo>(),
             locale: namedArgs['locale'] as Locale,
             availableLocales:
-                (namedArgs['availableLocales'] as List<dynamic>).cast<Locale>(),
+                parseHetuReturnedList(namedArgs['availableLocales'])
+                    .cast<Locale>(),
             thumbnail: namedArgs['thumbnail'] as ImageDescriber?,
           ),
         );

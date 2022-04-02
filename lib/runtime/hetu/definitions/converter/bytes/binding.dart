@@ -21,7 +21,7 @@ class BytesContainerClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               BytesContainer.fromList(
-            (positionalArgs[0] as List<dynamic>).cast<int>(),
+            parseHetuReturnedList(positionalArgs[0]).cast<int>(),
           ),
         );
 

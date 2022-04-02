@@ -23,8 +23,9 @@ class FuzzySearchClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               FuzzySearch(
-            items: namedArgs['items'] as List<dynamic>,
-            keys: (namedArgs['keys'] as List<dynamic>).cast<FuzzySearchKey>(),
+            items: parseHetuReturnedList(namedArgs['items']),
+            keys:
+                parseHetuReturnedList(namedArgs['keys']).cast<FuzzySearchKey>(),
           ),
         );
 
