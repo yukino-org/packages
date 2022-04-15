@@ -8,6 +8,9 @@ class Collection {
         : List<int>.generate(length, (final int i) => a - i);
   }
 
+  static List<dynamic> filledList(final int length, [final dynamic value]) =>
+      List<dynamic>.filled(length, value, growable: true);
+
   static List<dynamic> mergeList(
     final List<dynamic> m1,
     final List<dynamic> m2,

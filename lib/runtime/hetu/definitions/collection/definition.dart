@@ -7,6 +7,9 @@ final HetuHelperClass hCollectionClass = HetuHelperClass(
 external class Collection {
   /// (int, int) => int[]
   static fun rangeList(a, b);
+  
+  /// (int, T)<T = any> => T[]
+  static fun filledList(length, [value]);
 
   /// (T[], T[])<T = any> => T[]
   static fun mergeList(list1, list2);

@@ -28,6 +28,20 @@ class CollectionClassBinding extends HTExternalClass {
           ),
         );
 
+      case 'Collection.filledList':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Collection.filledList(
+            positionalArgs[0] as int,
+            positionalArgs[1],
+          ),
+        );
+
       case 'Collection.mergeList':
         return createHTExternalFunction(
           (
