@@ -22,4 +22,10 @@ class Converter {
       BytesContainer.fromList(utf8.encode(data));
 
   static String utf8Decode(final BytesContainer data) => utf8.decode(data.list);
+
+  static BytesContainer latin1Encode(final String data) =>
+      BytesContainer.fromList(latin1.encode(data));
+
+  static String latin1Decode(final BytesContainer data) =>
+      latin1.decode(data.list);
 }

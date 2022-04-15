@@ -28,6 +28,12 @@ external class Converter {
 
   /// (BytesContainer) => string
   static fun utf8Decode(data);
+
+  /// (string) => BytesContainer
+  static fun latin1Encode(data);
+
+  /// (BytesContainer) => string
+  static fun latin1Decode(data);
 }
       '''
       .trim(),

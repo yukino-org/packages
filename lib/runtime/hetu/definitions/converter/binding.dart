@@ -104,6 +104,28 @@ class ConverterClassBinding extends HTExternalClass {
               Converter.base64Decode(positionalArgs[0] as String),
         );
 
+      case 'Converter.latin1Encode':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.latin1Encode(positionalArgs[0] as String),
+        );
+
+      case 'Converter.latin1Decode':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.latin1Decode(positionalArgs[0] as BytesContainer),
+        );
+
       default:
         throw HTError.undefined(varName);
     }
