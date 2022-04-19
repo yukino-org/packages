@@ -102,7 +102,7 @@ class TenkaRepository {
         TenkaMetadata metadata =
             TenkaMetadata.fromJson(x as Map<dynamic, dynamic>);
 
-        final TenkaMetadata? currentMetadata = store.modules[metadata];
+        final TenkaMetadata? currentMetadata = store.modules[metadata.id];
 
         if (currentMetadata != null &&
             currentMetadata.version > metadata.version) {
