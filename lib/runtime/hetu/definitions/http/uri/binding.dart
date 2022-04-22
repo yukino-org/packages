@@ -21,7 +21,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri.parse(positionalArgs[0] as String),
+              HetuUri.parse(positionalArgs[0] as String),
         );
 
       case 'Uri.ensureScheme':
@@ -32,9 +32,9 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              UriUtils.ensureScheme(
+              HetuUri.ensureScheme(
             positionalArgs[0] as String,
-            scheme: (namedArgs[0] as String?) ?? UriUtils.defaultEnsureScheme,
+            scheme: (namedArgs[0] as String?) ?? HetuUri.defaultEnsureScheme,
           ),
         );
 
@@ -46,7 +46,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              UriUtils.tryEncodeURL(positionalArgs[0] as String),
+              HetuUri.tryEncodeURL(positionalArgs[0] as String),
         );
 
       case 'Uri.ensureURL':
@@ -57,7 +57,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              UriUtils.ensureURL(positionalArgs[0] as String),
+              HetuUri.ensureURL(positionalArgs[0] as String),
         );
 
       case 'Uri.decodeComponent':
@@ -68,7 +68,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri.decodeComponent(positionalArgs[0] as String),
+              HetuUri.decodeComponent(positionalArgs[0] as String),
         );
 
       case 'Uri.decodeQueryComponent':
@@ -79,7 +79,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri.decodeQueryComponent(positionalArgs[0] as String),
+              HetuUri.decodeQueryComponent(positionalArgs[0] as String),
         );
 
       case 'Uri.encodeComponent':
@@ -90,7 +90,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri.encodeComponent(positionalArgs[0] as String),
+              HetuUri.encodeComponent(positionalArgs[0] as String),
         );
 
       case 'Uri.encodeFull':
@@ -101,7 +101,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri.encodeFull(positionalArgs[0] as String),
+              HetuUri.encodeFull(positionalArgs[0] as String),
         );
 
       case 'Uri.splitQueryString':
@@ -112,10 +112,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri.splitQueryString(positionalArgs[0] as String),
+              HetuUri.splitQueryString(positionalArgs[0] as String),
         );
 
-      case 'Uri.joinQueryString':
+      case 'Uri.joinQueryParameters':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -123,10 +123,9 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Uri(
-            queryParameters:
-                parseHetuReturnedMap(positionalArgs[0]).cast<String, String>(),
-          ).query,
+              HetuUri.joinQueryParameters(
+            parseHetuReturnedMap(positionalArgs[0]).cast<String, String>(),
+          ),
         );
 
       default:
@@ -136,7 +135,7 @@ class UriClassBinding extends HTExternalClass {
 
   @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
-    final Uri element = object as Uri;
+    final HetuUri element = object as HetuUri;
 
     switch (varName) {
       case 'hasAbsolutePath':
