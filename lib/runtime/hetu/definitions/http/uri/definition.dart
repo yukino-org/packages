@@ -104,7 +104,7 @@ external class Uri {
   static fun splitQueryString(query);
 
   /// (Map<string, string>) => string;
-  static fun joinQueryString(query);
+  static fun joinQueryParameters(query);
 }
       '''
       .trim(),
