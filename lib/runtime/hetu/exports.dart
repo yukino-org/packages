@@ -12,6 +12,7 @@ import 'definitions/fuzzy/result_item/definition.dart';
 import 'definitions/html/definition.dart';
 import 'definitions/http/definition.dart';
 import 'definitions/http/result/definition.dart';
+import 'definitions/http/uri/definition.dart';
 import 'definitions/languages/definition.dart';
 import 'definitions/regex/definition.dart';
 import 'definitions/regex/match/definition.dart';
@@ -61,6 +62,7 @@ abstract class HetuHelperExports {
     hRegexClass,
     hRegexMatchClass,
     hWebviewClass,
+    hUriClass,
   ];
 
   static final List<HetuHelperFunction> functions = <HetuHelperFunction>[
