@@ -1,10 +1,10 @@
 import '../../../model.dart';
 import 'binding.dart';
 
-final HetuHelperClass hUriClass = HetuHelperClass(
-  definition: UriClassBinding(),
+final HetuHelperClass hURLClass = HetuHelperClass(
+  definition: URLClassBinding(),
   declaration: '''
-external class Uri {
+external class URL {
   /// bool
   get hasAbsolutePath;
 

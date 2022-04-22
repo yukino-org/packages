@@ -1,13 +1,13 @@
-class HetuUri {
-  const HetuUri._(this.uri);
+class URL {
+  const URL._(this.uri);
 
-  factory HetuUri.parse(final String url) => HetuUri._(Uri.parse(url));
+  factory URL.parse(final String url) => URL._(Uri.parse(url));
 
   final Uri uri;
 
   bool isScheme(final String scheme) => uri.isScheme(scheme);
-  HetuUri normalizePath() => HetuUri._(uri.normalizePath());
-  HetuUri removeFragment() => HetuUri._(uri.removeFragment());
+  URL normalizePath() => URL._(uri.normalizePath());
+  URL removeFragment() => URL._(uri.removeFragment());
 
   @override
   String toString() => uri.toString();

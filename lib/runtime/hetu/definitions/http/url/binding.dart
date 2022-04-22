@@ -3,8 +3,8 @@ import 'package:hetu_script/hetu_script.dart';
 import '../../../model.dart';
 import 'class.dart';
 
-class UriClassBinding extends HTExternalClass {
-  UriClassBinding() : super('Uri');
+class URLClassBinding extends HTExternalClass {
+  URLClassBinding() : super('URL');
 
   @override
   dynamic memberGet(
@@ -13,7 +13,7 @@ class UriClassBinding extends HTExternalClass {
     final bool error = true,
   }) {
     switch (varName) {
-      case 'Uri.parse':
+      case 'URL.parse':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -21,10 +21,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.parse(positionalArgs[0] as String),
+              URL.parse(positionalArgs[0] as String),
         );
 
-      case 'Uri.ensureScheme':
+      case 'URL.ensureScheme':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -32,13 +32,13 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.ensureScheme(
+              URL.ensureScheme(
             positionalArgs[0] as String,
-            scheme: (namedArgs[0] as String?) ?? HetuUri.defaultEnsureScheme,
+            scheme: (namedArgs[0] as String?) ?? URL.defaultEnsureScheme,
           ),
         );
 
-      case 'Uri.tryEncodeURL':
+      case 'URL.tryEncodeURL':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -46,10 +46,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.tryEncodeURL(positionalArgs[0] as String),
+              URL.tryEncodeURL(positionalArgs[0] as String),
         );
 
-      case 'Uri.ensureURL':
+      case 'URL.ensureURL':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -57,10 +57,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.ensureURL(positionalArgs[0] as String),
+              URL.ensureURL(positionalArgs[0] as String),
         );
 
-      case 'Uri.decodeComponent':
+      case 'URL.decodeComponent':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -68,10 +68,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.decodeComponent(positionalArgs[0] as String),
+              URL.decodeComponent(positionalArgs[0] as String),
         );
 
-      case 'Uri.decodeQueryComponent':
+      case 'URL.decodeQueryComponent':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -79,10 +79,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.decodeQueryComponent(positionalArgs[0] as String),
+              URL.decodeQueryComponent(positionalArgs[0] as String),
         );
 
-      case 'Uri.encodeComponent':
+      case 'URL.encodeComponent':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -90,10 +90,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.encodeComponent(positionalArgs[0] as String),
+              URL.encodeComponent(positionalArgs[0] as String),
         );
 
-      case 'Uri.encodeFull':
+      case 'URL.encodeFull':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -101,10 +101,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.encodeFull(positionalArgs[0] as String),
+              URL.encodeFull(positionalArgs[0] as String),
         );
 
-      case 'Uri.splitQueryString':
+      case 'URL.splitQueryString':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -112,10 +112,10 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.splitQueryString(positionalArgs[0] as String),
+              URL.splitQueryString(positionalArgs[0] as String),
         );
 
-      case 'Uri.joinQueryParameters':
+      case 'URL.joinQueryParameters':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -123,7 +123,7 @@ class UriClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuUri.joinQueryParameters(
+              URL.joinQueryParameters(
             parseHetuReturnedMap(positionalArgs[0]).cast<String, String>(),
           ),
         );
@@ -135,7 +135,7 @@ class UriClassBinding extends HTExternalClass {
 
   @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
-    final HetuUri element = object as HetuUri;
+    final URL element = object as URL;
 
     switch (varName) {
       case 'hasAbsolutePath':
