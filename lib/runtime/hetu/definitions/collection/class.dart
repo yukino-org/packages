@@ -146,13 +146,18 @@ class Collection {
     final HTFunction? fn,
   ]) {
     final List<dynamic> unique = <dynamic>[];
-    bool filter(final dynamic x) {
-      if (fn != null) return fn.call(positionalArgs: <dynamic>[x]) as bool;
+
+    bool filter(final int i, final dynamic x) {
+      if (fn != null) {
+        return fn.call(positionalArgs: <dynamic>[x]) as bool;
+      }
+
       return unique.contains(x);
     }
 
-    for (final dynamic x in values) {
-      if (!filter(x)) {
+    for (int i = 0; i < values.length; i++) {
+      final dynamic x = values[i];
+      if (!filter(i, x)) {
         unique.add(x);
       }
     }
