@@ -102,6 +102,52 @@ class ConverterClassBinding extends HTExternalClass {
               Converter.latin1Decode(positionalArgs[0] as BytesContainer),
         );
 
+      case 'Converter.codeUnitFromChar':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.codeUnitFromChar(positionalArgs[0] as String),
+        );
+
+      case 'Converter.codeUnitsFromString':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.codeUnitsFromString(positionalArgs[0] as String),
+        );
+
+      case 'Converter.codeUnitToChar':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.codeUnitToChar(positionalArgs[0] as int),
+        );
+
+      case 'Converter.codeUnitsToString':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.codeUnitsToString(
+            parseHetuReturnedList(positionalArgs[0]).cast<int>(),
+          ),
+        );
+
       default:
         throw HTError.undefined(varName);
     }

@@ -28,6 +28,18 @@ external class Converter {
 
   /// (BytesContainer) => string
   static fun latin1Decode(data);
+
+  /// (string) => int
+  static fun codeUnitFromChar(char);
+
+  /// (string) => List<int>
+  static fun codeUnitsFromString(value);
+
+  /// (int) => string
+  static fun codeUnitToChar(codeUnit);
+
+  /// (List<int>) => string
+  static fun codeUnitsToString(codeUnits);
 }
       '''
       .trim(),

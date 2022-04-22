@@ -22,4 +22,17 @@ class Converter {
 
   static String latin1Decode(final BytesContainer data) =>
       latin1.decode(data.list);
+
+  static int codeUnitFromChar(final String char) {
+    if (char.length != 1) throw Exception('Must be a single character');
+    return char.codeUnitAt(0);
+  }
+
+  static List<int> codeUnitsFromString(final String value) => value.codeUnits;
+
+  static String codeUnitToChar(final int codeUnit) =>
+      String.fromCharCode(codeUnit);
+
+  static String codeUnitsToString(final List<int> codeUnits) =>
+      String.fromCharCodes(codeUnits);
 }
