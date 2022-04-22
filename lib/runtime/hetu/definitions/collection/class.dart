@@ -141,6 +141,22 @@ class Collection {
     return i;
   }
 
-  static List<dynamic> uniqueList(final List<dynamic> value) =>
-      Set<dynamic>.from(value).toList();
+  static List<dynamic> uniqueList(
+    final List<dynamic> values, [
+    final HTFunction? fn,
+  ]) {
+    final List<dynamic> unique = <dynamic>[];
+    bool filter(final dynamic x) {
+      if (fn != null) return fn.call(positionalArgs: <dynamic>[x]) as bool;
+      return unique.contains(x);
+    }
+
+    for (final dynamic x in values) {
+      if (!filter(x)) {
+        unique.add(x);
+      }
+    }
+
+    return unique;
+  }
 }
