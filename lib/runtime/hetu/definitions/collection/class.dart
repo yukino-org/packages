@@ -140,4 +140,7 @@ class Collection {
 
     return i;
   }
+
+  static List<dynamic> uniqueList(final List<dynamic> value) =>
+      Set<dynamic>.from(value).toList();
 }

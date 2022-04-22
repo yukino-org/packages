@@ -62,48 +62,48 @@ external class URL {
   /// string
   get scheme;
 
-  /// (string) => bool;
+  /// (string) => bool
   fun isScheme(scheme);
 
-  /// () => Uri;
+  /// () => Uri
   fun normalizePath(uri);
 
-  /// () => Uri;
+  /// () => Uri
   fun removeFragment();
 
-  /// () => string;
+  /// () => string
   fun toString();
 
-  /// (string) => Uri;
+  /// (string) => Uri
   static fun parse(url);
 
   /// (string, {
   ///   scheme: string,
-  /// }) => string;
+  /// }) => string
   static fun ensureScheme(url, { scheme });
 
-  /// (string) => string;
+  /// (string) => string
   static fun tryEncodeURL(url);
 
-  /// (string) => string;
+  /// (string) => string
   static fun ensureURL(url);
 
-  /// (string) => string;
+  /// (string) => string
   static fun decodeComponent(query);
 
-  /// (string) => string;
+  /// (string) => string
   static fun decodeQueryComponent(query);
 
-  /// (string) => string;
+  /// (string) => string
   static fun encodeComponent(query);
 
-  /// (string) => string;
+  /// (string) => string
   static fun encodeFull(url);
 
-  /// (string) => Map<string, string>;
+  /// (string) => Map<string, string>
   static fun splitQueryString(query);
 
-  /// (Map<string, string>) => string;
+  /// (Map<string, string>) => string
   static fun joinQueryParameters(query);
 }
       '''
