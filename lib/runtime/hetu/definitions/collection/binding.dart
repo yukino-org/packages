@@ -201,7 +201,10 @@ class CollectionClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Collection.uniqueList(parseHetuReturnedList(positionalArgs[0])),
+              Collection.uniqueList(
+            parseHetuReturnedList(positionalArgs[0]),
+            positionalArgs[1] as HTFunction?,
+          ),
         );
 
       default:

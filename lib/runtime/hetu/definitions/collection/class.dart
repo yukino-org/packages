@@ -149,7 +149,7 @@ class Collection {
 
     bool filter(final int i, final dynamic x) {
       if (fn != null) {
-        return fn.call(positionalArgs: <dynamic>[x]) as bool;
+        return fn.call(positionalArgs: <dynamic>[unique, i, x]) as bool;
       }
 
       return unique.contains(x);

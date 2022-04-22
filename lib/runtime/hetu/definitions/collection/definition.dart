@@ -44,8 +44,8 @@ external class Collection {
   /// ((int) => bool) => int
   static fun repeatUntil(repeater);
 
-  /// (T[])<T = any> => T[]
-  static fun uniqueList(list);
+  /// (T[], bool Function(T[], int, T))<T = any> => T[]
+  static fun uniqueList(list, [fn]);
 }
       '''
       .trim(),
