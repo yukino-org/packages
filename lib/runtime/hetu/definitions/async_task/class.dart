@@ -45,4 +45,6 @@ class AsyncTask {
     await Future<void>.delayed(duration);
     return await callback.call();
   }
+
+  static Future<dynamic> value(final dynamic data) async => data;
 }

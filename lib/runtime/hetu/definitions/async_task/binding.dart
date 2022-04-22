@@ -58,6 +58,17 @@ class AsyncTaskClassBinding extends HTExternalClass {
           ),
         );
 
+      case 'AsyncTask.value':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              AsyncTask.value(positionalArgs[0]),
+        );
+
       default:
         throw HTError.undefined(varName);
     }
