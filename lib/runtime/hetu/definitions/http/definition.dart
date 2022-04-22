@@ -13,12 +13,6 @@ external class Http {
   /// }) => HttpResponse;
   static fun fetch({ method, url, headers, body });
   
-  /// (string) => string
-  static fun ensureURL(url);
-  
-  /// (string) => string
-  static fun getDomainFromURL(url);
-  
   /// string
   static get defaultUserAgent;
 }

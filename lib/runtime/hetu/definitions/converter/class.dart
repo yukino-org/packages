@@ -6,12 +6,6 @@ class Converter {
 
   static dynamic jsonDecode(final String data) => json.decode(data);
 
-  static String queryStringEncode(final Map<dynamic, dynamic> map) =>
-      Uri(queryParameters: map.cast<String, String>()).query;
-
-  static Map<String, String> queryStringDecode(final String query) =>
-      Uri.splitQueryString(query);
-
   static String base64Encode(final BytesContainer data) =>
       base64.encode(data.list);
 

@@ -36,30 +36,6 @@ class ConverterClassBinding extends HTExternalClass {
               Converter.jsonDecode(positionalArgs[0] as String),
         );
 
-      case 'Converter.queryStringEncode':
-        return createHTExternalFunction(
-          (
-            final HTEntity entity, {
-            final List<dynamic> positionalArgs = const <dynamic>[],
-            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
-            final List<HTType> typeArgs = const <HTType>[],
-          }) =>
-              Converter.queryStringEncode(
-            parseHetuReturnedMap(positionalArgs[0]),
-          ),
-        );
-
-      case 'Converter.queryStringDecode':
-        return createHTExternalFunction(
-          (
-            final HTEntity entity, {
-            final List<dynamic> positionalArgs = const <dynamic>[],
-            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
-            final List<HTType> typeArgs = const <HTType>[],
-          }) =>
-              Converter.queryStringDecode(positionalArgs[0] as String),
-        );
-
       case 'Converter.utf8Encode':
         return createHTExternalFunction(
           (

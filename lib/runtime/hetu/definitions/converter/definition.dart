@@ -10,12 +10,6 @@ external class Converter {
 
   /// (string) => any
   static fun jsonDecode(data);
-  
-  /// (Map<string, string>) => string
-  static fun queryStringEncode(data);
-  
-  /// (string) => Map<string, string>
-  static fun queryStringDecode(data);
 
   /// (BytesContainer) => string
   static fun base64Encode(data);

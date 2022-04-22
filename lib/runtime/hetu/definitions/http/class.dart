@@ -64,7 +64,7 @@ class Http {
     final Map<String, String>? headers,
     final String? body,
   }) async {
-    final Uri uri = Uri.parse(tryEncodeURL(url));
+    final Uri uri = Uri.parse(url);
 
     final Map<String, String> castedHeaders =
         headers?.cast<String, String>() ?? <String, String>{};
@@ -86,29 +86,6 @@ class Http {
       statusCode: res.statusCode,
     );
   }
-
-  static String tryEncodeURL(final String url) {
-    try {
-      if (url != Uri.decodeFull(url)) return url;
-    } catch (_) {}
-
-    return Uri.encodeFull(url);
-  }
-
-  static String ensureProtocol(
-    final String url, {
-    final bool https = true,
-  }) =>
-      !url.startsWith('http')
-          ? https
-              ? 'https:$url'
-              : 'http:$url'
-          : url;
-
-  static String ensureURL(final String url) =>
-      tryEncodeURL(ensureProtocol(url));
-
-  static String getDomainFromURL(final String url) => Uri.parse(url).origin;
 
   static const String userAgentWindows =
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36';
