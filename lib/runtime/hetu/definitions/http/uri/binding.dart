@@ -24,7 +24,7 @@ class UriClassBinding extends HTExternalClass {
               Uri.parse(positionalArgs[0] as String),
         );
 
-      case 'Uri.ensureProtocol':
+      case 'Uri.ensureScheme':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
