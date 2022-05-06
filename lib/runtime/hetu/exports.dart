@@ -9,6 +9,7 @@ import 'definitions/duration/definition.dart';
 import 'definitions/fuzzy/definition.dart';
 import 'definitions/fuzzy/key/definition.dart';
 import 'definitions/fuzzy/result_item/definition.dart';
+import 'definitions/globals/definition.dart';
 import 'definitions/html/definition.dart';
 import 'definitions/http/definition.dart';
 import 'definitions/http/result/definition.dart';
@@ -55,6 +56,7 @@ abstract class HetuHelperExports {
     hFuzzySearchClass,
     hFuzzySearchKeyClass,
     hFuzzySearchResultItemClass,
+    hGlobalsClass,
     hHtmlElementClass,
     hHttpClass,
     hHttpResponseClass,
