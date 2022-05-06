@@ -11,8 +11,8 @@ abstract class TenkaDevEnvironment {
           PuppeteerProvider(),
           const WebviewProviderOptions(),
         ),
-        isDebug: true,
       ),
+      isDebug: true,
     );
   }
 
