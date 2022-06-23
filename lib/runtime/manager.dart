@@ -1,5 +1,4 @@
 import 'package:hetu_script/hetu_script.dart';
-import 'package:utilx/webview/webview.dart';
 import 'error.dart';
 import 'hetu/exports.dart';
 import 'hetu/helpers/http.dart';
@@ -14,7 +13,6 @@ abstract class TenkaRuntimeManager {
     if (ready) throw Exception('Cannot initialize twice');
 
     TenkaRuntimeHttpClient.initialize(options.http);
-    await WebviewManager.initialize(options.webview);
 
     ready = true;
   }
@@ -48,8 +46,6 @@ $code
   }
 
   static Future<void> dispose() async {
-    await WebviewManager.dispose();
-
     ready = false;
   }
 }

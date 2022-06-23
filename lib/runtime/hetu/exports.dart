@@ -29,7 +29,6 @@ import 'definitions/tenka/manga/chapter/info/definition.dart';
 import 'definitions/tenka/manga/extractor/definition.dart';
 import 'definitions/tenka/manga/info/definition.dart';
 import 'definitions/tenka/manga/page/info/definition.dart';
-import 'definitions/webview/definition.dart';
 import 'definitions/zoned_task/definition.dart';
 import 'model.dart';
 
@@ -63,7 +62,6 @@ abstract class HetuHelperExports {
     hLanguagesClass,
     hRegexClass,
     hRegexMatchClass,
-    hWebviewClass,
     hURLClass,
   ];
 
