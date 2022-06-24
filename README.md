@@ -13,5 +13,5 @@
 -   [dart_tenka_dev_tools](https://github.com/yukino-app/packages/tree/dart_tenka_dev_tools)
 -   [dart_tenka_runtime](https://github.com/yukino-app/packages/tree/dart_tenka_runtime)
 -   [dart_utilx](https://github.com/yukino-app/packages/tree/dart_utilx)
--   [dart_utilx_desktop](https://github.com/yukino-app/packages/tree/dart_utilx_desktop)
--   [dart_utilx_mobile](https://github.com/yukino-app/packages/tree/dart_utilx_mobile)
+-   ~~[dart_utilx_desktop](https://github.com/yukino-app/packages/tree/dart_utilx_desktop)~~
+-   ~~[dart_utilx_mobile](https://github.com/yukino-app/packages/tree/dart_utilx_mobile)~~
