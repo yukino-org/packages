@@ -30,19 +30,30 @@ abstract class StringUtils {
         return context.containsKey(key) ? context[key]! : 'null';
       });
 
-  static String pascalToSnakeCase(final String pascal) =>
-      pascal.replaceAllMapped(
+  static List<String> getWords(final String text) => text
+      .replaceAllMapped(
         RegExp('[A-Z]'),
-        (final Match match) => '_${match.group(0)!.toLowerCase()}',
-      );
+        (final Match m) => '_${m.group(0)!.toLowerCase()}',
+      )
+      .split(RegExp(r'[\s_-]+'))
+      .where((final String x) => x.isNotEmpty)
+      .toList();
+}
 
-  static String pascalPretty(final String pascal) => pascal.replaceAllMapped(
-        RegExp('[A-Z]'),
-        (final Match match) => ' ${match.group(0)!}',
-      );
+class StringCase {
+  const StringCase(this.text);
 
-  static String snakeToPascalCase(final String snake) => snake.replaceAllMapped(
-        RegExp('_(.)'),
-        (final Match match) => match.group(1)!.toUpperCase(),
-      );
+  final String text;
+
+  List<String> get words => StringUtils.getWords(text);
+
+  String get camelCase {
+    final List<String> words = this.words;
+    if (words.isEmpty) return '';
+    return '${words.first}${words.sublist(1).map(StringUtils.capitalize).join()}';
+  }
+
+  String get pascalCase => words.map(StringUtils.capitalize).join();
+  String get snakeCase => words.join('_');
+  String get kebabCase => words.join('-');
 }
