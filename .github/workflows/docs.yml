@@ -1,4 +1,4 @@
-name: Code Analysis (Dart DevX)
+name: Documentation
 
 on:
     push:

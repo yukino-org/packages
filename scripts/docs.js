@@ -1,5 +1,5 @@
 const { spawnSync: _spawnSync } = require("child_process");
-const { writeFile, writeFileSync } = require("fs");
+const { writeFileSync } = require("fs");
 const path = require("path");
 
 const github = "https://github.com/yukino-org/packages";
