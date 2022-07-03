@@ -1,0 +1,33 @@
+name: Code Analysis (Dart DevX)
+
+on:
+    push:
+        branches:
+            - dart_devx
+            - dart_tenka_dev_tools
+            - dart_tenka_runtime
+            - dart_tenka_tenka
+            - dart_tenka_utilx
+    workflow_dispatch:
+
+jobs:
+    dart-analyze:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: dart-lang/setup-dart@v1
+
+            - name: 🚧 Build docs
+              uses: actions/github-script@v6
+              with:
+                  result-encoding: string
+                  script: |
+                      const { generateDocs } = require("./scripts/docs");
+                      generateDocs();
+
+            - name: 🚀 Push docs
+              uses: zyrouge/gh-push-action@v1.0.1
+              with:
+                  directory: docs
+                  branch: gh-pages
