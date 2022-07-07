@@ -1,7 +1,8 @@
 import 'dart:io';
 
 abstract class FSUtils {
-  static final RegExp invalidPathReplacer = RegExp(r'[^\\\/\.\w- ]+');
+  static final RegExp invalidPathReplacer =
+      RegExp(r'''[^\\\/\.\w- ()\[\]'"]+''');
 
   static Future<void> ensureDirectory(final Directory directory) async {
     if (!(await directory.exists())) {
