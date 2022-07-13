@@ -37,11 +37,11 @@ class Locale {
     int threshold = 0;
 
     if (locale.code == code) {
-      threshold += 1;
+      threshold += 10;
     }
 
     if (locale.country == country) {
-      threshold += 2;
+      threshold += 5;
     }
 
     return threshold;
