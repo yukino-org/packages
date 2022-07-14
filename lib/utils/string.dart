@@ -38,6 +38,9 @@ abstract class StringUtils {
       .split(RegExp(r'[\s_-]+'))
       .where((final String x) => x.isNotEmpty)
       .toList();
+
+  static String? onlyIfNotEmpty(final String text) =>
+      text.trim().isNotEmpty ? text : null;
 }
 
 class StringCase {
