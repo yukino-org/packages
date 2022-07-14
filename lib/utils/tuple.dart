@@ -5,10 +5,10 @@ class TwinTuple<A, B> {
   final B last;
 }
 
-class TripleTuple<A, B> {
+class TripleTuple<A, B, C> {
   const TripleTuple(this.first, this.middle, this.last);
 
   final A first;
-  final A middle;
-  final B last;
+  final B middle;
+  final C last;
 }
