@@ -15,7 +15,7 @@
 dependencies:
     tenka_runtime:
         git:
-            url: git://github.com/yukino-app/packages.git
+            url: https://github.com/yukino-app/packages.git
             ref: dart_tenka_runtime
 ```
 
