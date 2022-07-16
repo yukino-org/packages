@@ -15,7 +15,7 @@
 dependencies:
     utilx:
         git:
-            url: git://github.com/yukino-org/packages.git
+            url: https://github.com/yukino-org/packages.git
             ref: dart_utilx
 ```
 
