@@ -8,3 +8,4 @@ export 'utils/list.dart';
 export 'utils/map.dart';
 export 'utils/string.dart';
 export 'utils/tuple.dart';
+export 'utils/types.dart';
