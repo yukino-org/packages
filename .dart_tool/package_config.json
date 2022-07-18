@@ -2,10 +2,10 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "lint",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/lint-1.8.2",
+      "name": "lints",
+      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/lints-2.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.15"
+      "languageVersion": "2.17"
     },
     {
       "name": "devx",
@@ -14,7 +14,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-02-24T13:58:10.224125Z",
+  "generated": "2022-07-18T07:39:45.883897Z",
   "generator": "pub",
-  "generatorVersion": "2.17.0-87.0.dev"
+  "generatorVersion": "2.19.0-5.0.dev"
 }

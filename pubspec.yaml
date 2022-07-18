@@ -8,4 +8,4 @@ environment:
     sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-    lint: ^1.5.3
+    lints: ^2.0.0
