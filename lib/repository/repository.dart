@@ -53,7 +53,7 @@ class TenkaRepository {
   Future<TenkaMetadata> resolveMetadata(final TenkaMetadata metadata) async {
     if (metadata.thumbnail is! TenkaCloudDS ||
         metadata.source is! TenkaCloudDS) {
-      throw Exception('`thumbnail` and `source` must be `ECloudDS`');
+      throw Exception('`thumbnail` and `source` must be `TenkaCloudDS`');
     }
 
     final TenkaDataSource source =
@@ -76,7 +76,7 @@ class TenkaRepository {
 
   Future<TenkaBase64DS> _getBase64FromCloudDS(final TenkaCloudDS source) async {
     final http.Response resp =
-        await http.get(Uri.parse(resolver.resolveURL(source.url)));
+        await http.get(Uri.parse(source.resolveURL(resolver)));
 
     return TenkaBase64DS(resp.bodyBytes);
   }

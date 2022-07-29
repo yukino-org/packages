@@ -1,9 +1,13 @@
+import '../../repository/exports.dart';
 import '../model.dart';
 
 class TenkaCloudDS extends TenkaDataSource {
   TenkaCloudDS(this.url);
 
   final String url;
+
+  String resolveURL(final TenkaStoreURLResolver resolver) =>
+      resolver.resolveURL(url);
 
   @override
   TenkaDataSourceConverter<dynamic> get converter => TenkaCloudDSConverter();
