@@ -1,30 +1,28 @@
 import 'package:fubuki_vm/fubuki_vm.dart';
-import 'package:tenka/tenka.dart';
-import 'fubuki/exports.dart';
+import '../../instance.dart';
 
-class TenkaRuntimeInstance {
-  TenkaRuntimeInstance(this.program);
+abstract class TenkaFubukiConvertable<T> {
+  TenkaFubukiConvertable(this.converter);
 
-  final FubukiProgramConstant program;
+  final TenkaFubukiConverter converter;
 
-  late final FubukiVM vm =
-      FubukiVM(program, FubukiVMOptions(disablePrint: true));
-  late final TenkaFubukiConverter converter = TenkaFubukiConverter(this);
+  T convert(final FubukiValue value);
 
-  Future<void> initialize() async {
-    TenkaFubukiBindings.bind(vm.globalNamespace);
-    await vm.run();
+  List<T> convertMany(final FubukiValue value) {
+    final FubukiListValue casted = value.cast();
+    return casted.elements.map(convert).toList();
   }
 
-  Future<AnimeExtractor> getAnimeExtractor() async {
-    final FubukiValue result = vm.globalNamespace.lookup(kExtractor);
-    return converter.animeExtractor.convert(result);
+  T? maybeConvert(final FubukiValue value) {
+    if (value is FubukiNullValue) return null;
+    return convert(value);
   }
+}
 
-  Future<MangaExtractor> getMangaExtractor() async {
-    final FubukiValue result = vm.globalNamespace.lookup(kExtractor);
-    return converter.mangaExtractor.convert(result);
-  }
+class TenkaFubukiConverter {
+  TenkaFubukiConverter(this.runtime);
+
+  final TenkaRuntimeInstance runtime;
 
   static const String kExtractor = 'extractor';
   static const String kDefaultLocale = 'defaultLocale';
@@ -45,4 +43,9 @@ class TenkaRuntimeInstance {
   static const String kChapter = 'chapter';
   static const String kVolume = 'volume';
   static const String kChapters = 'chapters';
+}
+
+extension TenkaFubukiConverterUtils on FubukiPrimitiveObjectValue {
+  T getNamedProperty<T extends FubukiValue>(final String name) =>
+      get(FubukiStringValue(name)).cast();
 }

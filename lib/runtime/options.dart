@@ -1,10 +1,10 @@
-import 'hetu/helpers/http.dart';
+import 'fubuki/helpers/http.dart';
 
-export 'hetu/helpers/http.dart' show TenkaRuntimeHttpClientOptions;
+export 'fubuki/helpers/http.dart' show TenkaRuntimeHttpClientOptions;
 
 class TenkaRuntimeOptions {
   const TenkaRuntimeOptions({
-    required final this.http,
+    required this.http,
   });
 
   final TenkaRuntimeHttpClientOptions http;

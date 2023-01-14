@@ -5,13 +5,15 @@ version: 0.0.0
 publish_to: none
 
 environment:
-    sdk: ">=2.12.0 <3.0.0"
+    sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
     crypto: ^3.0.1
     encrypt: ^5.0.0
-    fuzzy: ^0.4.0-nullsafety.0
-    hetu_script: ^0.3.11
+    fubuki_vm:
+        git:
+            url: https://github.com/yukino-org/fubuki.git
+            path: packages/fubuki_vm
     html: ^0.15.0
     http: ^0.13.3
     meta: ^1.7.0
@@ -25,7 +27,6 @@ dependencies:
             ref: dart_utilx
 
 dev_dependencies:
-    devx:
+    zlint:
         git:
-            url: https://github.com/yukino-org/packages.git
-            ref: dart_devx
+            url: https://github.com/zyrouge/dart_zlint.git
