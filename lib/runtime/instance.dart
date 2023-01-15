@@ -7,7 +7,7 @@ class TenkaRuntimeInstance {
   final FubukiProgramConstant program;
 
   late final FubukiVM vm =
-      FubukiVM(program, FubukiVMOptions(disablePrint: true));
+      FubukiVM(program, FubukiVMOptions(disablePrint: !TenkaInternals.isDebug));
   late final TenkaFubukiConverter converter = TenkaFubukiConverter(this);
 
   Future<void> initialize() async {
