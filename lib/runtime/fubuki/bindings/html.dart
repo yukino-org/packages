@@ -11,7 +11,7 @@ abstract class HtmlBindings {
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final FubukiStringValue value = call.argumentAt(0);
-          return newHtmlElement(html.parse(value).documentElement!);
+          return newHtmlElement(html.parse(value.value).documentElement!);
         },
       ),
     );
