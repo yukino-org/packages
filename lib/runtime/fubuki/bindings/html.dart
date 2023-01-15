@@ -8,8 +8,8 @@ abstract class HtmlBindings {
     final FubukiObjectValue value = FubukiObjectValue();
     value.setNamedProperty(
       'parse',
-      FubukiNativeFunctionValue.asyncReturn(
-        (final FubukiNativeFunctionCall call) async {
+      FubukiNativeFunctionValue.sync(
+        (final FubukiNativeFunctionCall call) {
           final FubukiStringValue value = call.argumentAt(0);
           return newHtmlElement(html.parse(value).documentElement!);
         },
