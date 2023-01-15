@@ -27,7 +27,6 @@ class MockedMangaExtractor {
     );
     final TenkaRuntimeInstance runtime =
         await TenkaRuntimeManager.create(program);
-    await runtime.initialize();
     final MangaExtractor extractor = await runtime.getMangaExtractor();
     final OnlyOnAgreeFn whenVerbose = onlyOnAgree(verbose);
 
