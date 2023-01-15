@@ -15,6 +15,10 @@ class TenkaFubukiMangaExtractorConvertable
         casted.getNamedProperty(TenkaFubukiConverter.kSearch);
     final FubukiFunctionValue getInfo =
         casted.getNamedProperty(TenkaFubukiConverter.kGetInfo);
+    final FubukiFunctionValue getChapter =
+        casted.getNamedProperty(TenkaFubukiConverter.kGetChapter);
+    final FubukiFunctionValue getPage =
+        casted.getNamedProperty(TenkaFubukiConverter.kGetPage);
 
     return MangaExtractor(
       defaultLocale: converter.locale.convert(defaultLocale),
@@ -39,7 +43,7 @@ class TenkaFubukiMangaExtractorConvertable
         return converter.mangaInfo.convert(result);
       },
       getChapter: (final String url, final Locale locale) async {
-        final FubukiValue result = await getInfo.callInVM(
+        final FubukiValue result = await getChapter.callInVM(
           converter.runtime.vm,
           <FubukiValue>[
             FubukiStringValue(url),
@@ -49,7 +53,7 @@ class TenkaFubukiMangaExtractorConvertable
         return converter.pageInfo.convertMany(result);
       },
       getPage: (final String url, final Locale locale) async {
-        final FubukiValue result = await getInfo.callInVM(
+        final FubukiValue result = await getPage.callInVM(
           converter.runtime.vm,
           <FubukiValue>[
             FubukiStringValue(url),
