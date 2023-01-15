@@ -16,14 +16,17 @@ class TenkaRuntimeInstance {
   }
 
   Future<AnimeExtractor> getAnimeExtractor() async {
-    final FubukiValue result = vm.globalNamespace.lookup(kExtractor);
+    final FubukiValue result = getExtractorValue();
     return converter.animeExtractor.convert(result);
   }
 
   Future<MangaExtractor> getMangaExtractor() async {
-    final FubukiValue result = vm.globalNamespace.lookup(kExtractor);
+    final FubukiValue result = getExtractorValue();
     return converter.mangaExtractor.convert(result);
   }
+
+  FubukiValue getExtractorValue() =>
+      vm.modules[program.entrypoint]!.namespace.lookup(kExtractor);
 
   static const String kExtractor = 'extractor';
   static const String kDefaultLocale = 'defaultLocale';
