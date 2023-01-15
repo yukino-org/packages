@@ -1,5 +1,5 @@
 import 'package:tenka/tenka.dart';
-import 'utils/benchmark.dart';
+import 'utils/exports.dart';
 
 abstract class TenkaDevEnvironment {
   static Future<void> prepare() async {

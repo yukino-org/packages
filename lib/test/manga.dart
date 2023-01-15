@@ -1,8 +1,6 @@
-import 'package:hetu_script_dev_tools/hetu_script_dev_tools.dart';
+import 'package:fubuki_compiler/fubuki_compiler.dart';
 import 'package:tenka/tenka.dart';
-import '../../utils/console.dart';
-import '../utils/benchmark.dart';
-import '../utils/exception_with_data.dart';
+import '../utils/exports.dart';
 
 typedef MockedMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
@@ -23,18 +21,14 @@ class MockedMangaExtractor {
     final TenkaLocalFileDS source, {
     final bool verbose = true,
   }) async {
-    final TenkaRuntimeInstance runtime = await TenkaRuntimeManager.create(
-      TenkaRuntimeInstanceOptions(
-        hetuSourceContext: HTFileSystemResourceContext(root: source.root),
-      ),
+    final FubukiProgramConstant program = await FubukiCompiler.compileProject(
+      root: source.root,
+      entrypoint: source.file,
     );
-
-    await runtime.loadScriptCode('', appendDefinitions: true);
-    await runtime.loadScriptFile(source.file);
-
-    final MangaExtractor extractor =
-        await runtime.getExtractor<MangaExtractor>();
-
+    final TenkaRuntimeInstance runtime =
+        await TenkaRuntimeManager.create(program);
+    await runtime.initialize();
+    final MangaExtractor extractor = await runtime.getMangaExtractor();
     final OnlyOnAgreeFn whenVerbose = onlyOnAgree(verbose);
 
     return BenchmarkRunner.run(

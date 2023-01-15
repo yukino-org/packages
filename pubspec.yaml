@@ -5,11 +5,14 @@ version: 0.0.0
 publish_to: none
 
 environment:
-    sdk: ">=2.12.0 <3.0.0"
+    sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
     colorize: ^3.0.0
-    hetu_script_dev_tools: ^0.0.8
+    fubuki_compiler:
+        git:
+            url: https://github.com/yukino-org/fubuki.git
+            path: packages/fubuki_compiler
     path: ^1.8.0
     tenka:
         git:
