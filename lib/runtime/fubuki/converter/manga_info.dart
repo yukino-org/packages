@@ -16,9 +16,9 @@ class TenkaFubukiMangaInfoConvertable
         casted.getNamedProperty(TenkaFubukiConverter.kChapters);
     final FubukiStringValue locale =
         casted.getNamedProperty(TenkaFubukiConverter.kLocale);
-    final FubukiListValue availableLocales =
+    final FubukiValue availableLocales =
         casted.getNamedProperty(TenkaFubukiConverter.kAvailableLocales);
-    final FubukiListValue thumbnail =
+    final FubukiValue thumbnail =
         casted.getNamedProperty(TenkaFubukiConverter.kThumbnail);
 
     return MangaInfo(
