@@ -1,10 +1,11 @@
 import 'package:fubuki_vm/fubuki_vm.dart';
+import '../converter/exports.dart';
 
 abstract class UrlBindings {
   static void bind(final FubukiNamespace namespace) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('ensureHttpScheme'),
+    value.setNamedProperty(
+      'ensureHttpScheme',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String url = call.argumentAt<FubukiStringValue>(0).value;
@@ -14,8 +15,8 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('ensureHttpsScheme'),
+    value.setNamedProperty(
+      'ensureHttpsScheme',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String url = call.argumentAt<FubukiStringValue>(0).value;
@@ -25,8 +26,8 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('ensure'),
+    value.setNamedProperty(
+      'ensure',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String url = call.argumentAt<FubukiStringValue>(0).value;
@@ -37,8 +38,8 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('encodeComponent'),
+    value.setNamedProperty(
+      'encodeComponent',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String query = call.argumentAt<FubukiStringValue>(0).value;
@@ -46,8 +47,8 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('decodeComponent'),
+    value.setNamedProperty(
+      'decodeComponent',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String query = call.argumentAt<FubukiStringValue>(0).value;
@@ -55,8 +56,8 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('encodeQueryComponent'),
+    value.setNamedProperty(
+      'encodeQueryComponent',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String query = call.argumentAt<FubukiStringValue>(0).value;
@@ -64,8 +65,8 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('decodeQueryComponent'),
+    value.setNamedProperty(
+      'decodeQueryComponent',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String query = call.argumentAt<FubukiStringValue>(0).value;
@@ -73,22 +74,22 @@ abstract class UrlBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('splitQueryString'),
+    value.setNamedProperty(
+      'splitQueryString',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final String query = call.argumentAt<FubukiStringValue>(0).value;
           final FubukiObjectValue queries = FubukiObjectValue();
           for (final MapEntry<String, String> x
               in Uri.splitQueryString(query).entries) {
-            queries.set(FubukiStringValue(x.key), FubukiStringValue(x.value));
+            queries.setNamedProperty(x.key, FubukiStringValue(x.value));
           }
           return queries;
         },
       ),
     );
-    value.set(
-      FubukiStringValue('joinQueryString'),
+    value.setNamedProperty(
+      'joinQueryString',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final FubukiObjectValue queries = call.argumentAt(0);

@@ -47,5 +47,11 @@ class TenkaFubukiConverter {
 
 extension TenkaFubukiConverterUtils on FubukiPrimitiveObjectValue {
   T getNamedProperty<T extends FubukiValue>(final String name) =>
-      get(FubukiStringValue(name)).cast();
+      getNamedProperty(name).cast();
+
+  void setNamedProperty(
+    final String name,
+    final FubukiValue value,
+  ) =>
+      setNamedProperty(name, value);
 }

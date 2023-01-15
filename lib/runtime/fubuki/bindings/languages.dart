@@ -5,8 +5,8 @@ import 'package:utilx/generated/locale.g.dart';
 abstract class LanguagesBindings {
   static void bind(final FubukiNamespace namespace) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('isValid'),
+    value.setNamedProperty(
+      'isValid',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final FubukiStringValue lang = call.argumentAt(0);
@@ -16,8 +16,8 @@ abstract class LanguagesBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('all'),
+    value.setNamedProperty(
+      'all',
       FubukiNativeFunctionValue.sync(
         (final _) => FubukiListValue(
           LanguageUtils.nameCodeMap.keys

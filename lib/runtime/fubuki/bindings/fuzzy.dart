@@ -1,27 +1,26 @@
 import 'dart:math';
 import 'package:fubuki_vm/fubuki_vm.dart';
+import '../converter/exports.dart';
 
 abstract class FuzzySearchBindings {
   static void bind(final FubukiNamespace namespace) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('new'),
+    value.setNamedProperty(
+      'new',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
           final FubukiObjectValue options = call.argumentAt(0);
-          final FubukiListValue items =
-              options.get(FubukiStringValue('items')).cast();
-          final FubukiListValue keys =
-              options.get(FubukiStringValue('keys')).cast();
+          final FubukiListValue items = options.getNamedProperty('items');
+          final FubukiListValue keys = options.getNamedProperty('keys');
           return newClient(
             items: items.elements,
             keys: keys.elements.map(
               (final FubukiValue x) {
                 final FubukiObjectValue casted = x.cast();
                 return _FuzzySearchKey(
-                  getter: casted.get(FubukiStringValue('getter')),
+                  getter: casted.getNamedProperty('getter'),
                   weight: casted
-                      .get(FubukiStringValue('getter'))
+                      .getNamedProperty('getter')
                       .cast<FubukiNumberValue>()
                       .value,
                 );
@@ -39,8 +38,8 @@ abstract class FuzzySearchBindings {
     required final List<_FuzzySearchKey> keys,
   }) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('search'),
+    value.setNamedProperty(
+      'search',
       FubukiNativeFunctionValue.async(
         (final FubukiNativeFunctionCall call) async {
           final FubukiStringValue terms = call.argumentAt(0);
@@ -61,7 +60,7 @@ abstract class FuzzySearchBindings {
             }
             final FubukiObjectValue result = FubukiObjectValue();
             result.set(matchKey, FubukiNumberValue(match));
-            result.set(FubukiStringValue('item'), item);
+            result.setNamedProperty('item', item);
             results.add(value);
           }
           results.sort((final FubukiObjectValue a, final FubukiObjectValue b) {

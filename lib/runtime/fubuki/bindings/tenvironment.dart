@@ -4,8 +4,8 @@ import 'package:tenka/tenka.dart';
 abstract class TEnvironmentBindings {
   static void bind(final FubukiNamespace namespace) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('isDebug'),
+    value.setNamedProperty(
+      'isDebug',
       FubukiNativeFunctionValue.sync((final _) => FubukiBooleanValue(isDebug)),
     );
     namespace.declare('TEnvironment', value);

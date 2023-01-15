@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:fubuki_vm/fubuki_vm.dart';
 import 'package:http/http.dart' as http;
+import '../converter/exports.dart';
 import '../helpers/http.dart';
 
 abstract class HttpBindings {
@@ -15,17 +16,15 @@ abstract class HttpBindings {
 
   static void bind(final FubukiNamespace namespace) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('request'),
+    value.setNamedProperty(
+      'request',
       FubukiNativeFunctionValue.asyncReturn(
         (final FubukiNativeFunctionCall call) async {
           final FubukiObjectValue options = call.argumentAt(0);
-          final FubukiStringValue method =
-              options.get(FubukiStringValue('method')).cast();
-          final FubukiStringValue url =
-              options.get(FubukiStringValue('url')).cast();
-          final FubukiValue body = options.get(FubukiStringValue('body'));
-          final FubukiValue headers = options.get(FubukiStringValue('headers'));
+          final FubukiStringValue method = options.getNamedProperty('method');
+          final FubukiStringValue url = options.getNamedProperty('url');
+          final FubukiValue body = options.getNamedProperty('body');
+          final FubukiValue headers = options.getNamedProperty('headers');
 
           final Uri uri = Uri.parse(url.value);
           final String? bodyStr = body is FubukiStringValue ? body.value : null;
@@ -86,8 +85,8 @@ abstract class HttpBindings {
         },
       ),
     );
-    value.set(
-      FubukiStringValue('defaultDesktopUserAgent'),
+    value.setNamedProperty(
+      'defaultDesktopUserAgent',
       FubukiNativeFunctionValue.sync(
         (final _) => FubukiStringValue(defaultDesktopUserAgent),
       ),
@@ -97,27 +96,27 @@ abstract class HttpBindings {
 
   static FubukiValue newHttpResponse(final http.Response response) {
     final FubukiObjectValue value = FubukiObjectValue();
-    value.set(
-      FubukiStringValue('body'),
+    value.setNamedProperty(
+      'body',
       FubukiStringValue(response.body),
     );
     final FubukiObjectValue headers = FubukiObjectValue();
     for (final MapEntry<String, String> x in response.headers.entries) {
-      headers.set(FubukiStringValue(x.key), FubukiStringValue(x.value));
+      headers.setNamedProperty(x.key, FubukiStringValue(x.value));
     }
-    value.set(FubukiStringValue('headers'), headers);
-    value.set(
-      FubukiStringValue('statusCode'),
+    value.setNamedProperty('headers', headers);
+    value.setNamedProperty(
+      'statusCode',
       FubukiNumberValue(response.statusCode.toDouble()),
     );
-    value.set(
-      FubukiStringValue('reasonPhrase'),
+    value.setNamedProperty(
+      'reasonPhrase',
       response.reasonPhrase != null
           ? FubukiStringValue(response.reasonPhrase!)
           : FubukiNullValue.value,
     );
-    value.set(
-      FubukiStringValue('isRedirect'),
+    value.setNamedProperty(
+      'isRedirect',
       FubukiBooleanValue(response.isRedirect),
     );
     return value;
