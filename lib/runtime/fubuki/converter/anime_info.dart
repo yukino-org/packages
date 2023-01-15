@@ -1,6 +1,5 @@
 import 'package:fubuki_vm/fubuki_vm.dart';
 import 'package:tenka/tenka.dart';
-import 'exports.dart';
 
 class TenkaFubukiAnimeInfoConvertable
     extends TenkaFubukiConvertable<AnimeInfo> {

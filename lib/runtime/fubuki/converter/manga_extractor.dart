@@ -1,7 +1,6 @@
 import 'package:fubuki_vm/fubuki_vm.dart';
 import 'package:tenka/tenka.dart';
 import 'package:utilx/locale.dart';
-import 'exports.dart';
 
 class TenkaFubukiMangaExtractorConvertable
     extends TenkaFubukiConvertable<MangaExtractor> {

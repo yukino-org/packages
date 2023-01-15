@@ -1,6 +1,5 @@
 import 'package:fubuki_vm/fubuki_vm.dart';
 import 'package:tenka/tenka.dart';
-import 'fubuki/exports.dart';
 
 class TenkaRuntimeInstance {
   TenkaRuntimeInstance(this.program);
