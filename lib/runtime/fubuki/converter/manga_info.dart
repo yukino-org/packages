@@ -1,6 +1,5 @@
 import 'package:fubuki_vm/fubuki_vm.dart';
 import 'package:tenka/tenka.dart';
-import 'package:tenka_runtime/runtime/fubuki/converter/chapter_info.dart';
 import 'exports.dart';
 
 class TenkaFubukiMangaInfoConvertable
