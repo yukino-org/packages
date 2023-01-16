@@ -17,12 +17,12 @@ class TenkaRuntimeInstance {
 
   Future<AnimeExtractor> getAnimeExtractor() async {
     final FubukiValue result = getExtractorValue();
-    return converter.animeExtractor.convert(result);
+    return converter.animeExtractor.convert(vm.topFrame, result);
   }
 
   Future<MangaExtractor> getMangaExtractor() async {
     final FubukiValue result = getExtractorValue();
-    return converter.mangaExtractor.convert(result);
+    return converter.mangaExtractor.convert(vm.topFrame, result);
   }
 
   FubukiValue getExtractorValue() =>

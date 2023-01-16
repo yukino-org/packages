@@ -6,7 +6,10 @@ class TenkaFubukiAnimeInfoConvertable
   TenkaFubukiAnimeInfoConvertable(super.converter);
 
   @override
-  AnimeInfo convert(final FubukiValue value) {
+  AnimeInfo convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue title =
         casted.getNamedProperty(TenkaFubukiConverter.kTitle);
@@ -24,10 +27,10 @@ class TenkaFubukiAnimeInfoConvertable
     return AnimeInfo(
       title: title.value,
       url: url.value,
-      episodes: converter.episodeInfo.convertMany(episodes),
-      locale: converter.locale.convert(locale),
-      availableLocales: converter.locale.convertMany(availableLocales),
-      thumbnail: converter.imageDescriber.maybeConvert(thumbnail),
+      episodes: converter.episodeInfo.convertMany(frame, episodes),
+      locale: converter.locale.convert(frame, locale),
+      availableLocales: converter.locale.convertMany(frame, availableLocales),
+      thumbnail: converter.imageDescriber.maybeConvert(frame, thumbnail),
     );
   }
 }

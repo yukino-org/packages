@@ -6,7 +6,10 @@ class TenkaFubukiChapterInfoConvertable
   TenkaFubukiChapterInfoConvertable(super.converter);
 
   @override
-  ChapterInfo convert(final FubukiValue value) {
+  ChapterInfo convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue chapter =
         casted.getNamedProperty(TenkaFubukiConverter.kChapter);
@@ -22,9 +25,9 @@ class TenkaFubukiChapterInfoConvertable
     return ChapterInfo(
       chapter: chapter.value,
       url: url.value,
-      locale: converter.locale.convert(locale),
-      title: converter.nullableString.convert(title),
-      volume: converter.nullableString.convert(volume),
+      locale: converter.locale.convert(frame, locale),
+      title: converter.nullableString.convert(frame, title),
+      volume: converter.nullableString.convert(frame, volume),
     );
   }
 }

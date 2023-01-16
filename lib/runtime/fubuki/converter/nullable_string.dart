@@ -6,7 +6,10 @@ class TenkaFubukiNullableStringConvertable
   TenkaFubukiNullableStringConvertable(super.converter);
 
   @override
-  String? convert(final FubukiValue value) {
+  String? convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     if (value is FubukiNullValue) return null;
     final FubukiStringValue casted = value.cast();
     return casted.value;

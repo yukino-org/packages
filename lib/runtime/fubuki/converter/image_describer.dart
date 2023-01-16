@@ -6,7 +6,10 @@ class TenkaFubukiImageDescriberConvertable
   TenkaFubukiImageDescriberConvertable(super.converter);
 
   @override
-  ImageDescriber convert(final FubukiValue value) {
+  ImageDescriber convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue url =
         casted.getNamedProperty(TenkaFubukiConverter.kUrl);
@@ -15,7 +18,7 @@ class TenkaFubukiImageDescriberConvertable
 
     return ImageDescriber(
       url: url.value,
-      headers: converter.headers.convert(headers),
+      headers: converter.headers.convert(frame, headers),
     );
   }
 }

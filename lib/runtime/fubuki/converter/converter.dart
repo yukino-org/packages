@@ -6,16 +6,27 @@ abstract class TenkaFubukiConvertable<T> {
 
   final TenkaFubukiConverter converter;
 
-  T convert(final FubukiValue value);
+  T convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  );
 
-  List<T> convertMany(final FubukiValue value) {
+  List<T> convertMany(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiListValue casted = value.cast();
-    return casted.elements.map(convert).toList();
+    return casted.elements
+        .map((final FubukiValue x) => convert(frame, x))
+        .toList();
   }
 
-  T? maybeConvert(final FubukiValue value) {
+  T? maybeConvert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     if (value is FubukiNullValue) return null;
-    return convert(value);
+    return convert(frame, value);
   }
 }
 
@@ -54,4 +65,12 @@ extension TenkaFubukiConverterUtils on FubukiPrimitiveObjectValue {
     final FubukiValue value,
   ) =>
       set(FubukiStringValue(name), value);
+}
+
+extension TenkaFubukiConverterAsyncUtils on FubukiValue {
+  Future<FubukiValue> awaited() async {
+    final FubukiValue value = this;
+    if (value is FubukiFutureValue) return value.resolve();
+    return value;
+  }
 }

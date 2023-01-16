@@ -48,9 +48,10 @@ abstract class FuzzySearchBindings {
           for (final FubukiValue item in items) {
             double match = 0;
             for (final _FuzzySearchKey key in keys) {
-              final FubukiValue againstValue = await key.getter
-                  .cast<FubukiFunctionValue>()
-                  .callInVM(call.vm, <FubukiValue>[item]).unwrapUnsafe();
+              final FubukiValue againstValue = await call.frame.callValue(
+                key.getter,
+                <FubukiValue>[item],
+              ).unwrapUnsafe();
               final String against = againstValue.kToString();
               final int distance = calculateLevenshteinDistance(
                 terms.value,

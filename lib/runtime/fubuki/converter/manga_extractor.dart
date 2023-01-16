@@ -7,7 +7,10 @@ class TenkaFubukiMangaExtractorConvertable
   TenkaFubukiMangaExtractorConvertable(super.converter);
 
   @override
-  MangaExtractor convert(final FubukiValue value) {
+  MangaExtractor convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiValue defaultLocale =
         casted.getNamedProperty(TenkaFubukiConverter.kDefaultLocale);
@@ -21,46 +24,50 @@ class TenkaFubukiMangaExtractorConvertable
         casted.getNamedProperty(TenkaFubukiConverter.kGetPage);
 
     return MangaExtractor(
-      defaultLocale: converter.locale.convert(defaultLocale),
+      defaultLocale: converter.locale.convert(frame, defaultLocale),
       search: (final String terms, final Locale locale) async {
-        final FubukiValue result = await search.callInVM(
-          converter.runtime.vm,
+        final FubukiValue value = await frame.callValue(
+          search,
           <FubukiValue>[
             FubukiStringValue(terms),
             FubukiStringValue(locale.toCodeString()),
           ],
         ).unwrapUnsafe();
-        return converter.searchInfo.convertMany(result);
+        final FubukiValue result = await value.awaited();
+        return converter.searchInfo.convertMany(frame, result);
       },
       getInfo: (final String url, final Locale locale) async {
-        final FubukiValue result = await getInfo.callInVM(
-          converter.runtime.vm,
+        final FubukiValue value = await frame.callValue(
+          getInfo,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
         ).unwrapUnsafe();
-        return converter.mangaInfo.convert(result);
+        final FubukiValue result = await value.awaited();
+        return converter.mangaInfo.convert(frame, result);
       },
       getChapter: (final String url, final Locale locale) async {
-        final FubukiValue result = await getChapter.callInVM(
-          converter.runtime.vm,
+        final FubukiValue value = await frame.callValue(
+          getChapter,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
         ).unwrapUnsafe();
-        return converter.pageInfo.convertMany(result);
+        final FubukiValue result = await value.awaited();
+        return converter.pageInfo.convertMany(frame, result);
       },
       getPage: (final String url, final Locale locale) async {
-        final FubukiValue result = await getPage.callInVM(
-          converter.runtime.vm,
+        final FubukiValue value = await frame.callValue(
+          getPage,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
         ).unwrapUnsafe();
-        return converter.imageDescriber.convert(result);
+        final FubukiValue result = await value.awaited();
+        return converter.imageDescriber.convert(frame, result);
       },
     );
   }

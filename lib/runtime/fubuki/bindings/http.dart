@@ -77,7 +77,7 @@ abstract class HttpBindings {
             default:
               throw FubukiExceptionNatives.newExceptionNative(
                 'Invalid http method "${method.value}"',
-                call.vm.getCurrentStackTrace(),
+                call.frame.getStackTrace(),
               );
           }
 

@@ -6,7 +6,10 @@ class TenkaFubukiLocaleConvertable extends TenkaFubukiConvertable<Locale> {
   TenkaFubukiLocaleConvertable(super.converter);
 
   @override
-  Locale convert(final FubukiValue value) {
+  Locale convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiStringValue casted = value.cast();
     return Locale.parse(casted.value);
   }

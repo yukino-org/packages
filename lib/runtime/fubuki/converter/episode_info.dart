@@ -6,7 +6,10 @@ class TenkaFubukiEpisodeInfoConvertable
   TenkaFubukiEpisodeInfoConvertable(super.converter);
 
   @override
-  EpisodeInfo convert(final FubukiValue value) {
+  EpisodeInfo convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue episode =
         casted.getNamedProperty(TenkaFubukiConverter.kEpisode);
@@ -18,7 +21,7 @@ class TenkaFubukiEpisodeInfoConvertable
     return EpisodeInfo(
       episode: episode.value,
       url: url.value,
-      locale: converter.locale.convert(locale),
+      locale: converter.locale.convert(frame, locale),
     );
   }
 }

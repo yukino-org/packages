@@ -6,7 +6,10 @@ class TenkaFubukiHeadersConvertable
   TenkaFubukiHeadersConvertable(super.converter);
 
   @override
-  Map<String, String> convert(final FubukiValue value) {
+  Map<String, String> convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final Map<String, String> result = <String, String>{};
     for (final MapEntry<FubukiValue, FubukiValue> x in casted.entries()) {

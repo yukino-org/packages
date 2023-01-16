@@ -5,7 +5,10 @@ class TenkaFubukiPageInfoConvertable extends TenkaFubukiConvertable<PageInfo> {
   TenkaFubukiPageInfoConvertable(super.converter);
 
   @override
-  PageInfo convert(final FubukiValue value) {
+  PageInfo convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue url =
         casted.getNamedProperty(TenkaFubukiConverter.kUrl);
@@ -14,7 +17,7 @@ class TenkaFubukiPageInfoConvertable extends TenkaFubukiConvertable<PageInfo> {
 
     return PageInfo(
       url: url.value,
-      locale: converter.locale.convert(locale),
+      locale: converter.locale.convert(frame, locale),
     );
   }
 }

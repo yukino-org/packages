@@ -6,7 +6,10 @@ class TenkaFubukiMangaInfoConvertable
   TenkaFubukiMangaInfoConvertable(super.converter);
 
   @override
-  MangaInfo convert(final FubukiValue value) {
+  MangaInfo convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue title =
         casted.getNamedProperty(TenkaFubukiConverter.kTitle);
@@ -24,10 +27,10 @@ class TenkaFubukiMangaInfoConvertable
     return MangaInfo(
       title: title.value,
       url: url.value,
-      chapters: converter.chapterInfo.convertMany(chapters),
-      locale: converter.locale.convert(locale),
-      availableLocales: converter.locale.convertMany(availableLocales),
-      thumbnail: converter.imageDescriber.maybeConvert(thumbnail),
+      chapters: converter.chapterInfo.convertMany(frame, chapters),
+      locale: converter.locale.convert(frame, locale),
+      availableLocales: converter.locale.convertMany(frame, availableLocales),
+      thumbnail: converter.imageDescriber.maybeConvert(frame, thumbnail),
     );
   }
 }

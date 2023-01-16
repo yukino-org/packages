@@ -6,7 +6,10 @@ class TenkaFubukiEpisodeSourceConvertable
   TenkaFubukiEpisodeSourceConvertable(super.converter);
 
   @override
-  EpisodeSource convert(final FubukiValue value) {
+  EpisodeSource convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue url =
         casted.getNamedProperty(TenkaFubukiConverter.kUrl);
@@ -20,8 +23,8 @@ class TenkaFubukiEpisodeSourceConvertable
     return EpisodeSource(
       url: url.value,
       quality: Quality.parse(quality.value),
-      headers: converter.headers.convert(headers),
-      locale: converter.locale.convert(locale),
+      headers: converter.headers.convert(frame, headers),
+      locale: converter.locale.convert(frame, locale),
     );
   }
 }

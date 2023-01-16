@@ -6,7 +6,10 @@ class TenkaFubukiSearchInfoConvertable
   TenkaFubukiSearchInfoConvertable(super.converter);
 
   @override
-  SearchInfo convert(final FubukiValue value) {
+  SearchInfo convert(
+    final FubukiCallFrame frame,
+    final FubukiValue value,
+  ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
     final FubukiStringValue title =
         casted.getNamedProperty(TenkaFubukiConverter.kTitle);
@@ -20,8 +23,8 @@ class TenkaFubukiSearchInfoConvertable
     return SearchInfo(
       title: title.value,
       url: url.value,
-      locale: converter.locale.convert(locale),
-      thumbnail: converter.imageDescriber.maybeConvert(thumbnail),
+      locale: converter.locale.convert(frame, locale),
+      thumbnail: converter.imageDescriber.maybeConvert(frame, thumbnail),
     );
   }
 }
