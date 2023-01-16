@@ -66,36 +66,3 @@ extension TenkaFubukiConverterUtils on FubukiPrimitiveObjectValue {
   ) =>
       set(FubukiStringValue(name), value);
 }
-
-extension TenkaFubukiConverterAsyncUtils on FubukiValue {
-  Future<FubukiValue> awaited() async {
-    final FubukiValue value = this;
-    if (value is FubukiFutureValue) return value.resolve();
-    return value;
-  }
-}
-
-extension TenkaFubukiConverterCallUtils on FubukiCallFrame {
-  Future<FubukiValue> callAsyncFunction(
-    final FubukiValue value,
-    final List<FubukiValue> arguments,
-  ) async {
-    try {
-      final FubukiValue returnValue =
-          await callValue(value, arguments).unwrapUnsafe();
-      final FubukiValue result = await returnValue.awaited();
-      return result;
-    } on FubukiValue catch (err) {
-      throw TenkaFubukiException(err.kToString());
-    }
-  }
-}
-
-class TenkaFubukiException implements Exception {
-  TenkaFubukiException(this.message);
-
-  final String message;
-
-  @override
-  String toString() => 'TenkaFubukiException: $message';
-}

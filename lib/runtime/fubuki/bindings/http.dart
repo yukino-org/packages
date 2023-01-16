@@ -18,7 +18,7 @@ abstract class HttpBindings {
     final FubukiObjectValue value = FubukiObjectValue();
     value.setNamedProperty(
       'request',
-      FubukiNativeFunctionValue.asyncReturn(
+      FubukiNativeFunctionValue.async(
         (final FubukiNativeFunctionCall call) async {
           final FubukiObjectValue options = call.argumentAt(0);
           final FubukiStringValue method = options.getNamedProperty('method');

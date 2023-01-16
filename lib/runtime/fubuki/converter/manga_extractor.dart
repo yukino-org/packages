@@ -26,43 +26,43 @@ class TenkaFubukiMangaExtractorConvertable
     return MangaExtractor(
       defaultLocale: converter.locale.convert(frame, defaultLocale),
       search: (final String terms, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           search,
           <FubukiValue>[
             FubukiStringValue(terms),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.searchInfo.convertMany(frame, result);
       },
       getInfo: (final String url, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           getInfo,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.mangaInfo.convert(frame, result);
       },
       getChapter: (final String url, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           getChapter,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.pageInfo.convertMany(frame, result);
       },
       getPage: (final String url, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           getPage,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.imageDescriber.convert(frame, result);
       },
     );

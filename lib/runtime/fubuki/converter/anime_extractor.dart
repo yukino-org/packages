@@ -24,33 +24,33 @@ class TenkaFubukiAnimeExtractorConvertable
     return AnimeExtractor(
       defaultLocale: converter.locale.convert(frame, defaultLocale),
       search: (final String terms, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           search,
           <FubukiValue>[
             FubukiStringValue(terms),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.searchInfo.convertMany(frame, result);
       },
       getInfo: (final String url, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           getInfo,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.animeInfo.convert(frame, result);
       },
       getSources: (final String url, final Locale locale) async {
-        final FubukiValue result = await frame.callAsyncFunction(
+        final FubukiValue result = await frame.callValue(
           getSources,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),
           ],
-        );
+        ).unwrapUnsafe();
         return converter.episodeSource.convertMany(frame, result);
       },
     );
