@@ -39,7 +39,10 @@ abstract class UrlBindings {
       'ensure',
       FubukiNativeFunctionValue.sync(
         (final FubukiNativeFunctionCall call) {
-          final String url = call.argumentAt<FubukiStringValue>(0).value;
+          String url = call.argumentAt<FubukiStringValue>(0).value;
+          if (!url.startsWith(RegExp('https?:'))) {
+            url = 'https:$url';
+          }
           try {
             if (url != Uri.decodeFull(url)) return FubukiStringValue(url);
           } catch (_) {}
