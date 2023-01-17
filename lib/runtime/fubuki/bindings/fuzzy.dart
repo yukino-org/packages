@@ -20,7 +20,7 @@ abstract class FuzzySearchBindings {
                 return _FuzzySearchKey(
                   getter: casted.getNamedProperty('getter'),
                   weight: casted
-                      .getNamedProperty('getter')
+                      .getNamedProperty('weight')
                       .cast<FubukiNumberValue>()
                       .value,
                 );
