@@ -62,7 +62,7 @@ abstract class FuzzySearchBindings {
             final FubukiObjectValue result = FubukiObjectValue();
             result.set(matchKey, FubukiNumberValue(match));
             result.setNamedProperty('item', item);
-            results.add(value);
+            results.add(result);
           }
           results.sort((final FubukiObjectValue a, final FubukiObjectValue b) {
             final FubukiNumberValue distanceA = a.get(matchKey).cast();
