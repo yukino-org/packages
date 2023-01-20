@@ -17,6 +17,7 @@ class TenkaMetadata {
     required this.thumbnail,
     required this.nsfw,
     required this.version,
+    required this.deprecated,
   });
 
   factory TenkaMetadata.fromJson(final Map<dynamic, dynamic> json) =>
@@ -33,6 +34,7 @@ class TenkaMetadata {
         ),
         nsfw: json['nsfw'] as bool,
         version: TenkaVersion.parse(json['version'] as String),
+        deprecated: json['deprecated'] as bool,
       );
 
   final String id;
@@ -43,6 +45,7 @@ class TenkaMetadata {
   final TenkaDataSource thumbnail;
   final bool nsfw;
   final TenkaVersion version;
+  final bool deprecated;
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'id': id,
@@ -53,5 +56,6 @@ class TenkaMetadata {
         'thumbnail': thumbnail.toJson(),
         'nsfw': nsfw,
         'version': version.toString(),
+        'deprecated': deprecated,
       };
 }
