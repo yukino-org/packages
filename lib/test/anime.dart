@@ -1,5 +1,6 @@
 import 'package:fubuki_compiler/fubuki_compiler.dart';
 import 'package:tenka/tenka.dart';
+import '../compiler.dart';
 import '../utils/exports.dart';
 
 typedef TAnimeExtractorFn<T> = Future<T> Function(AnimeExtractor);
@@ -19,10 +20,7 @@ class MockedAnimeExtractor {
     final TenkaLocalFileDS source, {
     final bool verbose = true,
   }) async {
-    final FubukiProgramConstant program = await FubukiCompiler.compileProject(
-      root: source.root,
-      entrypoint: source.file,
-    );
+    final FubukiProgramConstant program = await TenkaCompiler.compile(source);
     final TenkaRuntimeInstance runtime =
         await TenkaRuntimeManager.create(program);
     final AnimeExtractor extractor = await runtime.getAnimeExtractor();
