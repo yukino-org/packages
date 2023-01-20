@@ -71,6 +71,7 @@ class TenkaRepository {
       thumbnail: thumbnail,
       nsfw: metadata.nsfw,
       version: metadata.version,
+      deprecated: metadata.deprecated,
     );
   }
 
