@@ -2,16 +2,16 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "lint",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/dart-lint-b5da48d51dda2c17ea93761d08b0c064e30c43d6/",
+      "name": "flutter_lints",
+      "rootUri": "file:///C:/Users/chris/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.1",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.17"
     },
     {
-      "name": "zlint",
-      "rootUri": "file:///C:/Users/navee/AppData/Local/Pub/Cache/git/dart_zlint-277afca1b6965b01295e830d0710df7c156f5a8f/",
+      "name": "lints",
+      "rootUri": "file:///C:/Users/chris/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.0.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "devx",
@@ -20,7 +20,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-07-18T14:19:15.553319Z",
+  "generated": "2023-04-14T13:38:26.592069Z",
   "generator": "pub",
-  "generatorVersion": "2.19.0-5.0.dev"
+  "generatorVersion": "2.19.6"
 }
