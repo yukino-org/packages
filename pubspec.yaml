@@ -15,7 +15,7 @@ dependencies:
             url: https://github.com/yukino-org/fubuki.git
             path: packages/fubuki_vm
     html: ^0.15.0
-    http: ^0.13.3
+    http: ^1.0.0
     meta: ^1.7.0
     tenka:
         git:
