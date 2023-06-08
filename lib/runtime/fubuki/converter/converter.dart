@@ -47,6 +47,8 @@ class TenkaFubukiConverter {
   static const String kLocale = 'locale';
   static const String kEpisode = 'episode';
   static const String kEpisodes = 'episodes';
+  static const String kStreams = 'streams';
+  static const String kSubtitles = 'subtitles';
   static const String kHeaders = 'headers';
   static const String kAvailableLocales = 'availableLocales';
   static const String kThumbnail = 'thumbnail';

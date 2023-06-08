@@ -51,7 +51,7 @@ class TenkaFubukiAnimeExtractorConvertable
             FubukiStringValue(locale.toCodeString()),
           ],
         ).unwrapUnsafe();
-        return converter.episodeSource.convertMany(frame, result);
+        return converter.episodeSource.convert(frame, result);
       },
     );
   }
