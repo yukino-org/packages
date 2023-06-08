@@ -5,12 +5,12 @@ import 'chapter/info.dart';
 
 class MangaInfo {
   MangaInfo({
-    required final this.url,
-    required final this.title,
+    required this.url,
+    required this.title,
     required final List<ChapterInfo> chapters,
-    required final this.locale,
-    required final this.availableLocales,
-    final this.thumbnail,
+    required this.locale,
+    required this.availableLocales,
+    this.thumbnail,
   }) : chapters = ListUtils.tryArrange(
           chapters,
           (final ChapterInfo x) => x.chapter,

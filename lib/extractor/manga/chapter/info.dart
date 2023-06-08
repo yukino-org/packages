@@ -2,11 +2,11 @@ import 'package:utilx/locale.dart';
 
 class ChapterInfo {
   const ChapterInfo({
-    required final this.chapter,
-    required final this.url,
-    required final this.locale,
-    final this.title,
-    final this.volume,
+    required this.chapter,
+    required this.url,
+    required this.locale,
+    this.title,
+    this.volume,
   });
 
   factory ChapterInfo.fromJson(final Map<dynamic, dynamic> json) => ChapterInfo(

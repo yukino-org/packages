@@ -5,12 +5,12 @@ import 'episode/info.dart';
 
 class AnimeInfo {
   AnimeInfo({
-    required final this.title,
-    required final this.url,
+    required this.title,
+    required this.url,
     required final List<EpisodeInfo> episodes,
-    required final this.locale,
-    required final this.availableLocales,
-    final this.thumbnail,
+    required this.locale,
+    required this.availableLocales,
+    this.thumbnail,
   }) : episodes = ListUtils.tryArrange(
           episodes,
           (final EpisodeInfo x) => x.episode,

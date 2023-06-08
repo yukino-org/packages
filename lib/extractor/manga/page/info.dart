@@ -2,8 +2,8 @@ import 'package:utilx/locale.dart';
 
 class PageInfo {
   const PageInfo({
-    required final this.url,
-    required final this.locale,
+    required this.url,
+    required this.locale,
   });
 
   factory PageInfo.fromJson(final Map<dynamic, dynamic> json) => PageInfo(

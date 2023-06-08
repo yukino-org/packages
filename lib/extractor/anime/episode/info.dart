@@ -2,9 +2,9 @@ import 'package:utilx/locale.dart';
 
 class EpisodeInfo {
   const EpisodeInfo({
-    required final this.episode,
-    required final this.url,
-    required final this.locale,
+    required this.episode,
+    required this.url,
+    required this.locale,
   });
 
   factory EpisodeInfo.fromJson(final Map<dynamic, dynamic> json) => EpisodeInfo(

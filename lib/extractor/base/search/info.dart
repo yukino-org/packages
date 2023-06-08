@@ -8,10 +8,10 @@ typedef SearchFn = Future<List<SearchInfo>> Function(
 
 class SearchInfo {
   const SearchInfo({
-    required final this.title,
-    required final this.url,
-    required final this.locale,
-    final this.thumbnail,
+    required this.title,
+    required this.url,
+    required this.locale,
+    this.thumbnail,
   });
 
   factory SearchInfo.fromJson(final Map<dynamic, dynamic> json) => SearchInfo(

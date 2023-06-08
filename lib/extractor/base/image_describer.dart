@@ -1,7 +1,7 @@
 class ImageDescriber {
   const ImageDescriber({
-    required final this.url,
-    final this.headers = const <String, String>{},
+    required this.url,
+    this.headers = const <String, String>{},
   });
 
   factory ImageDescriber.fromJson(final Map<dynamic, dynamic> json) =>

@@ -3,10 +3,10 @@ import 'quality.dart';
 
 class EpisodeSource {
   const EpisodeSource({
-    required final this.url,
-    required final this.quality,
-    required final this.headers,
-    required final this.locale,
+    required this.url,
+    required this.quality,
+    required this.headers,
+    required this.locale,
   });
 
   factory EpisodeSource.fromJson(final Map<dynamic, dynamic> json) =>

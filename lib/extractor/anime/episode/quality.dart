@@ -28,8 +28,8 @@ class Quality {
 
   static Quality get(final Qualities q) => qualities[q]!;
 
-  static Quality parse(final String _approx) {
-    final String approx = _approx.toLowerCase();
+  static Quality parse(final String value) {
+    final String approx = value.toLowerCase();
     for (final Quality q in qualities.values) {
       if (q.code == approx ||
           q.code.substring(0, q.code.length - 1) == approx ||
