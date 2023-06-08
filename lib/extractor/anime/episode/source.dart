@@ -1,6 +1,6 @@
 import 'package:utilx/utils.dart';
-import 'streams.dart';
-import 'subtitles.dart';
+import 'stream.dart';
+import 'subtitle.dart';
 
 class EpisodeSource {
   const EpisodeSource({
@@ -14,11 +14,11 @@ class EpisodeSource {
       );
 
   final List<EpisodeStream> streams;
-  final List<EpisodeSubtitles> subtitles;
+  final List<EpisodeSubtitle> subtitles;
 
   JsonMap toJson() => <dynamic, dynamic>{
         'streams': streams.map((final EpisodeStream x) => x.toJson()).toList(),
         'subtitles':
-            subtitles.map((final EpisodeSubtitles x) => x.toJson()).toList(),
+            subtitles.map((final EpisodeSubtitle x) => x.toJson()).toList(),
       };
 }
