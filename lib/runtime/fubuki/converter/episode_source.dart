@@ -13,9 +13,9 @@ class TenkaFubukiEpisodeSourceConvertable
     final FubukiValue value,
   ) {
     final FubukiPrimitiveObjectValue casted = value.cast();
-    final FubukiStringValue streams =
+    final FubukiValue streams =
         casted.getNamedProperty(TenkaFubukiConverter.kStreams);
-    final FubukiStringValue subtitles =
+    final FubukiValue subtitles =
         casted.getNamedProperty(TenkaFubukiConverter.kSubtitles);
 
     return EpisodeSource(
