@@ -32,7 +32,7 @@ class MockedMangaExtractor {
 
     return BenchmarkRunner.run(
       <String, Future<dynamic> Function()>{
-        'search': () async {
+        TenkaFubukiConverter.kSearch: () async {
           final List<SearchInfo> result = await search(extractor);
 
           whenVerbose(() {
@@ -51,7 +51,7 @@ class MockedMangaExtractor {
 
           return result;
         },
-        'getInfo': () async {
+        TenkaFubukiConverter.kGetInfo: () async {
           final MangaInfo result = await getInfo(extractor);
 
           whenVerbose(() {
@@ -63,7 +63,7 @@ class MockedMangaExtractor {
 
           return result;
         },
-        'getChapter': () async {
+        TenkaFubukiConverter.kGetChapter: () async {
           final List<PageInfo> result = await getChapter(extractor);
 
           whenVerbose(() {
@@ -82,7 +82,7 @@ class MockedMangaExtractor {
 
           return result;
         },
-        'getPage': () async {
+        TenkaFubukiConverter.kGetPage: () async {
           final ImageDescriber result = await getPage(extractor);
 
           whenVerbose(() {

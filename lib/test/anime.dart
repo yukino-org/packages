@@ -1,4 +1,3 @@
-import 'package:fubuki_compiler/fubuki_compiler.dart';
 import 'package:tenka/tenka.dart';
 import '../compiler.dart';
 import '../utils/exports.dart';
@@ -9,12 +8,12 @@ class MockedAnimeExtractor {
   const MockedAnimeExtractor({
     required this.search,
     required this.getInfo,
-    required this.getSources,
+    required this.getSource,
   });
 
   final TAnimeExtractorFn<List<SearchInfo>> search;
   final TAnimeExtractorFn<AnimeInfo> getInfo;
-  final TAnimeExtractorFn<List<EpisodeSource>> getSources;
+  final TAnimeExtractorFn<EpisodeSource> getSource;
 
   Future<Map<String, Benchmarks>> run(
     final TenkaLocalFileDS source, {
@@ -28,7 +27,7 @@ class MockedAnimeExtractor {
 
     return BenchmarkRunner.run(
       <String, Future<dynamic> Function()>{
-        'search': () async {
+        TenkaFubukiConverter.kSearch: () async {
           final List<SearchInfo> result = await search(extractor);
 
           whenVerbose(() {
@@ -47,7 +46,7 @@ class MockedAnimeExtractor {
 
           return result;
         },
-        'getInfo': () async {
+        TenkaFubukiConverter.kGetInfo: () async {
           final AnimeInfo result = await getInfo(extractor);
 
           whenVerbose(() {
@@ -59,21 +58,28 @@ class MockedAnimeExtractor {
 
           return result;
         },
-        'getSources': () async {
-          final List<EpisodeSource> result = await getSources(extractor);
+        TenkaFubukiConverter.kGetSource: () async {
+          final EpisodeSource result = await getSource(extractor);
 
           whenVerbose(() {
-            TenkaDevConsole.p('Results (${result.length}):');
+            TenkaDevConsole.p('Results (streams: ${result.streams.length}):');
             TenkaDevConsole.p(
               TenkaDevConsole.qt(
-                result.map((final EpisodeSource x) => x.toJson()),
+                result.streams.map((final EpisodeStream x) => x.toJson()),
+                spacing: '  ',
+              ),
+            );
+            TenkaDevConsole.p('Results (subtitles: ${result.streams.length}):');
+            TenkaDevConsole.p(
+              TenkaDevConsole.qt(
+                result.subtitles.map((final EpisodeSubtitle x) => x.toJson()),
                 spacing: '  ',
               ),
             );
           });
 
-          if (result.isEmpty) {
-            throw ExceptionWithData('Empty result', result);
+          if (result.streams.isEmpty) {
+            throw ExceptionWithData('Empty result (streams)', result);
           }
 
           return result;
