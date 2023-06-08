@@ -112,10 +112,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.6"
+    version: "1.0.0"
   http_parser:
     dependency: transitive
     description:
@@ -185,7 +185,7 @@ packages:
     description:
       path: "."
       ref: dart_tenka_runtime
-      resolved-ref: "35de2a849c5d226c8114dd93232f3040627811a2"
+      resolved-ref: "107a54db00a4022cd0623bc580cdf60b38623085"
       url: "https://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
