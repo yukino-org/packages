@@ -8,15 +8,15 @@ environment:
     sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-    crypto: ^3.0.1
-    encrypt: ^5.0.0
+    crypto: ^3.0.3
+    encrypt: ^5.0.1
     fubuki_vm:
         git:
             url: https://github.com/yukino-org/fubuki.git
             path: packages/fubuki_vm
-    html: ^0.15.0
+    html: ^0.15.3
     http: ^1.0.0
-    meta: ^1.7.0
+    meta: ^1.9.1
     tenka:
         git:
             url: https://github.com/yukino-org/packages.git
