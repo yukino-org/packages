@@ -4,20 +4,19 @@ packages:
   lint:
     dependency: transitive
     description:
-      path: "."
-      ref: master
-      resolved-ref: b5da48d51dda2c17ea93761d08b0c064e30c43d6
-      url: "https://github.com/zyrouge/dart-lint.git"
-    source: git
-    version: "1.9.0"
+      name: lint
+      sha256: f4bd4dbaa39f4ae8836f2d1275f2f32bc68b3a8cce0a0735dd1f7a601f06682a
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
   zlint:
     dependency: "direct main"
     description:
       path: "."
       ref: main
-      resolved-ref: "277afca1b6965b01295e830d0710df7c156f5a8f"
+      resolved-ref: "9a635be15e5dead4913b1231fe9e53c060a13640"
       url: "https://github.com/zyrouge/dart_zlint.git"
     source: git
     version: "0.0.0"
 sdks:
-  dart: ">=2.16.0-44.0.dev <3.0.0"
+  dart: ">=3.0.0 <4.0.0"
