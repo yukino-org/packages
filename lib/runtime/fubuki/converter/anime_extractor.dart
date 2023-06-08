@@ -18,8 +18,8 @@ class TenkaFubukiAnimeExtractorConvertable
         casted.getNamedProperty(TenkaFubukiConverter.kSearch);
     final FubukiFunctionValue getInfo =
         casted.getNamedProperty(TenkaFubukiConverter.kGetInfo);
-    final FubukiFunctionValue getSources =
-        casted.getNamedProperty(TenkaFubukiConverter.kGetSources);
+    final FubukiFunctionValue getSource =
+        casted.getNamedProperty(TenkaFubukiConverter.kGetSource);
 
     return AnimeExtractor(
       defaultLocale: converter.locale.convert(frame, defaultLocale),
@@ -43,9 +43,9 @@ class TenkaFubukiAnimeExtractorConvertable
         ).unwrapUnsafe();
         return converter.animeInfo.convert(frame, result);
       },
-      getSources: (final String url, final Locale locale) async {
+      getSource: (final String url, final Locale locale) async {
         final FubukiValue result = await frame.callValue(
-          getSources,
+          getSource,
           <FubukiValue>[
             FubukiStringValue(url),
             FubukiStringValue(locale.toCodeString()),

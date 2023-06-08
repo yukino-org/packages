@@ -39,7 +39,7 @@ class TenkaFubukiConverter {
   static const String kDefaultLocale = 'defaultLocale';
   static const String kSearch = 'search';
   static const String kGetInfo = 'getInfo';
-  static const String kGetSources = 'getSources';
+  static const String kGetSource = 'getSource';
   static const String kGetChapter = 'getChapter';
   static const String kGetPage = 'getPage';
   static const String kTitle = 'title';
