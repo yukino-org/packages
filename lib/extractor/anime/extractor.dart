@@ -5,7 +5,7 @@ import 'info.dart';
 
 typedef GetAnimeInfoFn = Future<AnimeInfo> Function(String, Locale);
 
-typedef GetSourcesFn = Future<List<EpisodeSource>> Function(String, Locale);
+typedef GetSourcesFn = Future<EpisodeSource> Function(String, Locale);
 
 class AnimeExtractor {
   const AnimeExtractor({

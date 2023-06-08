@@ -9,18 +9,14 @@ class TenkaStore {
     required this.checksum,
   });
 
-  factory TenkaStore.fromJson(final Map<dynamic, dynamic> json) => TenkaStore(
-        baseURLs:
-            (json['baseURLs'] as Map<dynamic, dynamic>).cast<String, String>(),
-        modules: (json['modules'] as Map<dynamic, dynamic>)
-            .cast<String, Map<dynamic, dynamic>>()
-            .map(
-              (final String i, final Map<dynamic, dynamic> x) =>
-                  MapEntry<String, TenkaMetadata>(
-                i,
-                TenkaMetadata.fromJson(x),
-              ),
-            ),
+  factory TenkaStore.fromJson(final JsonMap json) => TenkaStore(
+        baseURLs: castJsonMap(json['baseURLs']),
+        modules: castJsonMap<String, JsonMap>(json['modules']).map(
+          (final String i, final JsonMap x) => MapEntry<String, TenkaMetadata>(
+            i,
+            TenkaMetadata.fromJson(x),
+          ),
+        ),
         builtAt: DateTime.parse(json['builtAt'] as String),
         checksum: json['checksum'] as String,
       );
@@ -30,11 +26,11 @@ class TenkaStore {
   final DateTime builtAt;
   final String checksum;
 
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+  JsonMap toJson() => <dynamic, dynamic>{
         'baseURLs': baseURLs,
         'modules': modules.map(
           (final String i, final TenkaMetadata x) =>
-              MapEntry<String, Map<dynamic, dynamic>>(i, x.toJson()),
+              MapEntry<String, JsonMap>(i, x.toJson()),
         ),
         'builtAt': builtAt.toIso8601String(),
         'checksum': checksum,

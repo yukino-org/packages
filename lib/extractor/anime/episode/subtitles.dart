@@ -1,26 +1,26 @@
 import 'package:utilx/locale.dart';
 import 'package:utilx/utils.dart';
 
-class EpisodeInfo {
-  const EpisodeInfo({
-    required this.episode,
+class EpisodeSubtitles {
+  const EpisodeSubtitles({
     required this.url,
+    required this.headers,
     required this.locale,
   });
 
-  factory EpisodeInfo.fromJson(final JsonMap json) => EpisodeInfo(
-        episode: json['episode'] as String,
+  factory EpisodeSubtitles.fromJson(final JsonMap json) => EpisodeSubtitles(
         url: json['url'] as String,
+        headers: castJsonMap(json['headers']),
         locale: Locale.parse(json['locale'] as String),
       );
 
-  final String episode;
   final String url;
+  final Map<String, String> headers;
   final Locale locale;
 
   JsonMap toJson() => <dynamic, dynamic>{
-        'episode': episode,
         'url': url,
+        'headers': headers,
         'locale': locale.toCodeString(),
       };
 }

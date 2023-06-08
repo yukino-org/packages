@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:path/path.dart' as path;
+import 'package:utilx/utils.dart';
 import '../model.dart';
 
 class TenkaLocalFileDS extends TenkaDataSource {
@@ -24,8 +25,7 @@ class TenkaLocalFileDSConverter
   final String type = 'local_file';
 
   TenkaLocalFileDS _fromStringifiedJson(final String data) {
-    final Map<dynamic, dynamic> parsed =
-        json.decode(data) as Map<dynamic, dynamic>;
+    final JsonMap parsed = json.decode(data) as JsonMap;
 
     return TenkaLocalFileDS(
       root: path.dirname(parsed['root'] as String),

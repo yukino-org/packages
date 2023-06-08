@@ -1,20 +1,20 @@
+import 'package:utilx/utils.dart';
+
 class ImageDescriber {
   const ImageDescriber({
     required this.url,
     this.headers = const <String, String>{},
   });
 
-  factory ImageDescriber.fromJson(final Map<dynamic, dynamic> json) =>
-      ImageDescriber(
+  factory ImageDescriber.fromJson(final JsonMap json) => ImageDescriber(
         url: json['url'] as String,
-        headers:
-            (json['headers'] as Map<dynamic, dynamic>).cast<String, String>(),
+        headers: castJsonMap(json['headers']),
       );
 
   final String url;
   final Map<String, String> headers;
 
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+  JsonMap toJson() => <dynamic, dynamic>{
         'url': url,
         'headers': headers,
       };

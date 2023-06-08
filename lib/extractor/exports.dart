@@ -1,6 +1,8 @@
 export 'anime/episode/info.dart';
 export 'anime/episode/quality.dart';
 export 'anime/episode/source.dart';
+export 'anime/episode/streams.dart';
+export 'anime/episode/subtitles.dart';
 export 'anime/extractor.dart';
 export 'anime/info.dart';
 export 'base/image_describer.dart';

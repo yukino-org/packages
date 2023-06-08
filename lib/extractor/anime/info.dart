@@ -16,21 +16,17 @@ class AnimeInfo {
           (final EpisodeInfo x) => x.episode,
         );
 
-  factory AnimeInfo.fromJson(final Map<dynamic, dynamic> json) => AnimeInfo(
+  factory AnimeInfo.fromJson(final JsonMap json) => AnimeInfo(
         title: json['title'] as String,
         url: json['url'] as String,
-        episodes: (json['episodes'] as List<dynamic>)
-            .cast<Map<dynamic, dynamic>>()
-            .map((final Map<dynamic, dynamic> x) => EpisodeInfo.fromJson(x))
+        episodes: castList<JsonMap>(json['episodes'])
+            .map((final JsonMap x) => EpisodeInfo.fromJson(x))
             .toList(),
         thumbnail: json['thumbnail'] != null
-            ? ImageDescriber.fromJson(
-                json['thumbnail'] as Map<dynamic, dynamic>,
-              )
+            ? ImageDescriber.fromJson(json['thumbnail'] as JsonMap)
             : null,
         locale: Locale.parse(json['locale'] as String),
-        availableLocales: (json['availableLocales'] as List<dynamic>)
-            .cast<String>()
+        availableLocales: castList<String>(json['availableLocales'])
             .map((final String x) => Locale.parse(x))
             .toList(),
       );
@@ -42,7 +38,7 @@ class AnimeInfo {
   final Locale locale;
   final List<Locale> availableLocales;
 
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+  JsonMap toJson() => <dynamic, dynamic>{
         'title': title,
         'url': url,
         'thumbnail': thumbnail?.toJson(),

@@ -16,21 +16,17 @@ class MangaInfo {
           (final ChapterInfo x) => x.chapter,
         );
 
-  factory MangaInfo.fromJson(final Map<dynamic, dynamic> json) => MangaInfo(
+  factory MangaInfo.fromJson(final JsonMap json) => MangaInfo(
         title: json['title'] as String,
         url: json['url'] as String,
-        chapters: (json['chapters'] as List<dynamic>)
-            .cast<Map<dynamic, dynamic>>()
-            .map((final Map<dynamic, dynamic> x) => ChapterInfo.fromJson(x))
+        chapters: castList<JsonMap>(json['chapters'])
+            .map((final JsonMap x) => ChapterInfo.fromJson(x))
             .toList(),
         thumbnail: json['thumbnail'] != null
-            ? ImageDescriber.fromJson(
-                json['thumbnail'] as Map<dynamic, dynamic>,
-              )
+            ? ImageDescriber.fromJson(json['thumbnail'] as JsonMap)
             : null,
         locale: Locale.parse(json['locale'] as String),
-        availableLocales: (json['availableLocales'] as List<dynamic>)
-            .cast<String>()
+        availableLocales: castList<String>(json['availableLocales'])
             .map((final String x) => Locale.parse(x))
             .toList(),
       );
@@ -42,7 +38,7 @@ class MangaInfo {
   final Locale locale;
   final List<Locale> availableLocales;
 
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+  JsonMap toJson() => <dynamic, dynamic>{
         'title': title,
         'url': url,
         'thumbnail': thumbnail?.toJson(),

@@ -1,4 +1,5 @@
 import 'package:utilx/locale.dart';
+import 'package:utilx/utils.dart';
 
 class ChapterInfo {
   const ChapterInfo({
@@ -9,7 +10,7 @@ class ChapterInfo {
     this.volume,
   });
 
-  factory ChapterInfo.fromJson(final Map<dynamic, dynamic> json) => ChapterInfo(
+  factory ChapterInfo.fromJson(final JsonMap json) => ChapterInfo(
         title: json['title'] as String?,
         url: json['url'] as String,
         volume: json['volume'] as String?,
@@ -23,7 +24,7 @@ class ChapterInfo {
   final String url;
   final Locale locale;
 
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+  JsonMap toJson() => <dynamic, dynamic>{
         'title': title,
         'volume': volume,
         'chapter': chapter,

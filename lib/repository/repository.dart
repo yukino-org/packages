@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
+import 'package:utilx/utils.dart';
 import '../data/exports.dart';
 import '../metadata/exports.dart';
 import '../store/exports.dart';
@@ -100,8 +101,7 @@ class TenkaRepository {
     if (await mainFile.exists()) {
       for (final dynamic x
           in json.decode(await mainFile.readAsString()) as List<dynamic>) {
-        TenkaMetadata metadata =
-            TenkaMetadata.fromJson(x as Map<dynamic, dynamic>);
+        TenkaMetadata metadata = TenkaMetadata.fromJson(x as JsonMap);
 
         final TenkaMetadata? currentMetadata = store.modules[metadata.id];
 
@@ -127,8 +127,7 @@ class TenkaRepository {
 
       if (cachedChecksum == currentChecksum) {
         store = TenkaStore.fromJson(
-          json.decode(await storeCacheFile.readAsString())
-              as Map<dynamic, dynamic>,
+          json.decode(await storeCacheFile.readAsString()) as JsonMap,
         );
 
         return;
@@ -151,7 +150,7 @@ class TenkaRepository {
   Future<TenkaStore> _getLatestStore() async {
     final http.Response resp = await http.get(Uri.parse(resolver.storeURL));
 
-    return TenkaStore.fromJson(json.decode(resp.body) as Map<dynamic, dynamic>);
+    return TenkaStore.fromJson(json.decode(resp.body) as JsonMap);
   }
 
   String get modulesFilePath => path.join(baseDir, 'modules.json');

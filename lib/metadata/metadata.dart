@@ -20,17 +20,16 @@ class TenkaMetadata {
     required this.deprecated,
   });
 
-  factory TenkaMetadata.fromJson(final Map<dynamic, dynamic> json) =>
-      TenkaMetadata(
+  factory TenkaMetadata.fromJson(final JsonMap json) => TenkaMetadata(
         id: json['id'] as String,
         name: json['name'] as String,
         type: EnumUtils.find(TenkaType.values, json['type'] as String),
         author: json['author'] as String,
         source: TenkaDataSource.fromJson(
-          json['source'] as Map<dynamic, dynamic>,
+          json['source'] as JsonMap,
         ),
         thumbnail: TenkaDataSource.fromJson(
-          json['thumbnail'] as Map<dynamic, dynamic>,
+          json['thumbnail'] as JsonMap,
         ),
         nsfw: json['nsfw'] as bool,
         version: TenkaVersion.parse(json['version'] as String),
@@ -47,7 +46,7 @@ class TenkaMetadata {
   final TenkaVersion version;
   final bool deprecated;
 
-  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+  JsonMap toJson() => <dynamic, dynamic>{
         'id': id,
         'name': name,
         'type': type.name,
