@@ -19,7 +19,7 @@ class MockedAnimeExtractor {
     final TenkaLocalFileDS source, {
     final bool verbose = true,
   }) async {
-    final FubukiProgramConstant program = await TenkaCompiler.compile(source);
+    final BaizeProgramConstant program = await TenkaCompiler.compile(source);
     final TenkaRuntimeInstance runtime =
         await TenkaRuntimeManager.create(program);
     final AnimeExtractor extractor = await runtime.getAnimeExtractor();
@@ -27,7 +27,7 @@ class MockedAnimeExtractor {
 
     return BenchmarkRunner.run(
       <String, Future<dynamic> Function()>{
-        TenkaFubukiConverter.kSearch: () async {
+        TenkaBaizeConverter.kSearch: () async {
           final List<SearchInfo> result = await search(extractor);
 
           whenVerbose(() {
@@ -46,7 +46,7 @@ class MockedAnimeExtractor {
 
           return result;
         },
-        TenkaFubukiConverter.kGetInfo: () async {
+        TenkaBaizeConverter.kGetInfo: () async {
           final AnimeInfo result = await getInfo(extractor);
 
           whenVerbose(() {
@@ -58,7 +58,7 @@ class MockedAnimeExtractor {
 
           return result;
         },
-        TenkaFubukiConverter.kGetSource: () async {
+        TenkaBaizeConverter.kGetSource: () async {
           final EpisodeSource result = await getSource(extractor);
 
           whenVerbose(() {
