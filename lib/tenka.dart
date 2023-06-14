@@ -1,3 +1,4 @@
+// ignore: unnecessary_library_directive
 library tenka;
 
 export 'package:tenka_runtime/tenka_runtime.dart';
