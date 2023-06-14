@@ -1,37 +1,37 @@
-import 'package:fubuki_vm/fubuki_vm.dart';
+import 'package:baize_vm/baize_vm.dart';
 import '../../instance.dart';
 
-abstract class TenkaFubukiConvertable<T> {
-  TenkaFubukiConvertable(this.converter);
+abstract class TenkaBaizeConvertable<T> {
+  TenkaBaizeConvertable(this.converter);
 
-  final TenkaFubukiConverter converter;
+  final TenkaBaizeConverter converter;
 
   T convert(
-    final FubukiCallFrame frame,
-    final FubukiValue value,
+    final BaizeCallFrame frame,
+    final BaizeValue value,
   );
 
   List<T> convertMany(
-    final FubukiCallFrame frame,
-    final FubukiValue value,
+    final BaizeCallFrame frame,
+    final BaizeValue value,
   ) {
-    final FubukiListValue casted = value.cast();
+    final BaizeListValue casted = value.cast();
     return casted.elements
-        .map((final FubukiValue x) => convert(frame, x))
+        .map((final BaizeValue x) => convert(frame, x))
         .toList();
   }
 
   T? maybeConvert(
-    final FubukiCallFrame frame,
-    final FubukiValue value,
+    final BaizeCallFrame frame,
+    final BaizeValue value,
   ) {
-    if (value is FubukiNullValue) return null;
+    if (value is BaizeNullValue) return null;
     return convert(frame, value);
   }
 }
 
-class TenkaFubukiConverter {
-  TenkaFubukiConverter(this.runtime);
+class TenkaBaizeConverter {
+  TenkaBaizeConverter(this.runtime);
 
   final TenkaRuntimeInstance runtime;
 
@@ -58,13 +58,13 @@ class TenkaFubukiConverter {
   static const String kChapters = 'chapters';
 }
 
-extension TenkaFubukiConverterUtils on FubukiPrimitiveObjectValue {
-  T getNamedProperty<T extends FubukiValue>(final String name) =>
-      get(FubukiStringValue(name)).cast();
+extension TenkaBaizeConverterUtils on BaizePrimitiveObjectValue {
+  T getNamedProperty<T extends BaizeValue>(final String name) =>
+      get(BaizeStringValue(name)).cast();
 
   void setNamedProperty(
     final String name,
-    final FubukiValue value,
+    final BaizeValue value,
   ) =>
-      set(FubukiStringValue(name), value);
+      set(BaizeStringValue(name), value);
 }

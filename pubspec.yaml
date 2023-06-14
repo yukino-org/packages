@@ -8,12 +8,12 @@ environment:
     sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
+    baize_vm:
+        git:
+            url: https://github.com/zyrouge/baize.git
+            path: packages/baize_vm
     crypto: ^3.0.3
     encrypt: ^5.0.1
-    fubuki_vm:
-        git:
-            url: https://github.com/yukino-org/fubuki.git
-            path: packages/fubuki_vm
     html: ^0.15.3
     http: ^1.0.0
     meta: ^1.9.1

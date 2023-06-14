@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:fubuki_vm/fubuki_vm.dart';
+import 'package:baize_vm/baize_vm.dart';
 import 'package:http/http.dart' as http;
 import '../converter/exports.dart';
 import '../helpers/http.dart';
@@ -14,23 +14,23 @@ abstract class HttpBindings {
   static const String userAgentMacOS =
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15';
 
-  static void bind(final FubukiNamespace namespace) {
-    final FubukiObjectValue value = FubukiObjectValue();
+  static void bind(final BaizeNamespace namespace) {
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'request',
-      FubukiNativeFunctionValue.async(
-        (final FubukiNativeFunctionCall call) async {
-          final FubukiObjectValue options = call.argumentAt(0);
-          final FubukiStringValue method = options.getNamedProperty('method');
-          final FubukiStringValue url = options.getNamedProperty('url');
-          final FubukiValue body = options.getNamedProperty('body');
-          final FubukiValue headers = options.getNamedProperty('headers');
+      BaizeNativeFunctionValue.async(
+        (final BaizeNativeFunctionCall call) async {
+          final BaizeObjectValue options = call.argumentAt(0);
+          final BaizeStringValue method = options.getNamedProperty('method');
+          final BaizeStringValue url = options.getNamedProperty('url');
+          final BaizeValue body = options.getNamedProperty('body');
+          final BaizeValue headers = options.getNamedProperty('headers');
 
           final Uri uri = Uri.parse(url.value);
-          final String? bodyStr = body is FubukiStringValue ? body.value : null;
+          final String? bodyStr = body is BaizeStringValue ? body.value : null;
           final Map<String, String> headersMap = <String, String>{};
-          if (headers is FubukiObjectValue) {
-            for (final MapEntry<FubukiValue, FubukiValue> x
+          if (headers is BaizeObjectValue) {
+            for (final MapEntry<BaizeValue, BaizeValue> x
                 in headers.entries()) {
               headersMap[x.key.kToString()] = x.value.kToString();
             }
@@ -75,7 +75,7 @@ abstract class HttpBindings {
               break;
 
             default:
-              throw FubukiExceptionNatives.newExceptionNative(
+              throw BaizeExceptionNatives.newExceptionNative(
                 'Invalid http method "${method.value}"',
                 call.frame.getStackTrace(),
               );
@@ -87,37 +87,37 @@ abstract class HttpBindings {
     );
     value.setNamedProperty(
       'defaultDesktopUserAgent',
-      FubukiNativeFunctionValue.sync(
-        (final _) => FubukiStringValue(defaultDesktopUserAgent),
+      BaizeNativeFunctionValue.sync(
+        (final _) => BaizeStringValue(defaultDesktopUserAgent),
       ),
     );
     namespace.declare('Http', value);
   }
 
-  static FubukiValue newHttpResponse(final http.Response response) {
-    final FubukiObjectValue value = FubukiObjectValue();
+  static BaizeValue newHttpResponse(final http.Response response) {
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'body',
-      FubukiStringValue(response.body),
+      BaizeStringValue(response.body),
     );
-    final FubukiObjectValue headers = FubukiObjectValue();
+    final BaizeObjectValue headers = BaizeObjectValue();
     for (final MapEntry<String, String> x in response.headers.entries) {
-      headers.setNamedProperty(x.key, FubukiStringValue(x.value));
+      headers.setNamedProperty(x.key, BaizeStringValue(x.value));
     }
     value.setNamedProperty('headers', headers);
     value.setNamedProperty(
       'statusCode',
-      FubukiNumberValue(response.statusCode.toDouble()),
+      BaizeNumberValue(response.statusCode.toDouble()),
     );
     value.setNamedProperty(
       'reasonPhrase',
       response.reasonPhrase != null
-          ? FubukiStringValue(response.reasonPhrase!)
-          : FubukiNullValue.value,
+          ? BaizeStringValue(response.reasonPhrase!)
+          : BaizeNullValue.value,
     );
     value.setNamedProperty(
       'isRedirect',
-      FubukiBooleanValue(response.isRedirect),
+      BaizeBooleanValue(response.isRedirect),
     );
     return value;
   }

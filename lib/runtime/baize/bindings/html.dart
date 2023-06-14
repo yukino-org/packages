@@ -1,16 +1,16 @@
-import 'package:fubuki_vm/fubuki_vm.dart';
+import 'package:baize_vm/baize_vm.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import '../converter/exports.dart';
 
 abstract class HtmlBindings {
-  static void bind(final FubukiNamespace namespace) {
-    final FubukiObjectValue value = FubukiObjectValue();
+  static void bind(final BaizeNamespace namespace) {
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'parse',
-      FubukiNativeFunctionValue.sync(
-        (final FubukiNativeFunctionCall call) {
-          final FubukiStringValue value = call.argumentAt(0);
+      BaizeNativeFunctionValue.sync(
+        (final BaizeNativeFunctionCall call) {
+          final BaizeStringValue value = call.argumentAt(0);
           return newHtmlElement(html.parse(value.value).documentElement!);
         },
       ),
@@ -18,55 +18,55 @@ abstract class HtmlBindings {
     namespace.declare('HtmlElement', value);
   }
 
-  static FubukiValue newHtmlElement(final dom.Element element) {
-    final FubukiObjectValue value = FubukiObjectValue();
+  static BaizeValue newHtmlElement(final dom.Element element) {
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'classes',
-      FubukiListValue(
-        element.classes.map((final String x) => FubukiStringValue(x)).toList(),
+      BaizeListValue(
+        element.classes.map((final String x) => BaizeStringValue(x)).toList(),
       ),
     );
     value.setNamedProperty(
       'id',
-      FubukiStringValue(element.id),
+      BaizeStringValue(element.id),
     );
     value.setNamedProperty(
       'text',
-      FubukiStringValue(element.text),
+      BaizeStringValue(element.text),
     );
     value.setNamedProperty(
       'innerHtml',
-      FubukiStringValue(element.innerHtml),
+      BaizeStringValue(element.innerHtml),
     );
     value.setNamedProperty(
       'outerHtml',
-      FubukiStringValue(element.outerHtml),
+      BaizeStringValue(element.outerHtml),
     );
-    final FubukiObjectValue attributes = FubukiObjectValue();
+    final BaizeObjectValue attributes = BaizeObjectValue();
     element.attributes.forEach((final Object key, final String value) {
       attributes.set(
-        FubukiStringValue(key.toString()),
-        FubukiStringValue(value),
+        BaizeStringValue(key.toString()),
+        BaizeStringValue(value),
       );
     });
     value.setNamedProperty('attributes', attributes);
     value.setNamedProperty(
       'querySelector',
-      FubukiNativeFunctionValue.sync(
-        (final FubukiNativeFunctionCall call) {
-          final FubukiStringValue selector = call.argumentAt(0);
+      BaizeNativeFunctionValue.sync(
+        (final BaizeNativeFunctionCall call) {
+          final BaizeStringValue selector = call.argumentAt(0);
           final dom.Element? selected = element.querySelector(selector.value);
           if (selected != null) return newHtmlElement(selected);
-          return FubukiNullValue.value;
+          return BaizeNullValue.value;
         },
       ),
     );
     value.setNamedProperty(
       'querySelectorAll',
-      FubukiNativeFunctionValue.sync(
-        (final FubukiNativeFunctionCall call) {
-          final FubukiStringValue selector = call.argumentAt(0);
-          final FubukiListValue selected = FubukiListValue();
+      BaizeNativeFunctionValue.sync(
+        (final BaizeNativeFunctionCall call) {
+          final BaizeStringValue selector = call.argumentAt(0);
+          final BaizeListValue selected = BaizeListValue();
           for (final dom.Element x
               in element.querySelectorAll(selector.value)) {
             selected.push(newHtmlElement(x));

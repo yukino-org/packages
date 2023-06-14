@@ -1,5 +1,5 @@
-import 'package:fubuki_vm/fubuki_vm.dart';
-import 'fubuki/helpers/http.dart';
+import 'package:baize_vm/baize_vm.dart';
+import 'baize/helpers/http.dart';
 import 'instance.dart';
 import 'options.dart';
 
@@ -13,7 +13,7 @@ abstract class TenkaRuntimeManager {
   }
 
   static Future<TenkaRuntimeInstance> create(
-    final FubukiProgramConstant program,
+    final BaizeProgramConstant program,
   ) async {
     if (!ready) throw Exception('Not ready');
     final TenkaRuntimeInstance instance = TenkaRuntimeInstance(program);

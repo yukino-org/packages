@@ -1,31 +1,31 @@
-import 'package:fubuki_vm/fubuki_vm.dart';
+import 'package:baize_vm/baize_vm.dart';
 import 'package:tenka/tenka.dart';
 
 class TenkaRuntimeInstance {
   TenkaRuntimeInstance(this.program);
 
-  final FubukiProgramConstant program;
+  final BaizeProgramConstant program;
 
-  late final FubukiVM vm =
-      FubukiVM(program, FubukiVMOptions(disablePrint: !TenkaInternals.isDebug));
-  late final TenkaFubukiConverter converter = TenkaFubukiConverter(this);
+  late final BaizeVM vm =
+      BaizeVM(program, BaizeVMOptions(disablePrint: !TenkaInternals.isDebug));
+  late final TenkaBaizeConverter converter = TenkaBaizeConverter(this);
 
   Future<void> initialize() async {
-    TenkaFubukiBindings.bind(vm.globalNamespace);
+    TenkaBaizeBindings.bind(vm.globalNamespace);
     await vm.run();
   }
 
   Future<AnimeExtractor> getAnimeExtractor() async {
-    final FubukiValue result = getExtractorValue();
+    final BaizeValue result = getExtractorValue();
     return converter.animeExtractor.convert(vm.topFrame, result);
   }
 
   Future<MangaExtractor> getMangaExtractor() async {
-    final FubukiValue result = getExtractorValue();
+    final BaizeValue result = getExtractorValue();
     return converter.mangaExtractor.convert(vm.topFrame, result);
   }
 
-  FubukiValue getExtractorValue() =>
+  BaizeValue getExtractorValue() =>
       vm.modules[program.entrypoint]!.namespace.lookup(kExtractor);
 
   static const String kExtractor = 'extractor';

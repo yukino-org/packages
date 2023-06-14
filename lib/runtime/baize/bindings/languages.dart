@@ -1,16 +1,16 @@
-import 'package:fubuki_vm/fubuki_vm.dart';
+import 'package:baize_vm/baize_vm.dart';
 import 'package:tenka/tenka.dart';
 import 'package:utilx/generated/locale.g.dart';
 
 abstract class LanguagesBindings {
-  static void bind(final FubukiNamespace namespace) {
-    final FubukiObjectValue value = FubukiObjectValue();
+  static void bind(final BaizeNamespace namespace) {
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'isValid',
-      FubukiNativeFunctionValue.sync(
-        (final FubukiNativeFunctionCall call) {
-          final FubukiStringValue lang = call.argumentAt(0);
-          return FubukiBooleanValue(
+      BaizeNativeFunctionValue.sync(
+        (final BaizeNativeFunctionCall call) {
+          final BaizeStringValue lang = call.argumentAt(0);
+          return BaizeBooleanValue(
             LanguageUtils.nameCodeMap.containsKey(lang.value),
           );
         },
@@ -18,10 +18,10 @@ abstract class LanguagesBindings {
     );
     value.setNamedProperty(
       'all',
-      FubukiNativeFunctionValue.sync(
-        (final _) => FubukiListValue(
+      BaizeNativeFunctionValue.sync(
+        (final _) => BaizeListValue(
           LanguageUtils.nameCodeMap.keys
-              .map((final String x) => FubukiStringValue(x))
+              .map((final String x) => BaizeStringValue(x))
               .toList(),
         ),
       ),

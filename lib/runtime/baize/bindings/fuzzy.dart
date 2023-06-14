@@ -1,27 +1,27 @@
 import 'dart:math';
-import 'package:fubuki_vm/fubuki_vm.dart';
+import 'package:baize_vm/baize_vm.dart';
 import '../converter/exports.dart';
 
 abstract class FuzzySearchBindings {
-  static void bind(final FubukiNamespace namespace) {
-    final FubukiObjectValue value = FubukiObjectValue();
+  static void bind(final BaizeNamespace namespace) {
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'new',
-      FubukiNativeFunctionValue.sync(
-        (final FubukiNativeFunctionCall call) {
-          final FubukiObjectValue options = call.argumentAt(0);
-          final FubukiListValue items = options.getNamedProperty('items');
-          final FubukiListValue keys = options.getNamedProperty('keys');
+      BaizeNativeFunctionValue.sync(
+        (final BaizeNativeFunctionCall call) {
+          final BaizeObjectValue options = call.argumentAt(0);
+          final BaizeListValue items = options.getNamedProperty('items');
+          final BaizeListValue keys = options.getNamedProperty('keys');
           return newClient(
             items: items.elements,
             keys: keys.elements.map(
-              (final FubukiValue x) {
-                final FubukiObjectValue casted = x.cast();
+              (final BaizeValue x) {
+                final BaizeObjectValue casted = x.cast();
                 return _FuzzySearchKey(
                   getter: casted.getNamedProperty('getter'),
                   weight: casted
                       .getNamedProperty('weight')
-                      .cast<FubukiNumberValue>()
+                      .cast<BaizeNumberValue>()
                       .value,
                 );
               },
@@ -33,24 +33,24 @@ abstract class FuzzySearchBindings {
     namespace.declare('FuzzySearch', value);
   }
 
-  static FubukiValue newClient({
-    required final List<FubukiValue> items,
+  static BaizeValue newClient({
+    required final List<BaizeValue> items,
     required final List<_FuzzySearchKey> keys,
   }) {
-    final FubukiObjectValue value = FubukiObjectValue();
+    final BaizeObjectValue value = BaizeObjectValue();
     value.setNamedProperty(
       'search',
-      FubukiNativeFunctionValue.async(
-        (final FubukiNativeFunctionCall call) async {
-          final FubukiStringValue terms = call.argumentAt(0);
-          final List<FubukiObjectValue> results = <FubukiObjectValue>[];
-          final FubukiStringValue matchKey = FubukiStringValue('match');
-          for (final FubukiValue item in items) {
+      BaizeNativeFunctionValue.async(
+        (final BaizeNativeFunctionCall call) async {
+          final BaizeStringValue terms = call.argumentAt(0);
+          final List<BaizeObjectValue> results = <BaizeObjectValue>[];
+          final BaizeStringValue matchKey = BaizeStringValue('match');
+          for (final BaizeValue item in items) {
             double match = 0;
             for (final _FuzzySearchKey key in keys) {
-              final FubukiValue againstValue = await call.frame.callValue(
+              final BaizeValue againstValue = await call.frame.callValue(
                 key.getter,
-                <FubukiValue>[item],
+                <BaizeValue>[item],
               ).unwrapUnsafe();
               final String against = againstValue.kToString();
               final int distance = calculateLevenshteinDistance(
@@ -59,17 +59,17 @@ abstract class FuzzySearchBindings {
               );
               match += distance * key.weight;
             }
-            final FubukiObjectValue result = FubukiObjectValue();
-            result.set(matchKey, FubukiNumberValue(match));
+            final BaizeObjectValue result = BaizeObjectValue();
+            result.set(matchKey, BaizeNumberValue(match));
             result.setNamedProperty('item', item);
             results.add(result);
           }
-          results.sort((final FubukiObjectValue a, final FubukiObjectValue b) {
-            final FubukiNumberValue distanceA = a.get(matchKey).cast();
-            final FubukiNumberValue distanceB = b.get(matchKey).cast();
+          results.sort((final BaizeObjectValue a, final BaizeObjectValue b) {
+            final BaizeNumberValue distanceA = a.get(matchKey).cast();
+            final BaizeNumberValue distanceB = b.get(matchKey).cast();
             return distanceA.value.compareTo(distanceB.value);
           });
-          return FubukiListValue(results);
+          return BaizeListValue(results);
         },
       ),
     );
@@ -106,6 +106,6 @@ class _FuzzySearchKey {
     required this.weight,
   });
 
-  final FubukiValue getter;
+  final BaizeValue getter;
   final double weight;
 }
