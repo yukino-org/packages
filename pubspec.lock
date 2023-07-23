@@ -13,10 +13,10 @@ packages:
     dependency: transitive
     description:
       name: asn1lib
-      sha256: ab96a1cb3beeccf8145c52e449233fe68364c9641623acd3adad66f8184f1039
+      sha256: b74e3842a52c61f8819a1ec8444b4de5419b41a7465e69d4aa681445377398b0
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "1.4.1"
   async:
     dependency: transitive
     description:
@@ -25,22 +25,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  baize_shared:
+  beize_shared:
     dependency: transitive
     description:
-      path: "packages/baize_shared"
+      path: "packages/beize_shared"
       ref: HEAD
-      resolved-ref: d365e1a165f95dce31c50323f27b1fa3228deee5
-      url: "https://github.com/zyrouge/baize.git"
+      resolved-ref: bf3885e0521d61d27faee05ca0edfc3882916e99
+      url: "https://github.com/zyrouge/beize.git"
     source: git
     version: "0.0.0"
-  baize_vm:
+  beize_vm:
     dependency: transitive
     description:
-      path: "packages/baize_vm"
+      path: "packages/beize_vm"
       ref: HEAD
-      resolved-ref: d365e1a165f95dce31c50323f27b1fa3228deee5
-      url: "https://github.com/zyrouge/baize.git"
+      resolved-ref: bf3885e0521d61d27faee05ca0edfc3882916e99
+      url: "https://github.com/zyrouge/beize.git"
     source: git
     version: "0.0.0"
   clock:
@@ -112,10 +112,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
+      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -185,7 +185,7 @@ packages:
     description:
       path: "."
       ref: dart_tenka_runtime
-      resolved-ref: abeadc5d0b9b95cb1629481314a8f8536a708ae2
+      resolved-ref: f935c7923d639d7cf3204ed20cf7e4524db7d801
       url: "https://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
