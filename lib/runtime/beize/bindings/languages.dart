@@ -1,16 +1,16 @@
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import 'package:tenka/tenka.dart';
 import 'package:utilx/generated/locale.g.dart';
 
 abstract class LanguagesBindings {
-  static void bind(final BaizeNamespace namespace) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static void bind(final BeizeNamespace namespace) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'isValid',
-      BaizeNativeFunctionValue.sync(
-        (final BaizeNativeFunctionCall call) {
-          final BaizeStringValue lang = call.argumentAt(0);
-          return BaizeBooleanValue(
+      BeizeNativeFunctionValue.sync(
+        (final BeizeNativeFunctionCall call) {
+          final BeizeStringValue lang = call.argumentAt(0);
+          return BeizeBooleanValue(
             LanguageUtils.nameCodeMap.containsKey(lang.value),
           );
         },
@@ -18,10 +18,10 @@ abstract class LanguagesBindings {
     );
     value.setNamedProperty(
       'all',
-      BaizeNativeFunctionValue.sync(
-        (final _) => BaizeListValue(
+      BeizeNativeFunctionValue.sync(
+        (final _) => BeizeListValue(
           LanguageUtils.nameCodeMap.keys
-              .map((final String x) => BaizeStringValue(x))
+              .map((final String x) => BeizeStringValue(x))
               .toList(),
         ),
       ),

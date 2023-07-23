@@ -1,37 +1,37 @@
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import '../../instance.dart';
 
-abstract class TenkaBaizeConvertable<T> {
-  TenkaBaizeConvertable(this.converter);
+abstract class TenkaBeizeConvertable<T> {
+  TenkaBeizeConvertable(this.converter);
 
-  final TenkaBaizeConverter converter;
+  final TenkaBeizeConverter converter;
 
   T convert(
-    final BaizeCallFrame frame,
-    final BaizeValue value,
+    final BeizeCallFrame frame,
+    final BeizeValue value,
   );
 
   List<T> convertMany(
-    final BaizeCallFrame frame,
-    final BaizeValue value,
+    final BeizeCallFrame frame,
+    final BeizeValue value,
   ) {
-    final BaizeListValue casted = value.cast();
+    final BeizeListValue casted = value.cast();
     return casted.elements
-        .map((final BaizeValue x) => convert(frame, x))
+        .map((final BeizeValue x) => convert(frame, x))
         .toList();
   }
 
   T? maybeConvert(
-    final BaizeCallFrame frame,
-    final BaizeValue value,
+    final BeizeCallFrame frame,
+    final BeizeValue value,
   ) {
-    if (value is BaizeNullValue) return null;
+    if (value is BeizeNullValue) return null;
     return convert(frame, value);
   }
 }
 
-class TenkaBaizeConverter {
-  TenkaBaizeConverter(this.runtime);
+class TenkaBeizeConverter {
+  TenkaBeizeConverter(this.runtime);
 
   final TenkaRuntimeInstance runtime;
 
@@ -58,13 +58,13 @@ class TenkaBaizeConverter {
   static const String kChapters = 'chapters';
 }
 
-extension TenkaBaizeConverterUtils on BaizePrimitiveObjectValue {
-  T getNamedProperty<T extends BaizeValue>(final String name) =>
-      get(BaizeStringValue(name)).cast();
+extension TenkaBeizeConverterUtils on BeizePrimitiveObjectValue {
+  T getNamedProperty<T extends BeizeValue>(final String name) =>
+      get(BeizeStringValue(name)).cast();
 
   void setNamedProperty(
     final String name,
-    final BaizeValue value,
+    final BeizeValue value,
   ) =>
-      set(BaizeStringValue(name), value);
+      set(BeizeStringValue(name), value);
 }

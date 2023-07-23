@@ -1,32 +1,32 @@
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import 'package:tenka/tenka.dart';
 
 class TenkaRuntimeInstance {
   TenkaRuntimeInstance(this.program);
 
-  final BaizeProgramConstant program;
+  final BeizeProgramConstant program;
 
-  late final BaizeVM vm =
-      BaizeVM(program, BaizeVMOptions(disablePrint: !TenkaInternals.isDebug));
-  late final TenkaBaizeConverter converter = TenkaBaizeConverter(this);
+  late final BeizeVM vm =
+      BeizeVM(program, BeizeVMOptions(disablePrint: !TenkaInternals.isDebug));
+  late final TenkaBeizeConverter converter = TenkaBeizeConverter(this);
 
   Future<void> initialize() async {
-    TenkaBaizeBindings.bind(vm.globalNamespace);
+    TenkaBeizeBindings.bind(vm.globalNamespace);
     await vm.run();
   }
 
   Future<AnimeExtractor> getAnimeExtractor() async {
-    final BaizeValue result = getExtractorValue();
+    final BeizeValue result = getExtractorValue();
     return converter.animeExtractor.convert(vm.topFrame, result);
   }
 
   Future<MangaExtractor> getMangaExtractor() async {
-    final BaizeValue result = getExtractorValue();
+    final BeizeValue result = getExtractorValue();
     return converter.mangaExtractor.convert(vm.topFrame, result);
   }
 
-  BaizeValue getExtractorValue() =>
-      vm.modules[program.entrypoint]!.namespace.lookup(kExtractor);
+  BeizeValue getExtractorValue() =>
+      vm.modules[program.moduleNameAt(0)]!.namespace.lookup(kExtractor);
 
   static const String kExtractor = 'extractor';
   static const String kDefaultLocale = 'defaultLocale';

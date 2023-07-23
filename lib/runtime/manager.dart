@@ -1,5 +1,5 @@
-import 'package:baize_vm/baize_vm.dart';
-import 'baize/helpers/http.dart';
+import 'package:beize_vm/beize_vm.dart';
+import 'beize/helpers/http.dart';
 import 'instance.dart';
 import 'options.dart';
 
@@ -13,7 +13,7 @@ abstract class TenkaRuntimeManager {
   }
 
   static Future<TenkaRuntimeInstance> create(
-    final BaizeProgramConstant program,
+    final BeizeProgramConstant program,
   ) async {
     if (!ready) throw Exception('Not ready');
     final TenkaRuntimeInstance instance = TenkaRuntimeInstance(program);

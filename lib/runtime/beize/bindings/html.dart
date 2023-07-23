@@ -1,16 +1,16 @@
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import '../converter/exports.dart';
 
 abstract class HtmlBindings {
-  static void bind(final BaizeNamespace namespace) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static void bind(final BeizeNamespace namespace) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'parse',
-      BaizeNativeFunctionValue.sync(
-        (final BaizeNativeFunctionCall call) {
-          final BaizeStringValue value = call.argumentAt(0);
+      BeizeNativeFunctionValue.sync(
+        (final BeizeNativeFunctionCall call) {
+          final BeizeStringValue value = call.argumentAt(0);
           return newHtmlElement(html.parse(value.value).documentElement!);
         },
       ),
@@ -18,55 +18,55 @@ abstract class HtmlBindings {
     namespace.declare('HtmlElement', value);
   }
 
-  static BaizeValue newHtmlElement(final dom.Element element) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static BeizeValue newHtmlElement(final dom.Element element) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'classes',
-      BaizeListValue(
-        element.classes.map((final String x) => BaizeStringValue(x)).toList(),
+      BeizeListValue(
+        element.classes.map((final String x) => BeizeStringValue(x)).toList(),
       ),
     );
     value.setNamedProperty(
       'id',
-      BaizeStringValue(element.id),
+      BeizeStringValue(element.id),
     );
     value.setNamedProperty(
       'text',
-      BaizeStringValue(element.text),
+      BeizeStringValue(element.text),
     );
     value.setNamedProperty(
       'innerHtml',
-      BaizeStringValue(element.innerHtml),
+      BeizeStringValue(element.innerHtml),
     );
     value.setNamedProperty(
       'outerHtml',
-      BaizeStringValue(element.outerHtml),
+      BeizeStringValue(element.outerHtml),
     );
-    final BaizeObjectValue attributes = BaizeObjectValue();
+    final BeizeObjectValue attributes = BeizeObjectValue();
     element.attributes.forEach((final Object key, final String value) {
       attributes.set(
-        BaizeStringValue(key.toString()),
-        BaizeStringValue(value),
+        BeizeStringValue(key.toString()),
+        BeizeStringValue(value),
       );
     });
     value.setNamedProperty('attributes', attributes);
     value.setNamedProperty(
       'querySelector',
-      BaizeNativeFunctionValue.sync(
-        (final BaizeNativeFunctionCall call) {
-          final BaizeStringValue selector = call.argumentAt(0);
+      BeizeNativeFunctionValue.sync(
+        (final BeizeNativeFunctionCall call) {
+          final BeizeStringValue selector = call.argumentAt(0);
           final dom.Element? selected = element.querySelector(selector.value);
           if (selected != null) return newHtmlElement(selected);
-          return BaizeNullValue.value;
+          return BeizeNullValue.value;
         },
       ),
     );
     value.setNamedProperty(
       'querySelectorAll',
-      BaizeNativeFunctionValue.sync(
-        (final BaizeNativeFunctionCall call) {
-          final BaizeStringValue selector = call.argumentAt(0);
-          final BaizeListValue selected = BaizeListValue();
+      BeizeNativeFunctionValue.sync(
+        (final BeizeNativeFunctionCall call) {
+          final BeizeStringValue selector = call.argumentAt(0);
+          final BeizeListValue selected = BeizeListValue();
           for (final dom.Element x
               in element.querySelectorAll(selector.value)) {
             selected.push(newHtmlElement(x));

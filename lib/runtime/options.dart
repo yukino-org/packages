@@ -1,6 +1,6 @@
-import 'baize/helpers/http.dart';
+import 'beize/helpers/http.dart';
 
-export 'baize/helpers/http.dart' show TenkaRuntimeHttpClientOptions;
+export 'beize/helpers/http.dart' show TenkaRuntimeHttpClientOptions;
 
 class TenkaRuntimeOptions {
   const TenkaRuntimeOptions({

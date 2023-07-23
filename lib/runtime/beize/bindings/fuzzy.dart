@@ -1,27 +1,27 @@
 import 'dart:math';
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import '../converter/exports.dart';
 
 abstract class FuzzySearchBindings {
-  static void bind(final BaizeNamespace namespace) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static void bind(final BeizeNamespace namespace) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'new',
-      BaizeNativeFunctionValue.sync(
-        (final BaizeNativeFunctionCall call) {
-          final BaizeObjectValue options = call.argumentAt(0);
-          final BaizeListValue items = options.getNamedProperty('items');
-          final BaizeListValue keys = options.getNamedProperty('keys');
+      BeizeNativeFunctionValue.sync(
+        (final BeizeNativeFunctionCall call) {
+          final BeizeObjectValue options = call.argumentAt(0);
+          final BeizeListValue items = options.getNamedProperty('items');
+          final BeizeListValue keys = options.getNamedProperty('keys');
           return newClient(
             items: items.elements,
             keys: keys.elements.map(
-              (final BaizeValue x) {
-                final BaizeObjectValue casted = x.cast();
+              (final BeizeValue x) {
+                final BeizeObjectValue casted = x.cast();
                 return _FuzzySearchKey(
                   getter: casted.getNamedProperty('getter'),
                   weight: casted
                       .getNamedProperty('weight')
-                      .cast<BaizeNumberValue>()
+                      .cast<BeizeNumberValue>()
                       .value,
                 );
               },
@@ -33,24 +33,24 @@ abstract class FuzzySearchBindings {
     namespace.declare('FuzzySearch', value);
   }
 
-  static BaizeValue newClient({
-    required final List<BaizeValue> items,
+  static BeizeValue newClient({
+    required final List<BeizeValue> items,
     required final List<_FuzzySearchKey> keys,
   }) {
-    final BaizeObjectValue value = BaizeObjectValue();
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'search',
-      BaizeNativeFunctionValue.async(
-        (final BaizeNativeFunctionCall call) async {
-          final BaizeStringValue terms = call.argumentAt(0);
-          final List<BaizeObjectValue> results = <BaizeObjectValue>[];
-          final BaizeStringValue matchKey = BaizeStringValue('match');
-          for (final BaizeValue item in items) {
+      BeizeNativeFunctionValue.async(
+        (final BeizeNativeFunctionCall call) async {
+          final BeizeStringValue terms = call.argumentAt(0);
+          final List<BeizeObjectValue> results = <BeizeObjectValue>[];
+          final BeizeStringValue matchKey = BeizeStringValue('match');
+          for (final BeizeValue item in items) {
             double match = 0;
             for (final _FuzzySearchKey key in keys) {
-              final BaizeValue againstValue = await call.frame.callValue(
+              final BeizeValue againstValue = call.frame.callValue(
                 key.getter,
-                <BaizeValue>[item],
+                <BeizeValue>[item],
               ).unwrapUnsafe();
               final String against = againstValue.kToString();
               final int distance = calculateLevenshteinDistance(
@@ -59,17 +59,17 @@ abstract class FuzzySearchBindings {
               );
               match += distance * key.weight;
             }
-            final BaizeObjectValue result = BaizeObjectValue();
-            result.set(matchKey, BaizeNumberValue(match));
+            final BeizeObjectValue result = BeizeObjectValue();
+            result.set(matchKey, BeizeNumberValue(match));
             result.setNamedProperty('item', item);
             results.add(result);
           }
-          results.sort((final BaizeObjectValue a, final BaizeObjectValue b) {
-            final BaizeNumberValue distanceA = a.get(matchKey).cast();
-            final BaizeNumberValue distanceB = b.get(matchKey).cast();
+          results.sort((final BeizeObjectValue a, final BeizeObjectValue b) {
+            final BeizeNumberValue distanceA = a.get(matchKey).cast();
+            final BeizeNumberValue distanceB = b.get(matchKey).cast();
             return distanceA.value.compareTo(distanceB.value);
           });
-          return BaizeListValue(results);
+          return BeizeListValue(results);
         },
       ),
     );
@@ -106,6 +106,6 @@ class _FuzzySearchKey {
     required this.weight,
   });
 
-  final BaizeValue getter;
+  final BeizeValue getter;
   final double weight;
 }

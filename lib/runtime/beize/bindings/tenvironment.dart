@@ -1,12 +1,12 @@
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import 'package:tenka/tenka.dart';
 
 abstract class TEnvironmentBindings {
-  static void bind(final BaizeNamespace namespace) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static void bind(final BeizeNamespace namespace) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'isDebug',
-      BaizeNativeFunctionValue.sync((final _) => BaizeBooleanValue(isDebug)),
+      BeizeNativeFunctionValue.sync((final _) => BeizeBooleanValue(isDebug)),
     );
     namespace.declare('TEnvironment', value);
   }

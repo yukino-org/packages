@@ -8,10 +8,10 @@ environment:
     sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-    baize_vm:
+    beize_vm:
         git:
-            url: https://github.com/zyrouge/baize.git
-            path: packages/baize_vm
+            url: https://github.com/zyrouge/beize.git
+            path: packages/beize_vm
     crypto: ^3.0.3
     encrypt: ^5.0.1
     html: ^0.15.3

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:baize_vm/baize_vm.dart';
+import 'package:beize_vm/beize_vm.dart';
 import 'package:http/http.dart' as http;
 import '../converter/exports.dart';
 import '../helpers/http.dart';
@@ -14,23 +14,23 @@ abstract class HttpBindings {
   static const String userAgentMacOS =
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15';
 
-  static void bind(final BaizeNamespace namespace) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static void bind(final BeizeNamespace namespace) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'request',
-      BaizeNativeFunctionValue.async(
-        (final BaizeNativeFunctionCall call) async {
-          final BaizeObjectValue options = call.argumentAt(0);
-          final BaizeStringValue method = options.getNamedProperty('method');
-          final BaizeStringValue url = options.getNamedProperty('url');
-          final BaizeValue body = options.getNamedProperty('body');
-          final BaizeValue headers = options.getNamedProperty('headers');
+      BeizeNativeFunctionValue.async(
+        (final BeizeNativeFunctionCall call) async {
+          final BeizeObjectValue options = call.argumentAt(0);
+          final BeizeStringValue method = options.getNamedProperty('method');
+          final BeizeStringValue url = options.getNamedProperty('url');
+          final BeizeValue body = options.getNamedProperty('body');
+          final BeizeValue headers = options.getNamedProperty('headers');
 
           final Uri uri = Uri.parse(url.value);
-          final String? bodyStr = body is BaizeStringValue ? body.value : null;
+          final String? bodyStr = body is BeizeStringValue ? body.value : null;
           final Map<String, String> headersMap = <String, String>{};
-          if (headers is BaizeObjectValue) {
-            for (final MapEntry<BaizeValue, BaizeValue> x
+          if (headers is BeizeObjectValue) {
+            for (final MapEntry<BeizeValue, BeizeValue> x
                 in headers.entries()) {
               headersMap[x.key.kToString()] = x.value.kToString();
             }
@@ -75,10 +75,7 @@ abstract class HttpBindings {
               break;
 
             default:
-              throw BaizeExceptionNatives.newExceptionNative(
-                'Invalid http method "${method.value}"',
-                call.frame.getStackTrace(),
-              );
+              throw Exception('Invalid http method "${method.value}"');
           }
 
           return newHttpResponse(response);
@@ -87,37 +84,37 @@ abstract class HttpBindings {
     );
     value.setNamedProperty(
       'defaultDesktopUserAgent',
-      BaizeNativeFunctionValue.sync(
-        (final _) => BaizeStringValue(defaultDesktopUserAgent),
+      BeizeNativeFunctionValue.sync(
+        (final _) => BeizeStringValue(defaultDesktopUserAgent),
       ),
     );
     namespace.declare('Http', value);
   }
 
-  static BaizeValue newHttpResponse(final http.Response response) {
-    final BaizeObjectValue value = BaizeObjectValue();
+  static BeizeValue newHttpResponse(final http.Response response) {
+    final BeizeObjectValue value = BeizeObjectValue();
     value.setNamedProperty(
       'body',
-      BaizeStringValue(response.body),
+      BeizeStringValue(response.body),
     );
-    final BaizeObjectValue headers = BaizeObjectValue();
+    final BeizeObjectValue headers = BeizeObjectValue();
     for (final MapEntry<String, String> x in response.headers.entries) {
-      headers.setNamedProperty(x.key, BaizeStringValue(x.value));
+      headers.setNamedProperty(x.key, BeizeStringValue(x.value));
     }
     value.setNamedProperty('headers', headers);
     value.setNamedProperty(
       'statusCode',
-      BaizeNumberValue(response.statusCode.toDouble()),
+      BeizeNumberValue(response.statusCode.toDouble()),
     );
     value.setNamedProperty(
       'reasonPhrase',
       response.reasonPhrase != null
-          ? BaizeStringValue(response.reasonPhrase!)
-          : BaizeNullValue.value,
+          ? BeizeStringValue(response.reasonPhrase!)
+          : BeizeNullValue.value,
     );
     value.setNamedProperty(
       'isRedirect',
-      BaizeBooleanValue(response.isRedirect),
+      BeizeBooleanValue(response.isRedirect),
     );
     return value;
   }
