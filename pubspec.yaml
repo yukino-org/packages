@@ -8,10 +8,10 @@ environment:
     sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-    baize_compiler:
+    beize_compiler:
         git:
-            url: https://github.com/zyrouge/baize.git
-            path: packages/baize_compiler
+            url: https://github.com/zyrouge/beize.git
+            path: packages/beize_compiler
     colorize: ^3.0.0
     path: ^1.8.3
     tenka:

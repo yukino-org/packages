@@ -1,6 +1,5 @@
-import 'package:baize_compiler/baize_compiler.dart';
 import 'package:tenka/tenka.dart';
-import '../utils/exports.dart';
+import '../tenka_dev_tools.dart';
 
 typedef MockedMangaExtractorFn<T> = Future<T> Function(MangaExtractor);
 
@@ -21,10 +20,7 @@ class MockedMangaExtractor {
     final TenkaLocalFileDS source, {
     final bool verbose = true,
   }) async {
-    final BaizeProgramConstant program = await BaizeCompiler.compileProject(
-      root: source.root,
-      entrypoint: source.file,
-    );
+    final BeizeProgramConstant program = await TenkaCompiler.compile(source);
     final TenkaRuntimeInstance runtime =
         await TenkaRuntimeManager.create(program);
     final MangaExtractor extractor = await runtime.getMangaExtractor();
@@ -32,7 +28,7 @@ class MockedMangaExtractor {
 
     return BenchmarkRunner.run(
       <String, Future<dynamic> Function()>{
-        TenkaBaizeConverter.kSearch: () async {
+        TenkaBeizeConverter.kSearch: () async {
           final List<SearchInfo> result = await search(extractor);
 
           whenVerbose(() {
@@ -51,7 +47,7 @@ class MockedMangaExtractor {
 
           return result;
         },
-        TenkaBaizeConverter.kGetInfo: () async {
+        TenkaBeizeConverter.kGetInfo: () async {
           final MangaInfo result = await getInfo(extractor);
 
           whenVerbose(() {
@@ -63,7 +59,7 @@ class MockedMangaExtractor {
 
           return result;
         },
-        TenkaBaizeConverter.kGetChapter: () async {
+        TenkaBeizeConverter.kGetChapter: () async {
           final List<PageInfo> result = await getChapter(extractor);
 
           whenVerbose(() {
@@ -82,7 +78,7 @@ class MockedMangaExtractor {
 
           return result;
         },
-        TenkaBaizeConverter.kGetPage: () async {
+        TenkaBeizeConverter.kGetPage: () async {
           final ImageDescriber result = await getPage(extractor);
 
           whenVerbose(() {
