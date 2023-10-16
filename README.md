@@ -4,7 +4,7 @@
 
 # Packages
 
-📦️ Sub-packages used by Yukino Org.
+📦️ Sub-packages used in Yukino projects.
 
 ## Index
 

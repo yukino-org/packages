@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@@TITLE@@</title>
+
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+        />
+    </head>
+    <body>
+        <h1>@@TITLE@@</h1>
+        <br />
+        <hr />
+        <br />
+        <ul>
+            @@LINKS@@
+        </ul>
+    </body>
+    <style>
+        :root {
+            --body-padding-x: 2rem;
+            --body-padding-y: 1rem;
+        }
+
+        @media (min-width: 1280px) {
+            :root {
+                --body-padding-x: 10rem;
+                --body-padding-y: 2rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            padding: var(--body-padding-y) var(--body-padding-x);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        hr {
+            opacity: 0.2;
+        }
+
+        ul {
+            padding: 0.5rem 1.5rem;
+        }
+
+        a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #3437dd;
+        }
+    </style>
+</html>
