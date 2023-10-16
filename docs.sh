@@ -41,7 +41,7 @@ index_html() {
         links+="<li><a href=\"${pkg}\">${pkg}</a></li>\n"
     done
     title="Documentation - Yukino Packages"
-    content=$(echo "${content}" | sed -r "s#@@TITLE@@#${title}#p")
+    content=$(echo "${content}" | sed -r "s#@@TITLE@@#${title}#")
     content=$(echo "${content}" | sed -r "s#@@LINKS@@#${links}#")
     echo "${content}" >"${docs_dir}/index.html"
     echo "[done] Generated index.html"
