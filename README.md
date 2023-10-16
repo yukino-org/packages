@@ -4,6 +4,8 @@
 
 # Packages
 
+[![Documentation](https://github.com/yukino-org/packages/actions/workflows/docs.yml/badge.svg)](https://github.com/yukino-org/packages/actions/workflows/docs.yml)
+
 📦️ Sub-packages used in Yukino projects.
 
 ## Index
