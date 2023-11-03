@@ -25,8 +25,7 @@ class TenkaRuntimeInstance {
     return converter.mangaExtractor.convert(vm.topFrame, result);
   }
 
-  BeizeValue getExtractorValue() =>
-      vm.modules[program.moduleNameAt(0)]!.namespace.lookup(kExtractor);
+  BeizeValue getExtractorValue() => vm.modules[0]!.namespace.lookup(kExtractor);
 
   static const String kExtractor = 'extractor';
   static const String kDefaultLocale = 'defaultLocale';
