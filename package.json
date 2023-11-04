@@ -1,0 +1,14 @@
+{
+  "name": "@yukino-org/packages-dart_utilx",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "locales:build": "node ./cli/build-locales.js"
+  },
+  "author": "yukino-org",
+  "license": "MIT",
+  "dependencies": {
+    "@zyrouge/phrasey-locales-builder": "^1.1.10"
+  }
+}

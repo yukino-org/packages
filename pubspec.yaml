@@ -7,9 +7,6 @@ publish_to: none
 environment:
     sdk: ">=3.0.0 <4.0.0"
 
-dependencies:
-    meta: ^1.7.0
-
 dev_dependencies:
     devx:
         git:

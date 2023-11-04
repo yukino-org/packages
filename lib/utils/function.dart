@@ -8,14 +8,14 @@ abstract class FunctionUtils {
     final int i = 0,
     final Duration? interval,
   }) async {
-    int _i = i;
-    while (_i < max) {
+    int count = i;
+    while (count < max) {
       try {
         return await fn();
       } catch (err) {
-        _i += 1;
+        count += 1;
 
-        if (!(_i < max)) {
+        if (!(count < max)) {
           rethrow;
         }
 
