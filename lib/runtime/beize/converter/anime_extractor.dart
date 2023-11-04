@@ -29,7 +29,7 @@ class TenkaBeizeAnimeExtractorConvertable
           search,
           <BeizeValue>[
             BeizeStringValue(terms),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.searchInfo.convertMany(frame, result);
@@ -39,7 +39,7 @@ class TenkaBeizeAnimeExtractorConvertable
           getInfo,
           <BeizeValue>[
             BeizeStringValue(url),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.animeInfo.convert(frame, result);
@@ -49,7 +49,7 @@ class TenkaBeizeAnimeExtractorConvertable
           getSource,
           <BeizeValue>[
             BeizeStringValue(url),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.episodeSource.convert(frame, result);

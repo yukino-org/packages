@@ -2,7 +2,7 @@ import 'dart:typed_data';
 import 'package:beize_vm/beize_vm.dart';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 import '../converter/exports.dart';
 
 abstract class CryptoBindings {

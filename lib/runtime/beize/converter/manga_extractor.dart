@@ -31,7 +31,7 @@ class TenkaBeizeMangaExtractorConvertable
           search,
           <BeizeValue>[
             BeizeStringValue(terms),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.searchInfo.convertMany(frame, result);
@@ -41,7 +41,7 @@ class TenkaBeizeMangaExtractorConvertable
           getInfo,
           <BeizeValue>[
             BeizeStringValue(url),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.mangaInfo.convert(frame, result);
@@ -51,7 +51,7 @@ class TenkaBeizeMangaExtractorConvertable
           getChapter,
           <BeizeValue>[
             BeizeStringValue(url),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.pageInfo.convertMany(frame, result);
@@ -61,7 +61,7 @@ class TenkaBeizeMangaExtractorConvertable
           getPage,
           <BeizeValue>[
             BeizeStringValue(url),
-            BeizeStringValue(locale.toCodeString()),
+            BeizeStringValue(locale.code),
           ],
         );
         return converter.imageDescriber.convert(frame, result);

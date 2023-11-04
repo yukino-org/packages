@@ -42,37 +42,31 @@ abstract class HttpBindings {
               response = await TenkaRuntimeHttpClient.client
                   .get(uri, headers: headersMap)
                   .timeout(timeout);
-              break;
 
             case 'post':
               response = await TenkaRuntimeHttpClient.client
                   .post(uri, body: bodyStr, headers: headersMap)
                   .timeout(timeout);
-              break;
 
             case 'head':
               response = await TenkaRuntimeHttpClient.client
                   .head(uri, headers: headersMap)
                   .timeout(timeout);
-              break;
 
             case 'patch':
               response = await TenkaRuntimeHttpClient.client
                   .patch(uri, body: bodyStr, headers: headersMap)
                   .timeout(timeout);
-              break;
 
             case 'delete':
               response = await TenkaRuntimeHttpClient.client
                   .delete(uri, body: bodyStr, headers: headersMap)
                   .timeout(timeout);
-              break;
 
             case 'put':
               response = await TenkaRuntimeHttpClient.client
                   .put(uri, body: bodyStr, headers: headersMap)
                   .timeout(timeout);
-              break;
 
             default:
               throw Exception('Invalid http method "${method.value}"');
