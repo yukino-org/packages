@@ -1,11 +1,11 @@
 name: devx
-description: "🚨 Contains developer guideline preferences of Dart projects related to Yukino Org."
+description: "🚨 Contains developer guideline preferences of Dart projects related to Yukino."
 version: 0.0.0
 
 publish_to: none
 
 environment:
-    sdk: ">=2.12.0 <3.0.0"
+    sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
     zlint:

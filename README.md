@@ -4,7 +4,7 @@
 
 # DevX (Dart)
 
-🚨 Contains developer guideline preferences of Dart projects related to Yukino Org.
+🚨 Contains developer guideline preferences of Dart projects related to Yukino.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Analysis (Dart DevX)](<https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_devx).yml/badge.svg>)](<https://github.com/yukino-org/packages/actions/workflows/code-analysis-(dart_devx).yml>)
