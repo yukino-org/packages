@@ -1,5 +1,5 @@
 import 'package:utilx/locale.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 
 class ChapterInfo {
   const ChapterInfo({
@@ -29,6 +29,6 @@ class ChapterInfo {
         'volume': volume,
         'chapter': chapter,
         'url': url,
-        'locale': locale.toCodeString(),
+        'locale': locale.code,
       };
 }

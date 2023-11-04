@@ -1,5 +1,5 @@
 import 'package:utilx/locale.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 
 class EpisodeSubtitle {
   const EpisodeSubtitle({
@@ -21,6 +21,6 @@ class EpisodeSubtitle {
   JsonMap toJson() => <dynamic, dynamic>{
         'url': url,
         'headers': headers,
-        'locale': locale.toCodeString(),
+        'locale': locale.code,
       };
 }

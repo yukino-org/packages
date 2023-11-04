@@ -1,5 +1,5 @@
 import 'package:utilx/locale.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 import 'quality.dart';
 
 class EpisodeStream {
@@ -26,6 +26,6 @@ class EpisodeStream {
         'quality': quality.code,
         'url': url,
         'headers': headers,
-        'locale': locale.toCodeString(),
+        'locale': locale.code,
       };
 }

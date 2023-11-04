@@ -1,4 +1,4 @@
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 
 import 'prebuilts/base64.dart';
 import 'prebuilts/cloud.dart';

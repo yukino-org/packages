@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 import '../data/exports.dart';
 import '../metadata/exports.dart';
 import '../store/exports.dart';

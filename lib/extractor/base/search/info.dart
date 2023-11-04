@@ -1,5 +1,5 @@
 import 'package:utilx/locale.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 import '../image_describer.dart';
 
 typedef SearchFn = Future<List<SearchInfo>> Function(
@@ -33,6 +33,6 @@ class SearchInfo {
         'title': title,
         'url': url,
         'thumbnail': thumbnail?.toJson(),
-        'locale': locale.toCodeString(),
+        'locale': locale.code,
       };
 }

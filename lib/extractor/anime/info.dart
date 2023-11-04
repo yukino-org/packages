@@ -1,5 +1,5 @@
 import 'package:utilx/locale.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 import '../base/image_describer.dart';
 import 'episode/info.dart';
 
@@ -43,8 +43,8 @@ class AnimeInfo {
         'url': url,
         'thumbnail': thumbnail?.toJson(),
         'episodes': episodes.map((final EpisodeInfo x) => x.toJson()).toList(),
-        'locale': locale.toCodeString(),
+        'locale': locale.code,
         'availableLocales':
-            availableLocales.map((final Locale x) => x.toCodeString()).toList(),
+            availableLocales.map((final Locale x) => x.code).toList(),
       };
 }

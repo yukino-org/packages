@@ -1,5 +1,5 @@
 import 'package:utilx/locale.dart';
-import 'package:utilx/utils.dart';
+import 'package:utilx/utilx.dart';
 
 class PageInfo {
   const PageInfo({
@@ -17,6 +17,6 @@ class PageInfo {
 
   JsonMap toJson() => <dynamic, dynamic>{
         'url': url,
-        'locale': locale.toCodeString(),
+        'locale': locale.code,
       };
 }
