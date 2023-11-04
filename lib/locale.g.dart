@@ -1,8 +1,6 @@
-// SHA: b03ebc194f0e83a857369ba90d23163d1e200311
-// ID: MTY0MTcyNzYxMTU3Ny42Mjc0LTE2NDE3Mjc2MTE1NzcuNjI3NA==
 // Generated file. Do not edit.
 
-part 'locale.dart';
+part of 'locale.dart';
 
 enum LanguageCodes {
   aa,

@@ -1,4 +1,4 @@
-part of 'locale.g.dart';
+part 'locale.g.dart';
 
 class Locale {
   const Locale(this.code, [this.country]);
