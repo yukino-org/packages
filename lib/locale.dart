@@ -1,6 +1,4 @@
-import '../generated/locale.g.dart';
-
-export '../generated/locale.g.dart';
+part of 'locale.g.dart';
 
 class Locale {
   const Locale(this.code, [this.country]);

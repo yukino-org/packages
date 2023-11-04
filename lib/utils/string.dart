@@ -41,6 +41,34 @@ abstract class StringUtils {
 
   static String? onlyIfNotEmpty(final String text) =>
       text.trim().isNotEmpty ? text : null;
+
+  static String formatPositional(final String text, final List<String> args) {
+    final StringBuffer output = StringBuffer();
+    final int length = text.length;
+    for (int i = 0; i < length; i++) {
+      final String x = text[i];
+      if (x == '{') {}
+      switch (x) {
+        case '{':
+          final String y = text[i + 1];
+          if (y == '{') {
+            output.write('{');
+            i++;
+            continue;
+          }
+          output.write(args[int.parse(y)]);
+          i += 2;
+
+        case '}':
+          output.write('}');
+          i++;
+
+        default:
+          output.write(x);
+      }
+    }
+    return output.toString();
+  }
 }
 
 class StringCase {
