@@ -3,13 +3,13 @@
   "packages": [
     {
       "name": "lint",
-      "rootUri": "file:///home/zyrouge/.pub-cache/hosted/pub.dev/lint-2.1.2",
+      "rootUri": "file:///home/zyrouge/.pub-cache/hosted/pub.dev/lint-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.1"
     },
     {
       "name": "zlint",
-      "rootUri": "file:///home/zyrouge/.pub-cache/git/dart_zlint-9a635be15e5dead4913b1231fe9e53c060a13640/",
+      "rootUri": "file:///home/zyrouge/.pub-cache/git/dart_zlint-8cad12cadfdb42d8ad5d0d368d9422695888e91c/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -17,10 +17,10 @@
       "name": "devx",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-06-08T06:23:18.795903Z",
+  "generated": "2023-11-15T07:55:37.528181Z",
   "generator": "pub",
-  "generatorVersion": "3.1.0-63.1.beta"
+  "generatorVersion": "3.2.0-210.4.beta"
 }
