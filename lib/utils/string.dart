@@ -69,6 +69,16 @@ abstract class StringUtils {
     }
     return output.toString();
   }
+
+  static final RegExp _illegalCharacterRegex = RegExp(r'[^\w]+');
+  static String replaceIllegalCharacters(
+    final String text, {
+    final String replaceWith = '-',
+  }) =>
+      text.replaceAll(_illegalCharacterRegex, replaceWith);
+
+  static String substringLast(final String text, final int maxLength) =>
+      text.substring(max(0, text.length - maxLength), text.length);
 }
 
 class StringCase {
