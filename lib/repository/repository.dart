@@ -6,15 +6,14 @@ import 'package:utilx/utilx.dart';
 import '../data/exports.dart';
 import '../metadata/exports.dart';
 import '../store/exports.dart';
-import 'url.dart';
 
 class TenkaRepository {
   TenkaRepository({
-    required this.resolver,
+    required this.storeUrl,
     required this.baseDir,
   });
 
-  final TenkaStoreURLResolver resolver;
+  final String storeUrl;
   final String baseDir;
 
   late final TenkaStore store;
@@ -42,7 +41,6 @@ class TenkaRepository {
 
   Future<void> _createDirs() async {
     final List<String> dirs = <String>[baseDir, cacheDirPath];
-
     for (final String x in dirs) {
       final Directory dir = Directory(x);
       if (!(await dir.exists())) {
@@ -56,13 +54,10 @@ class TenkaRepository {
         metadata.source is! TenkaCloudDS) {
       throw Exception('`thumbnail` and `source` must be `TenkaCloudDS`');
     }
-
     final TenkaDataSource source =
         await _getBase64FromCloudDS(metadata.source as TenkaCloudDS);
-
     final TenkaDataSource thumbnail =
         await _getBase64FromCloudDS(metadata.thumbnail as TenkaCloudDS);
-
     return TenkaMetadata(
       id: metadata.id,
       name: metadata.name,
@@ -76,16 +71,15 @@ class TenkaRepository {
     );
   }
 
-  Future<TenkaBase64DS> _getBase64FromCloudDS(final TenkaCloudDS source) async {
-    final http.Response resp =
-        await http.get(Uri.parse(source.resolveURL(resolver)));
+  Uri _resolveUrl(final String part) => Uri.parse('${store.baseUrl}$part');
 
+  Future<TenkaBase64DS> _getBase64FromCloudDS(final TenkaCloudDS source) async {
+    final http.Response resp = await http.get(_resolveUrl(source.url));
     return TenkaBase64DS(resp.bodyBytes);
   }
 
   Future<void> saveLocalModules() async {
     final File mainFile = File(modulesFilePath);
-
     await mainFile.writeAsString(
       json.encode(
         installed.values.map((final TenkaMetadata x) => x.toJson()).toList(),
@@ -95,25 +89,19 @@ class TenkaRepository {
 
   Future<void> _loadModules() async {
     final File mainFile = File(modulesFilePath);
-
     installed = <String, TenkaMetadata>{};
-
     if (await mainFile.exists()) {
       for (final dynamic x
           in json.decode(await mainFile.readAsString()) as List<dynamic>) {
         TenkaMetadata metadata = TenkaMetadata.fromJson(x as JsonMap);
-
         final TenkaMetadata? currentMetadata = store.modules[metadata.id];
-
         if (currentMetadata != null &&
             currentMetadata.version > metadata.version) {
           metadata = await resolveMetadata(currentMetadata);
         }
-
         installed[metadata.id] = metadata;
       }
     }
-
     await saveLocalModules();
   }
 
@@ -121,38 +109,32 @@ class TenkaRepository {
     final String currentChecksum = await _getLatestChecksum();
     final File storeChecksumCacheFile = File(cachedStoreChecksumFilePath);
     final File storeCacheFile = File(cachedStoreFilePath);
-
     if (await storeChecksumCacheFile.exists()) {
       final String cachedChecksum = await storeChecksumCacheFile.readAsString();
-
       if (cachedChecksum == currentChecksum) {
         store = TenkaStore.fromJson(
           json.decode(await storeCacheFile.readAsString()) as JsonMap,
         );
-
         return;
       }
     }
-
     final TenkaStore currentStore = await _getLatestStore();
     await storeChecksumCacheFile.writeAsString(currentChecksum);
     await storeCacheFile.writeAsString(json.encode(currentStore.toJson()));
-
     store = currentStore;
   }
 
   Future<String> _getLatestChecksum() async {
-    final http.Response resp = await http.get(Uri.parse(resolver.checksumURL));
-
+    final http.Response resp = await http.get(Uri.parse(checksumUrl));
     return resp.body;
   }
 
   Future<TenkaStore> _getLatestStore() async {
-    final http.Response resp = await http.get(Uri.parse(resolver.storeURL));
-
+    final http.Response resp = await http.get(Uri.parse(storeUrl));
     return TenkaStore.fromJson(json.decode(resp.body) as JsonMap);
   }
 
+  String get checksumUrl => '$storeUrl.sha256sum';
   String get modulesFilePath => path.join(baseDir, 'modules.json');
   String get cacheDirPath => path.join(baseDir, 'cache');
   String get cachedStoreFilePath => path.join(cacheDirPath, 'store.json');
