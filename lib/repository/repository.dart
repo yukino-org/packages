@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:path/path.dart' as path;
 import 'package:utilx/utilx.dart';
-import '../metadata/exports.dart';
 import 'store_repository.dart';
 
 class TenkaRepository {
@@ -25,8 +24,8 @@ class TenkaRepository {
     await saveStoreUrls();
   }
 
-  Future<void> uninstall(final TenkaMetadata metadata) async {
-    final TenkaStoreRepository? removed = installed.remove(metadata.id);
+  Future<void> uninstall(final String storeUrl) async {
+    final TenkaStoreRepository? removed = installed.remove(storeUrl);
     if (removed == null) return;
     await saveStoreUrls();
     await Directory(removed.baseDir).delete(recursive: true);
