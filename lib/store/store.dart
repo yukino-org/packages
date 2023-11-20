@@ -9,10 +9,12 @@ class TenkaStore {
 
   factory TenkaStore.fromJson(final JsonMap json) => TenkaStore(
         baseUrl: json['baseUrl'] as String,
-        modules: castJsonMap<String, JsonMap>(json['modules']).map(
-          (final String k, final JsonMap v) => MapEntry<String, TenkaMetadata>(
-            k,
-            TenkaMetadata.fromJson(v),
+        modules: Map<String, TenkaMetadata>.fromEntries(
+          castList<JsonMap>(json['modules']).map(
+            (final JsonMap x) {
+              final TenkaMetadata metadata = TenkaMetadata.fromJson(x);
+              return MapEntry<String, TenkaMetadata>(metadata.id, metadata);
+            },
           ),
         ),
       );
@@ -22,9 +24,7 @@ class TenkaStore {
 
   JsonMap toJson() => <dynamic, dynamic>{
         'baseUrl': baseUrl,
-        'modules': modules.map(
-          (final String i, final TenkaMetadata x) =>
-              MapEntry<String, JsonMap>(i, x.toJson()),
-        ),
+        'modules':
+            modules.values.map((final TenkaMetadata x) => x.toJson()).toList(),
       };
 }
