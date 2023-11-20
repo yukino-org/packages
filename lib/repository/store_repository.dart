@@ -71,10 +71,10 @@ class TenkaStoreRepository {
     );
   }
 
-  Uri _resolveUrl(final String part) => Uri.parse('${store.baseUrl}$part');
+  Uri resolveUrl(final String part) => Uri.parse('${store.baseUrl}$part');
 
   Future<TenkaBase64DS> _getBase64FromCloudDS(final TenkaCloudDS source) async {
-    final http.Response resp = await http.get(_resolveUrl(source.url));
+    final http.Response resp = await http.get(resolveUrl(source.url));
     return TenkaBase64DS(resp.bodyBytes);
   }
 
