@@ -14,6 +14,7 @@ class TenkaRepository {
   late final Map<String, TenkaStoreRepository> installed;
 
   Future<void> initialize() async {
+    await _createDirs();
     await _loadStoreUrls();
   }
 
@@ -34,6 +35,13 @@ class TenkaRepository {
   Future<void> saveStoreUrls() async {
     final File storeUrlsFile = File(storeUrlsFilePath);
     await storeUrlsFile.writeAsString(json.encode(installed.keys.toList()));
+  }
+
+  Future<void> _createDirs() async {
+    final List<String> dirs = <String>[baseDir];
+    for (final String x in dirs) {
+      await FSUtils.ensureDirectory(Directory(x));
+    }
   }
 
   Future<void> _loadStoreUrls() async {

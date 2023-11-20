@@ -39,16 +39,6 @@ class TenkaStoreRepository {
     await saveLocalModules();
   }
 
-  Future<void> _createDirs() async {
-    final List<String> dirs = <String>[baseDir, cacheDirPath];
-    for (final String x in dirs) {
-      final Directory dir = Directory(x);
-      if (!(await dir.exists())) {
-        await dir.create(recursive: true);
-      }
-    }
-  }
-
   Future<TenkaMetadata> fetchMetadata(final TenkaMetadata metadata) async {
     if (metadata.thumbnail is! TenkaCloudDS ||
         metadata.source is! TenkaCloudDS) {
@@ -102,6 +92,13 @@ class TenkaStoreRepository {
       }
     }
     await saveLocalModules();
+  }
+
+  Future<void> _createDirs() async {
+    final List<String> dirs = <String>[baseDir, cacheDirPath];
+    for (final String x in dirs) {
+      await FSUtils.ensureDirectory(Directory(x));
+    }
   }
 
   Future<void> _loadStore() async {
