@@ -1,6 +1,5 @@
 import 'package:utilx/utilx.dart';
 import '../data/model.dart';
-import 'version.dart';
 
 enum TenkaType {
   anime,
@@ -16,7 +15,7 @@ class TenkaMetadata {
     required this.source,
     required this.thumbnail,
     required this.nsfw,
-    required this.version,
+    required this.hash,
     required this.deprecated,
   });
 
@@ -32,7 +31,7 @@ class TenkaMetadata {
           json['thumbnail'] as JsonMap,
         ),
         nsfw: json['nsfw'] as bool,
-        version: TenkaVersion.parse(json['version'] as String),
+        hash: json['hash'] as String,
         deprecated: json['deprecated'] as bool,
       );
 
@@ -43,7 +42,7 @@ class TenkaMetadata {
   final TenkaDataSource source;
   final TenkaDataSource thumbnail;
   final bool nsfw;
-  final TenkaVersion version;
+  final String hash;
   final bool deprecated;
 
   JsonMap toJson() => <dynamic, dynamic>{
@@ -54,7 +53,7 @@ class TenkaMetadata {
         'source': source.toJson(),
         'thumbnail': thumbnail.toJson(),
         'nsfw': nsfw,
-        'version': version.toString(),
+        'hash': hash,
         'deprecated': deprecated,
       };
 }

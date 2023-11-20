@@ -29,7 +29,7 @@ class TenkaStoreRepository {
       installed.containsKey(metadata.id);
 
   Future<void> install(final TenkaMetadata metadata) async {
-    final TenkaMetadata resolved = await resolveMetadata(metadata);
+    final TenkaMetadata resolved = await fetchMetadata(metadata);
     installed[resolved.id] = resolved;
     await saveLocalModules();
   }
@@ -49,7 +49,7 @@ class TenkaStoreRepository {
     }
   }
 
-  Future<TenkaMetadata> resolveMetadata(final TenkaMetadata metadata) async {
+  Future<TenkaMetadata> fetchMetadata(final TenkaMetadata metadata) async {
     if (metadata.thumbnail is! TenkaCloudDS ||
         metadata.source is! TenkaCloudDS) {
       throw Exception('`thumbnail` and `source` must be `TenkaCloudDS`');
@@ -66,7 +66,7 @@ class TenkaStoreRepository {
       source: source,
       thumbnail: thumbnail,
       nsfw: metadata.nsfw,
-      version: metadata.version,
+      hash: metadata.hash,
       deprecated: metadata.deprecated,
     );
   }
@@ -95,9 +95,8 @@ class TenkaStoreRepository {
           in json.decode(await mainFile.readAsString()) as List<dynamic>) {
         TenkaMetadata metadata = TenkaMetadata.fromJson(x as JsonMap);
         final TenkaMetadata? currentMetadata = store.modules[metadata.id];
-        if (currentMetadata != null &&
-            currentMetadata.version > metadata.version) {
-          metadata = await resolveMetadata(currentMetadata);
+        if (currentMetadata != null && currentMetadata.hash != metadata.hash) {
+          metadata = await fetchMetadata(currentMetadata);
         }
         installed[metadata.id] = metadata;
       }
